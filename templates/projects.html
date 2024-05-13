@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/loading.css')}}" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <div id="loading">
+        <div class="center">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo" height="60"
+                        class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header text-white">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hello, take a look at my profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div>
+                        <img id="profile1" src="{{url_for('static',filename='images/profile1.png')}}" class="img-fluid"
+                            alt="..." style="padding: 3rem; padding-top: 5rem">
+                    </div>
+                    <div class="offcanvas-body d-flex flex-column p-4">
+                        <ul class="navbar-nav justify-content-end align-items-center fs-5 flex-grow-1 pe-3">
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" aria-current="page" href="/projects">PROJECTS</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" href="/skills">SKILLS</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link active" href="/contact">CONTACT</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a href="/resume"><button class="btn btn-outline-warning"
+                                        type="submit">RESUME</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid" style="padding:3rem">
+            <div id="nav-projects" class="row justify-content-center align-items-center"
+                style="margin-bottom: 3rem; margin-top: -2rem">
+                <div class="col-md-12">
+                    <a href="#carouselNLP" style="padding-right: 1.5rem;">NLP</a>
+                    <a href="#carouselML" style="padding-right: 1.5rem;">Deep
+                        Learnig & CV</a>
+                    <a href="#carouselDA" style="padding-right: 1.5rem;">Data Analytics</a>
+                    <a href="#carouselOthers">Other Works</a>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center" style="text-align: center;">
+                <div class="col-md-6">
+                    <h5 style="color:yellow;">NATURAL LANGUAGE PROCESSING</h5>
+                    <p id="descp-topic">
+                        Natural Language Processing (NLP) is a field of artificial intelligence focused on enabling
+                        computers to interact with human language. It involves the development of algorithms and models
+                        to
+                        understand, interpret, and generate natural language data. NLP applications range from chatbots
+                        and
+                        virtual assistants to sentiment analysis and language translation. Techniques in NLP include
+                        tokenization, part-of-speech tagging, named entity recognition, and sentiment analysis, among
+                        others.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div id="carouselNLP" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                        data-bs-interval="1750">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="https://github.com/ayushmaanFCB/Resume-and-Name-Card-Entity-Detection"
+                                    target="_blank">
+                                    <div class="card">
+                                        <img src="{{url_for('static',filename='images/resume_ner.png')}}"
+                                            class="card-img-top">
+                                        <div class="card-body">
+                                            <p class="card-text">Recognizing essential entities like name, emails,
+                                                skills,
+                                                roles, education, etc. from applicant resumes using a custom trained
+                                                SpaCy
+                                                model, and storing them into a cloud database, MongoDB Atlas.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <a href="https://github.com/ayushmaanFCB/Streamlit-App-for-Highway-Traffic-Analysis-from-Twitter-API"
+                                        , target="_blank">
+                                        <div class="card">
+                                            <img src="{{url_for('static',filename='images/tweets.png')}}"
+                                                class="card-img-top">
+                                            <div class="card-body">
+                                                <p class="card-text">A web-application that enables the users to fetch
+                                                    traffic-related tweets from Twitter API. Multiple algorithms have
+                                                    been
+                                                    used
+                                                    to increase the efficiency and versatility. Traffic related tweets
+                                                    are
+                                                    classifies using various algorithms.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselNLP"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true" style=></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselNLP"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center" style="text-align: center; margin-top:4rem">
+                <div class="col-md-6">
+                    <div id="carouselML" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                        data-bs-interval="1750">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="https://github.com/ayushmaanFCB/Spotify-Music-Recommendation-Engine" ,
+                                    target="_blank">
+                                    <div class="card">
+                                        <img src="{{url_for('static',filename='images/spotify.png')}}"
+                                            class="card-img-top">
+                                        <div class="card-body">
+                                            <p class="card-text">Music suggestions for users based either on a
+                                                custom-built
+                                                algorithm from song input or emotion detection from face through live
+                                                camera
+                                                feed. Feature to connect to Spotify API to add playlist to user account.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <a href="https://github.com/ayushmaanFCB/ANPR-Application-with-PowerBI-Dashboard-and-Chatbot "
+                                        , target="_blank">
+                                        <div class="card">
+                                            <img src="{{url_for('static',filename='images/anpr.png')}}"
+                                                class="card-img-top">
+                                            <div class="card-body">
+                                                <p class="card-text">The Flask Web Application has the features to
+                                                    detect
+                                                    vehicular number plates from Images or Videos using TensorFlow's
+                                                    Object
+                                                    Detection Model. Traffic Monitoring is done using Google Sheets API
+                                                    and
+                                                    Power BI Dashboard.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselML"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style=></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselML"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 style="color:yellow;">DEEP LEARNING AND COMPUTER VISION</h5>
+                    <p id="descp-topic">
+                        Deep learning is a subset of machine learning that employs neural networks with multiple layers
+                        to
+                        extract hierarchical representations of data. It has revolutionized various fields such as
+                        computer
+                        vision, natural language processing, and speech recognition by enabling models to learn
+                        intricate
+                        patterns directly from raw data. Deep learning architectures include convolutional neural
+                        networks
+                        (CNNs) for image analysis, recurrent neural networks (RNNs) for sequential data, and
+                        transformers
+                        for language processing, among others.
+                        Computer vision is a field of artificial intelligence focused on enabling computers to interpret
+                        and
+                        understand visual information from images or videos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center" style="text-align: center; margin-top:4rem">
+                <div class="col-md-6">
+                    <h5 style="color:yellow;">DATA ANALYTICS AND VISUALIZATION</h5>
+                    <p id="descp-topic">
+                        Data visualization and analytics involve transforming raw data into insightful visual
+                        representations to facilitate understanding and decision-making. Power BI and Tableau are
+                        industry-leading tools that streamline this process, offering intuitive interfaces and powerful
+                        features for data exploration, analysis, and the creation of interactive dashboards and reports.
+                        These platforms empower users to uncover trends, patterns, and relationships within their data,
+                        driving informed decision-making and enhancing business intelligence efforts.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div id="carouselDA" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                        data-bs-interval="1750">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="https://github.com/ayushmaanFCB/Premier-League--2021-22--Tableau-Dashboard" ,
+                                    target="_blank">
+                                    <div class="card">
+                                        <img src="{{url_for('static',filename='images/pldash.png')}}"
+                                            class="card-img-top">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                Visualizing various statistics from the Premier League 2021-22 season.
+                                                The
+                                                graphs are responsives with various filters. There is also a player
+                                                search
+                                                feature to extract player stats from database. This is a Flask Web
+                                                Application.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDA"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style=></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselDA"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center" style="text-align: center; margin-top:4rem">
+                <div class="col-md-6">
+                    <div id="carouselOthers" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                        data-bs-interval="1750">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card">
+                                    <img src="{{url_for('static',filename='images/offside.png')}}" class="card-img-top">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            An frontend Angular project for an e-commerce company selling Football
+                                            Jerseys.
+                                            Project was done in first-year of college.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card">
+                                    <img src="{{url_for('static',filename='images/human_act.png')}}"
+                                        class="card-img-top">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            Designing a simple python Streamlit web-application, which implements an
+                                            exisiting .ONNX model. Submitted as a part of interview.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card">
+                                    <img src="{{url_for('static',filename='images/jswing.png')}}" class="card-img-top">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            Basic Java project done as a part of basic java course of first-year. A quiz
+                                            application for schools
+                                            to conduct online tests.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselOthers"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style=></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselOthers"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 style="color:yellow;">OTHER DOMAIN PROJECTS</h5>
+                    <p id="descp-topic">
+                        Various projects covering other domains like Web-Development (JavaScript - Express JS and
+                        Angular),
+                        Python Web Frameworks (like Streamlit), Implementing existing models, Java (JSwing and JFrames).
+                        This is are smaller level projects completed as a part of submissions required for various
+                        courses
+                        in the college curriculum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        setTimeout(function () {
+            document.getElementById('loading').innerHTML = ""
+
+            setTimeout(function () {
+                document.getElementById('main-content').style.display = 'block';
+            }, 1000);
+        }, 1000);
+    </script>
+</body>
+
+<footer class="mt-auto">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" id="footer-col">
+                <a href="mailto:dasayush5maan@gmail.com" style="padding-right: 1.5rem;">Email</a>
+                <a href="https://www.github.com/ayushmaanFCB" target="_blank" style="padding-right: 1.5rem;">GitHub</a>
+                <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" style="padding-right: 1.5rem;"
+                    target="_blank">LinkedIn</a>
+                <a href="tel:+917679622353">Phone</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

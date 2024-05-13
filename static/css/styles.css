@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "poppins";
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: black;
+    font-family: "poppins";
+    min-height: 100vh;
+    height: 100%;
+}
+
+#footer-col {
+    text-align: center;
+    font-family: "poppins";
+    color: grey;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#footer-col a {
+    text-decoration: none;
+    color: grey;
+}
+
+.btn-outline-warning {
+    color: yellow;
+    border-color: yellow;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        background-color: rgb(54, 54, 54);
+        backdrop-filter: (10px);
+    }
+
+    #sub-title,
+    #inner-row h1 {
+        text-align: center;
+    }
+
+    #contact-head {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 991px) {
+    #profile1 {
+        display: none;
+    }
+}
+
+
+#inner-row {
+    padding-top: 2rem;
+}
+
+#whatsapp-button {
+    background-color: gray;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.card {
+    border-color: black;
+    border-radius: 50%;
+    border-width: 0.15rem;
+    color: white;
+}
+
+.carousel-inner .card-body {
+    background-color: black;
+}
+
+.card img {
+    max-block-size: 20rem;
+}
+
+.card-body {
+    text-align: justify;
+}
+
+#descp-topic {
+    color: gray;
+    text-align: justify;
+}
+
+#nav-projects {
+    text-align: center;
+}
+
+#nav-projects a {
+    text-decoration: none;
+    color: gray;
+}
+
+#nav-projects a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.form-group {
+    padding: 0.5rem;
+    color: white;
+}
+
+
+#contact-header a {
+    color: gray;
+}
