@@ -13,6 +13,10 @@ body {
     font-family: "poppins";
     min-height: 100vh;
     height: 100%;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #footer-col {
@@ -49,10 +53,31 @@ body {
     #contact-head {
         display: none;
     }
+
+    #descp-topic {
+        display: none;
+    }
+
+    #carouselNLP,
+    #carouselML,
+    #carouselDA,
+    #carouselOthers {
+        display: none;
+    }
+
+    body {
+        background-image: url("../images/background2.jpg");
+        background-repeat: repeat;
+        background-position: center;
+    }
 }
 
 @media only screen and (min-width: 991px) {
     #profile1 {
+        display: none;
+    }
+
+    #hidden-repos {
         display: none;
     }
 }
@@ -75,10 +100,8 @@ body {
 }
 
 .card {
-    border-color: black;
-    border-radius: 50%;
-    border-width: 0.15rem;
     color: white;
+    background-color: black;
 }
 
 .carousel-inner .card-body {
@@ -120,4 +143,13 @@ body {
 
 #contact-header a {
     color: gray;
+}
+
+#hidden-repos li::marker {
+    color: white;
+}
+
+#hidden-repos a {
+    color: white;
+    text-decoration: underline;
 }
