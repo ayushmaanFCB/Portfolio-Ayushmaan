@@ -40,6 +40,12 @@ body {
     margin: 1rem;
 }
 
+.btn-outline-warning:hover {
+    border-color: black;
+    background-color: grey;
+    color: black;
+}
+
 @media (max-width: 991px) {
     .sidebar {
         background-color: rgba(27, 27, 27, 0.85);

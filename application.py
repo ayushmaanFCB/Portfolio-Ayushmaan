@@ -2,43 +2,43 @@ from flask import Flask, render_template, request, redirect, url_for
 import boto3
 import random
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 s3 = boto3.client('s3')
 bucket_name = 'portolio-contacts'
 
 
-@app.route("/")
+@application.route("/")
 def home_page_alt():
     return render_template("home.html")
 
 
-@app.route("/home")
+@application.route("/home")
 def home_page():
     return render_template("home.html")
 
 
-@app.route("/projects")
+@application.route("/projects")
 def project_page():
     return render_template("projects.html")
 
 
-@app.route("/resume")
+@application.route("/resume")
 def resume_page():
     return render_template("resume.html")
 
 
-@app.route("/skills")
+@application.route("/skills")
 def skills_page():
     return render_template("skills.html")
 
 
-@app.route("/contact")
+@application.route("/contact")
 def contact_form():
     return render_template("contact.html")
 
 
-@app.route("/submit", methods=["POST"])
+@application.route("/submit", methods=["POST"])
 def submit_form():
     try:
         name = request.form['name']
@@ -59,4 +59,4 @@ def submit_form():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    application.run(debug=True, host='0.0.0.0')
