@@ -37,11 +37,12 @@ body {
 .btn-outline-warning {
     color: yellow;
     border-color: yellow;
+    margin: 1rem;
 }
 
 @media (max-width: 991px) {
     .sidebar {
-        background-color: rgb(54, 54, 54);
+        background-color: rgba(27, 27, 27, 0.85);
         backdrop-filter: (10px);
     }
 
@@ -50,7 +51,7 @@ body {
         text-align: center;
     }
 
-    #contact-head {
+    #contact-header {
         display: none;
     }
 
@@ -66,9 +67,17 @@ body {
     }
 
     body {
-        background-image: url("../images/background2.jpg");
+        background-image: url("../images/background3.jpg");
         background-repeat: repeat;
         background-position: center;
+    }
+
+    #skills-row h5 {
+        text-align: center;
+    }
+
+    #skills-row img {
+        padding: 1rem;
     }
 }
 
@@ -80,8 +89,15 @@ body {
     #hidden-repos {
         display: none;
     }
+
+    #contact-header-opt {
+        display: none;
+    }
 }
 
+.btn-close {
+    background-color: grey;
+}
 
 #inner-row {
     padding-top: 2rem;
@@ -152,4 +168,19 @@ body {
 #hidden-repos a {
     color: white;
     text-decoration: underline;
+}
+
+#skills-row img {
+    max-height: 144px;
+    max-width: 144px;
+}
+
+#skills-row div {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#skills-row {
+    margin-bottom: 3rem;
 }
