@@ -10,6 +10,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/loading.css')}}" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -72,17 +73,28 @@
             </div>
         </nav>
 
-        <div class="container-fluid" style="padding: 3rem;">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+        <div class="container mt-5">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#resume-minimal" role="tab"
+                        aria-controls="home" aria-selected="true">OVERVIEW</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume-detailed" role="tab"
+                        aria-controls="profile" aria-selected="false">DETAILED RESUME</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="resume-minimal" role="tabpanel" aria-labelledby="home-tab">
                     <embed id="resume-embed" src="{{url_for('static',filename='docs/resume.pdf')}}"
                         type="application/pdf" width="100%" style="height: 100vh;" />
                 </div>
-                <div class="col-md-2"></div>
-
+                <div class="tab-pane fade" id="resume-detailed" role="tabpanel" aria-labelledby="profile-tab">
+                    <embed id="resume-embed" src="{{url_for('static',filename='docs/resume-detailed.pdf')}}"
+                        type="application/pdf" width="100%" style="height: 100vh;" />
+                </div>
             </div>
-
         </div>
     </div>
 
@@ -98,6 +110,9 @@
             }, 1000);
         }, 1000);
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 <footer class="mt-auto">

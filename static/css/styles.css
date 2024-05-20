@@ -190,3 +190,14 @@ body {
 #skills-row {
     margin-bottom: 3rem;
 }
+
+
+.nav-tabs a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-tabs a:hover {
+    color: yellow;
+    text-decoration: none;
+}
