@@ -4,8 +4,8 @@ import random
 
 application = Flask(__name__)
 
-s3 = boto3.client('s3')
-bucket_name = 'portolio-contacts'
+s3 = boto3.client("s3")
+bucket_name = "portolio-contacts"
 
 
 @application.route("/")
@@ -41,10 +41,10 @@ def contact_form():
 @application.route("/submit", methods=["POST"])
 def submit_form():
     try:
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-        org = request.form['organization']
+        name = request.form["name"]
+        email = request.form["email"]
+        phone = request.form["phone"]
+        org = request.form["organization"]
         msg = request.form["message"]
 
         file_name = f"{name}{random.randint(1000, 9999)}.txt"
@@ -59,4 +59,4 @@ def submit_form():
 
 
 if __name__ == "__main__":
-    application.run(debug=True, host='0.0.0.0')
+    application.run(host="0.0.0.0")
