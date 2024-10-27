@@ -23,7 +23,7 @@ body {
   color: yellow;
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #4e4e4e;
+  /* border-bottom: 2px solid #4e4e4e; */
   display: inline-block;
 }
 
@@ -49,6 +49,7 @@ body {
   max-width: 450px;
   margin-right: 2rem;
   border: none;
+  border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -59,7 +60,7 @@ body {
 }
 .project-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px #4e4e4e;
 }
 .project-card img {
   width: 100%;
@@ -69,12 +70,13 @@ body {
   border-top-right-radius: 0.25rem;
 }
 .card-body {
-  padding: 0.75rem;
+  padding: 1.25rem;
 }
 .card-title {
   font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: white;
 }
 .card-text {
   font-size: 0.9rem;
