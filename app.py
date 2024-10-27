@@ -20,7 +20,7 @@ def home_page():
 
 @application.route("/projects")
 def project_page():
-    return render_template("projects.html")
+    return render_template("projects2.html")
 
 
 @application.route("/resume")
@@ -59,4 +59,4 @@ def submit_form():
 
 
 if __name__ == "__main__":
-    application.run(host="0.0.0.0", port=8000)
+    application.run(host="0.0.0.0", port=9000, debug=True)
