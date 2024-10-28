@@ -17,6 +17,15 @@
 <body class="d-flex flex-column min-vh-100">
 
     <div id="loading">
+        <div class="social-banner">
+            <a href="https://www.github.com/ayushmaanFCB" target="_blank">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" alt="GitHub Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" target="_blank">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="LinkedIn Icon">
+            </a>
+        </div>
+
         <div class="center">
             <div class="wave"></div>
             <div class="wave"></div>
@@ -76,22 +85,23 @@
         <div class="container mt-5">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#resume-minimal" role="tab"
-                        aria-controls="home" aria-selected="true">OVERVIEW</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#resume-detailed" role="tab"
+                        aria-controls="home" aria-selected="true">DETAILED RESUME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume-detailed" role="tab"
-                        aria-controls="profile" aria-selected="false">DETAILED RESUME</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume-minimal" role="tab"
+                        aria-controls="profile" aria-selected="false">OVERVIEW</a>
                 </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="resume-minimal" role="tabpanel" aria-labelledby="home-tab">
-                    <embed id="resume-embed" src="{{url_for('static',filename='docs/resume.pdf')}}"
+                <div class="tab-pane fade show active" id="resume-detailed" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <embed id="resume-embed" src="{{url_for('static',filename='docs/resume-detailed.pdf')}}"
                         type="application/pdf" width="100%" style="height: 100vh;" />
                 </div>
-                <div class="tab-pane fade" id="resume-detailed" role="tabpanel" aria-labelledby="profile-tab">
-                    <embed id="resume-embed" src="{{url_for('static',filename='docs/resume-detailed.pdf')}}"
+                <div class="tab-pane fade" id="resume-minimal" role="tabpanel" aria-labelledby="home-tab">
+                    <embed id="resume-embed" src="{{url_for('static',filename='docs/resume.pdf')}}"
                         type="application/pdf" width="100%" style="height: 100vh;" />
                 </div>
             </div>

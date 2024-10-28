@@ -1,203 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    font-family: "poppins";
+  font-family: "poppins";
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 body {
-    background-color: black;
-    font-family: "poppins";
-    min-height: 100vh;
-    height: 100%;
-    background-image: url("../images/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-color: black;
+  font-family: "poppins";
+  min-height: 100vh;
+  height: 100%;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #footer-col {
-    text-align: center;
-    font-family: "poppins";
-    color: grey;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
+  font-family: "poppins";
+  color: grey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 #footer-col a {
-    text-decoration: none;
-    color: grey;
+  text-decoration: none;
+  color: grey;
 }
 
 .btn-outline-warning {
-    color: yellow;
-    border-color: yellow;
-    margin: 1rem;
+  color: yellow;
+  border-color: yellow;
+  margin: 1rem;
 }
 
 .btn-outline-warning:hover {
-    border-color: black;
-    background-color: grey;
-    color: black;
+  border-color: black;
+  background-color: grey;
+  color: black;
 }
 
 @media (max-width: 991px) {
-    .sidebar {
-        background-color: rgba(27, 27, 27, 0.85);
-        backdrop-filter: (10px);
-    }
+  .sidebar {
+    background-color: rgba(27, 27, 27, 0.85);
+    backdrop-filter: (10px);
+  }
 
-    #sub-title,
-    #inner-row h1 {
-        text-align: center;
-    }
+  #sub-title,
+  #inner-row h1 {
+    text-align: center;
+  }
 
-    #contact-header {
-        display: none;
-    }
+  #contact-header {
+    display: none;
+  }
 
-    #descp-topic {
-        display: none;
-    }
+  #descp-topic {
+    display: none;
+  }
 
-    #carouselNLP,
-    #carouselML,
-    #carouselDA,
-    #carouselOthers {
-        display: none;
-    }
+  #carouselNLP,
+  #carouselML,
+  #carouselDA,
+  #carouselOthers {
+    display: none;
+  }
 
-    body {
-        background-image: url("../images/background3.jpg");
-        background-repeat: repeat;
-        background-position: center;
-    }
+  body {
+    background-image: url("../images/background3.jpg");
+    background-repeat: repeat;
+    background-position: center;
+  }
 
-    #skills-row h5 {
-        text-align: center;
-    }
+  #skills-row h5 {
+    text-align: center;
+  }
 
-    #skills-row img {
-        padding: 1rem;
-    }
+  #skills-row img {
+    padding: 1rem;
+  }
 }
 
 @media only screen and (min-width: 991px) {
-    #profile1 {
-        display: none;
-    }
+  #profile1 {
+    display: none;
+  }
 
-    #hidden-repos {
-        display: none;
-    }
+  #hidden-repos {
+    display: none;
+  }
 
-    #contact-header-opt {
-        display: none;
-    }
+  #contact-header-opt {
+    display: none;
+  }
 }
 
 .btn-close {
-    background-color: grey;
+  background-color: grey;
 }
 
 #inner-row {
-    padding-top: 2rem;
+  padding-top: 2rem;
 }
 
 #whatsapp-button {
-    background-color: gray;
+  background-color: gray;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    width: 3rem;
-    height: 3rem;
-    background-color: black;
-    border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: black;
+  border-radius: 50%;
 }
 
 .card {
-    color: white;
-    background-color: black;
+  color: white;
+  background-color: black;
 }
 
 .carousel-inner .card-body {
-    background-color: black;
+  background-color: black;
 }
 
 .card img {
-    max-block-size: 20rem;
+  max-block-size: 20rem;
 }
 
 .card-body {
-    text-align: justify;
+  text-align: justify;
 }
 
 #descp-topic {
-    color: gray;
-    text-align: justify;
+  color: gray;
+  text-align: justify;
 }
 
 #nav-projects {
-    text-align: center;
+  text-align: center;
 }
 
 #nav-projects a {
-    text-decoration: none;
-    color: gray;
+  text-decoration: none;
+  color: gray;
 }
 
 #nav-projects a:hover {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .form-group {
-    padding: 0.5rem;
-    color: white;
+  padding: 0.5rem;
+  color: white;
 }
 
-
 #contact-header a {
-    color: gray;
+  color: gray;
 }
 
 #hidden-repos li::marker {
-    color: white;
+  color: white;
 }
 
 #hidden-repos a {
-    color: white;
-    text-decoration: underline;
+  color: white;
+  text-decoration: underline;
 }
 
 #skills-row img {
-    max-height: 144px;
-    max-width: 144px;
+  max-height: 144px;
+  max-width: 144px;
 }
 
 #skills-row div {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #skills-row {
-    margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
-
 .nav-tabs a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .nav-tabs a:hover {
-    color: yellow;
-    text-decoration: none;
+  color: yellow;
+  text-decoration: none;
+}
+
+.social-banner {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.social-banner a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 5px 0;
+  background-color: #333;
+  border-radius: 5px 0 0 5px;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.social-banner a:hover {
+  background-color: #555;
+}
+
+.social-banner a img {
+  width: 24px;
+  height: 24px;
 }
