@@ -14,3 +14,4 @@ six==1.16.0
 urllib3==2.2.1
 Werkzeug==3.0.3
 Flask-Mail
+pymongo
