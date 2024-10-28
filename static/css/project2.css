@@ -31,9 +31,10 @@ body {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   scroll-snap-type: x mandatory;
   margin-bottom: 3rem;
+  padding: 3rem;
 }
 .scrollable-row::-webkit-scrollbar {
   height: 8px;
