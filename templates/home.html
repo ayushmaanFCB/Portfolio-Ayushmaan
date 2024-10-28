@@ -10,9 +10,38 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
     <link rel="stylesheet" href="{{url_for('static',filename='css/loading.css')}}" />
+    <style>
+        .alert-success {
+            color: green;
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: opacity 0.5s ease;
+        }
+
+        .alert-error {
+            color: red;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: opacity 0.5s ease;
+        }
+    </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <div id="flash-message-container">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
     <div id="loading">
         <div class="center">
@@ -124,6 +153,14 @@
                 document.getElementById('main-content').style.display = 'block';
             }, 2000);
         }, 2000);
+        // Hide the flash message container after 3 seconds
+        setTimeout(function () {
+            const flashMessageContainer = document.getElementById("flash-message-container");
+            if (flashMessageContainer) {
+                flashMessageContainer.style.opacity = "0";
+                setTimeout(() => flashMessageContainer.remove(), 500);  // Remove element after fade-out
+            }
+        }, 3000);
     </script>
 </body>
 
