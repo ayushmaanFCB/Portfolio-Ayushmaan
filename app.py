@@ -11,7 +11,7 @@ try:
     application.config["MAIL_PORT"] = 587
     application.config["MAIL_USE_TLS"] = True
     application.config["MAIL_USERNAME"] = "dasayush5maan@gmail.com"
-    application.config["MAIL_PASSWORD"] = os.environ.get("mail-app-key")
+    application.config["MAIL_PASSWORD"] = os.environ.get("mail_app_key")
     application.config["MAIL_DEFAULT_SENDER"] = "dasayush5maan@gmail.com"
     application.secret_key = str(os.urandom(24))
     mail = Mail(application)
@@ -19,7 +19,7 @@ except Exception as e:
     print("Failed to connect Mail Service : ", e)
 
 try:
-    cluster = MongoClient(os.environ.get("mongodb-uri"))
+    cluster = MongoClient(os.environ.get("mongodb_uri"))
     db = cluster["Personal-Portfolio"]
     collection = db["Koyeb-Flask-Application"]
 except Exception as e:
