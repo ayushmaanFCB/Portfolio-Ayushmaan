@@ -22,6 +22,7 @@ try:
     cluster = MongoClient(os.environ.get("mongodb_uri"))
     db = cluster["Personal-Portfolio"]
     collection = db["Koyeb-Flask-Application"]
+    subscribers_collection = db["Subscribers"]
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
 
@@ -102,6 +103,24 @@ def submit_form():
     except Exception as e:
         print(e)
         return redirect("/")
+
+
+@application.route(
+    "/send-notification",
+)
+def send_notifications():
+    subscribers = subscribers_collection.find()
+    for subscriber in subscribers:
+        name = subscriber["name"]
+        email = subscriber["email"]
+        msg = Message(
+            subject=f"Knock Knock {name}, Ayushmaan just posted an update",
+            recipients=[email],
+            body=f"""
+                new bloggggg...""",
+        )
+
+        mail.send(msg)
 
 
 if __name__ == "__main__":
