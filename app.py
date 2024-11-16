@@ -22,6 +22,7 @@ try:
     cluster = MongoClient(os.environ.get("mongodb_uri"))
     db = cluster["Personal-Portfolio"]
     collection = db["Koyeb-Flask-Application"]
+    blogs_collection = db["Blogs"]
     subscribers_collection = db["Subscribers"]
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
@@ -123,5 +124,16 @@ def send_notifications():
         mail.send(msg)
 
 
+@application.route("/blog")
+def blog():
+    blogs = list(blogs_collection.find().sort("created_at", -1))
+
+    for blog in blogs:
+        if "created_at" in blog:
+            blog["created_at"] = blog["created_at"].strftime("%Y-%m-%d %H:%M:%S")
+
+    return render_template("blogs.html", blogs=blogs)
+
+
 if __name__ == "__main__":
-    application.run(host="0.0.0.0", port=8000, debug=True)
+    application.run(host="0.0.0.0", port=8080, debug=True)
