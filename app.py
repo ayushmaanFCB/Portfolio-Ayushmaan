@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, jsonify
 from flask_mail import Mail, Message
 from pymongo.mongo_client import MongoClient
 import os
+from bson import ObjectId
 
 application = Flask(__name__)
 
@@ -132,7 +133,32 @@ def blog():
         if "created_at" in blog:
             blog["created_at"] = blog["created_at"].strftime("%Y-%m-%d %H:%M:%S")
 
-    return render_template("blogs.html", blogs=blogs)
+    date_ranges = sorted(set(blog["created_at"][:10] for blog in blogs))
+    return render_template("blogs.html", blogs=blogs, date_ranges=date_ranges)
+
+
+@application.route("/upvote/<blog_id>", methods=["POST"])
+def toggle_upvote(blog_id):
+
+    # Find the blog
+    blog = blogs_collection.find_one({"_id": ObjectId(blog_id)})
+    upvote = blog["upvotes"]
+
+    print(blog)
+    if blog:
+        # Adjust the upvote count
+        new_count = blog["upvotes"] + (1 if upvote else -1)
+        new_count = max(0, new_count)  # Prevent negative count
+
+        # Update the database
+        blogs_collection.update_one(
+            {"_id": ObjectId(blog_id)}, {"$set": {"upvotes": new_count}}
+        )
+
+        # Respond with the new count and state
+        return jsonify({"newCount": new_count, "upvoted": upvote})
+    else:
+        return jsonify({"error": "Blog not found"}), 404
 
 
 if __name__ == "__main__":

@@ -1,0 +1,74 @@
+.d-flex.flex-wrap > div {
+  padding: 2px;
+}
+
+.small-thumbnail {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.card .d-flex.flex-wrap {
+  padding: 5px;
+}
+
+.card {
+  width: fit-content;
+  max-width: 40rem;
+  margin: auto;
+  border-style: solid;
+  border-color: #8a9199;
+  border-radius: 3rem;
+  overflow: hidden; /* Prevent child elements from overflowing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; /* Smooth hover effect */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Subtle glowing border */
+}
+
+.card img {
+  border-radius: 8px; /* Smooth the image corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow around images */
+}
+
+.card:hover img {
+  filter: brightness(1.1); /* Brighten images slightly on hover */
+}
+
+.card-text.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal-body img {
+  border-radius: 8px;
+}
+
+/* Prevent overlap with other content */
+.badge {
+  margin-bottom: 1.25rem; /* Push badges slightly upward if needed */
+}
+
+.btn-lg-upvote {
+  font-size: 1rem; /* Larger text for the icon */
+  padding: 0.5rem 1rem; /* Increase padding for a larger button */
+  border-radius: 50%; /* Make the button circular */
+  border: none;
+}
+
+.btn-lg-upvote i {
+  font-size: 1.2rem; /* Increase the icon size */
+}
+
+.btn-lg-upvote:hover {
+  background-color: black;
+}
