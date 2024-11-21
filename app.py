@@ -3,6 +3,7 @@ from flask_mail import Mail, Message
 from pymongo.mongo_client import MongoClient
 import os
 from bson import ObjectId
+from datetime import datetime
 
 application = Flask(__name__)
 
@@ -125,16 +126,50 @@ def send_notifications():
         mail.send(msg)
 
 
-@application.route("/blog")
+@application.route("/blog", methods=["GET"])
 def blog():
-    blogs = list(blogs_collection.find().sort("created_at", -1))
+    # Get the filter parameters from the request
+    sort_by = request.args.get("sort", "date_desc")  # Default to sorting by newest
+    blog_type = request.args.get("type", "")  # Default to no filter
+    date_range = request.args.get("date_range", "")
 
+    # Build MongoDB filter query
+    filter_query = {}
+    if blog_type:
+        filter_query["type"] = blog_type
+    if date_range:
+        filter_query["created_at"] = {
+            "$gte": datetime.datetime.strptime(date_range, "%Y-%m-%d")
+        }
+
+    # Sort the blogs based on the sort_by parameter
+    if sort_by == "date_desc":
+        sort_order = [("created_at", -1)]  # Descending order (newest first)
+    elif sort_by == "date_asc":
+        sort_order = [("created_at", 1)]  # Ascending order (oldest first)
+    elif sort_by == "popularity":
+        sort_order = [("upvotes", -1)]  # Sort by popularity (upvotes)
+
+    # Query MongoDB for blogs with filters applied
+    blogs = list(blogs_collection.find(filter_query).sort(sort_order))
+
+    # Format the date
     for blog in blogs:
         if "created_at" in blog:
             blog["created_at"] = blog["created_at"].strftime("%Y-%m-%d %H:%M:%S")
 
+    # Get the unique date ranges for the dropdown
     date_ranges = sorted(set(blog["created_at"][:10] for blog in blogs))
-    return render_template("blogs.html", blogs=blogs, date_ranges=date_ranges)
+
+    # Render the template with the selected filter values
+    return render_template(
+        "blogs.html",
+        blogs=blogs,
+        date_ranges=date_ranges,
+        sort_by=sort_by,
+        blog_type=blog_type,
+        date_range=date_range,
+    )
 
 
 @application.route("/upvote/<blog_id>", methods=["POST"])

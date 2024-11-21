@@ -20,7 +20,7 @@
   margin: auto;
   border-style: solid;
   border-color: #8a9199;
-  border-radius: 3rem;
+  border-radius: 2rem;
   overflow: hidden; /* Prevent child elements from overflowing */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow */
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; /* Smooth hover effect */

@@ -56,82 +56,116 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-6 col-md-10 col-lg-8">
-                {% for blog in blogs %}
-
-                {% if blog.type == 'project' %}
-                <div class="card mb-3 shadow-sm" style="width: fit-content; padding:1.5rem">
-                    <div class="card-body p-2">
-
-                        <p class="card-subtitle mb-2 text small" style="color: #8a9199; text-align:right">{{
-                            blog.created_at }}</p>
-
-                        <!-- Blog Title -->
-                        <h6 class="card-title mb-1 fw-bold text-truncate">{{ blog.title }}</h6>
-                        <!-- Image Grid (2x2) -->
-                        <div class="d-flex flex-wrap">
-                            {% for image in blog.images[:4] %}
-                            <div class="p-1" style="width: calc(50% - 2px);">
-                                <img src="{{ image }}" class="img-fluid rounded small-thumbnail" alt="Blog Image">
+        <div class="row">
+            <!-- Filters Sidebar (Left 1/4) -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Filters</h5>
+                        <form method="GET" action="/blog">
+                            <!-- Sort By -->
+                            <div class="mb-3">
+                                <label for="sort" class="form-label">Sort By</label>
+                                <select class="form-select" id="sort" name="sort">
+                                    <option value="date_desc" {% if sort_by=='date_desc' %}selected{% endif %}>Date
+                                        (Newest)</option>
+                                    <option value="date_asc" {% if sort_by=='date_asc' %}selected{% endif %}>Date
+                                        (Oldest)</option>
+                                    <option value="popularity" {% if sort_by=='popularity' %}selected{% endif %}>
+                                        Popularity</option>
+                                </select>
                             </div>
-                            {% endfor %}
-                        </div>
 
-                        <!-- Blog Content with Expandable Read More -->
-                        <p class="card-text mt-2 small">
-                            <span class="short-text">
-                                {{ blog.content[:135] }}{% if blog.content|length > 150 %}...{% endif %}
-                            </span>
-                            {% if blog.content|length > 150 %}
-                            <span class="full-text d-none">{{ blog.content }}</span>
-                            <a href="javascript:void(0);" class="read-more text-decoration-none small"
-                                onclick="toggleReadMore(this)">Read more</a>
-                            {% endif %}
-                        </p>
+                            <!-- Blog Type -->
+                            <div class="mb-3">
+                                <label for="type" class="form-label">Blog Type</label>
+                                <select class="form-select" id="type" name="type">
+                                    <option value="" {% if not blog_type %}selected{% endif %}>All</option>
+                                    <option value="project" {% if blog_type=='project' %}selected{% endif %}>Project
+                                    </option>
+                                    <option value="updates" {% if blog_type=='updates' %}selected{% endif %}>Updates
+                                    </option>
+                                </select>
+                            </div>
 
-                        <!-- Skill Tags -->
-                        <div class="d-flex flex-wrap mt-2">
-                            {% for skill in blog.tags %}
-                            <span class="badge bg-secondary me-1 small" style="background-color:#8a9199; color:black">{{
-                                skill
-                                }}</span>
-                            {% endfor %}
-                        </div>
+                            <!-- Date Range -->
+                            <div class="mb-3">
+                                <label for="date_range" class="form-label">Date Range</label>
+                                <select class="form-select" id="date_range" name="date_range">
+                                    <option value="" {% if not date_range %}selected{% endif %}>All Dates</option>
+                                    {% for date in date_ranges %}
+                                    <option value="{{ date }}" {% if date_range==date %}selected{% endif %}>{{ date }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
-                        <div class="position-absolute bottom-0 end-0 me-2 mb-2">
-                            <button class="btn btn-outline-success btn-sm btn-lg-upvote"
-                                onclick="toggleUpvote(this, '{{ blog._id }}')">
-                                <i class="bi bi-hand-thumbs-up"></i> <span>{{ blog.upvotes }} upvotes</span>
-                            </button>
-                        </div>
-
-
-
+                            <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                        </form>
                     </div>
                 </div>
-                {% endif %}
+            </div>
 
-                {% if blog.type == 'updates' %}
-                <div class="card mb-3 shadow-sm" style="width: fit-content; padding:1.25rem">
-                    <div class="card-body p-2">
-                        <!-- Update Timestamp -->
-                        <p class="card-subtitle mb-2 text small" style="color: #8a9199; text-align:right;">
-                            {{ blog.created_at }}
-                        </p>
-
-                        <!-- Update Content -->
-                        <p class="card-text mt-2 small">
-                            {{ blog.content }}
-                        </p>
+            <!-- Blog Content Area (Right 3/4) -->
+            <div class="col-lg-9 col-md-8">
+                <!-- Existing HTML Content -->
+                <div class="row justify-content-center">
+                    <div class="col-6 col-md-10 col-lg-8">
+                        {% for blog in blogs %}
+                        {% if blog.type == 'project' %}
+                        <div class="card mb-3 shadow-sm" style="width: fit-content; padding:1.5rem">
+                            <div class="card-body p-2">
+                                <p class="card-subtitle mb-2 text small" style="color: #8a9199; text-align:right">{{
+                                    blog.created_at }}</p>
+                                <h6 class="card-title mb-1 fw-bold text-truncate">{{ blog.title }}</h6>
+                                <div class="d-flex flex-wrap">
+                                    {% for image in blog.images[:4] %}
+                                    <div class="p-1" style="width: calc(50% - 2px);">
+                                        <img src="{{ image }}" class="img-fluid rounded small-thumbnail"
+                                            alt="Blog Image">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <p class="card-text mt-2 small">
+                                    <span class="short-text">{{ blog.content[:135] }}{% if blog.content|length > 150
+                                        %}...{% endif %}</span>
+                                    {% if blog.content|length > 150 %}
+                                    <span class="full-text d-none">{{ blog.content }}</span>
+                                    <a href="javascript:void(0);" class="read-more text-decoration-none small"
+                                        onclick="toggleReadMore(this)">Read more</a>
+                                    {% endif %}
+                                </p>
+                                <div class="d-flex flex-wrap mt-2">
+                                    {% for skill in blog.tags %}
+                                    <span class="badge bg-secondary me-1 small"
+                                        style="background-color:#8a9199; color:black">{{ skill }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="position-absolute bottom-0 end-0 me-2 mb-2">
+                                    <button class="btn btn-outline-success btn-sm btn-lg-upvote"
+                                        onclick="toggleUpvote(this, '{{ blog._id }}')">
+                                        <i class="bi bi-hand-thumbs-up"></i> <span>{{ blog.upvotes }} upvotes</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if blog.type == 'updates' %}
+                        <div class="card mb-3 shadow-sm" style="width: fit-content; padding:1.25rem">
+                            <div class="card-body p-2">
+                                <p class="card-subtitle mb-2 text small" style="color: #8a9199; text-align:right;">{{
+                                    blog.created_at }}</p>
+                                <p class="card-text mt-2 small">{{ blog.content }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-                {% endif %}
-
-                {% endfor %}
             </div>
         </div>
     </div>
+
 
 
 
