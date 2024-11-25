@@ -72,3 +72,75 @@
 .btn-lg-upvote:hover {
   background-color: black;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  /* Flex container for sidebar and blogs */
+  overflow: hidden;
+  /* Prevent scrolling outside this section */
+}
+
+.filter-column {
+  flex: 0 0 30%;
+  /* Sidebar width, adjustable */
+  overflow-y: auto;
+  /* Make filters scrollable if needed */
+  padding: 1rem;
+}
+
+.blogs-scrollable {
+  flex: 1;
+  /* Take remaining space */
+  overflow-y: auto;
+  /* Enable vertical scrolling for blogs column */
+  padding: 1rem;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.blogs-scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.blogs-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blogs-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 0, 0.8);
+  border-radius: 6px;
+  border: 3px solid transparent;
+}
+
+.blogs-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 0, 1);
+}
+
+.blogs-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 0, 0.8) transparent;
+}
