@@ -144,3 +144,57 @@ footer a:hover {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 0, 0.8) transparent;
 }
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  /* Hide the filter column on smaller screens */
+  .filter-column {
+    display: none;
+  }
+
+  /* Main content adjustments */
+  .main-content {
+    flex-direction: column; /* Stack children vertically */
+    align-items: stretch; /* Ensure children take full width */
+  }
+
+  /* Filter toggle button */
+  .filter-toggle-btn {
+    display: block;
+    width: 100%; /* Ensure the button takes full width */
+    margin: 0; /* Remove any unintended margins */
+    padding: 0.5rem 0; /* Add padding for clickability */
+  }
+
+  .filter-toggle-btn button {
+    width: 100%; /* Ensure button spans full width */
+    font-size: 1rem;
+    border: none;
+  }
+
+  /* Blogs container */
+  .blogs-scrollable {
+    flex: 1;
+    padding: 0.5rem;
+    width: 100%; /* Ensure the blogs container is full width */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  /* Blog cards */
+  .blogs-scrollable .card {
+    width: 100%; /* Cards should take the full width of the container */
+    max-width: 100%;
+    margin-bottom: 1rem;
+    box-sizing: border-box; /* Include padding and borders in width calculations */
+  }
+
+  /* Blog content adjustments */
+  .blogs-scrollable .card-body {
+    padding: 1rem;
+  }
+
+  .blogs-scrollable img.small-thumbnail {
+    width: 100%; /* Ensure images don't overflow */
+    height: auto;
+  }
+}
