@@ -50,7 +50,7 @@
 }
 
 .modal-body img {
-  border-radius: 8px;
+  border-radius: 2rem;
 }
 
 /* Prevent overlap with other content */
@@ -111,6 +111,7 @@ footer {
   text-align: center;
   background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(5px);
+  padding: 0.5rem;
 }
 
 footer a {
@@ -178,13 +179,18 @@ footer a:hover {
     padding: 0.5rem;
     width: 100%; /* Ensure the blogs container is full width */
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 0.5rem;
   }
 
   /* Blog cards */
   .blogs-scrollable .card {
-    width: 100%; /* Cards should take the full width of the container */
+    /* width: 100%;  */
     max-width: 100%;
     margin-bottom: 1rem;
+    box-sizing: border-box; /* Include padding and borders in width calculations */
+    margin: 0.5rem auto; /* Center the card horizontally with auto margins */
+    padding: 0.5rem; /* Adjust padding for compact look */
+    width: calc(100% - 1rem); /* Ensure cards fit within the container */
     box-sizing: border-box; /* Include padding and borders in width calculations */
   }
 
@@ -196,5 +202,15 @@ footer a:hover {
   .blogs-scrollable img.small-thumbnail {
     width: 100%; /* Ensure images don't overflow */
     height: auto;
+  }
+
+  .form-select {
+    max-width: 95%;
+  }
+
+  .same-size {
+    width: 100%; /* Full width of the container */
+    aspect-ratio: 16 / 9; /* Maintains a consistent aspect ratio (16:9 in this case) */
+    object-fit: cover; /* Ensures content fills the space while preserving aspect ratio */
   }
 }
