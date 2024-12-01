@@ -213,4 +213,35 @@ footer a:hover {
     aspect-ratio: 16 / 9; /* Maintains a consistent aspect ratio (16:9 in this case) */
     object-fit: cover; /* Ensures content fills the space while preserving aspect ratio */
   }
+
+  .subscribe-banner {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: block !important;
+  }
+}
+
+.blinking-btn {
+  animation: blink 1.5s infinite; /* Animation with 1.5s duration, repeating infinitely */
+  border-radius: 50px; /* Optional: makes the button rounded */
+  box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.8); /* Glowing effect */
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1; /* Fully visible */
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    opacity: 0.5; /* Partially transparent */
+    /* transform: scale(1.05); */
+  }
+}
+
+.subscribe-banner {
+  display: none;
 }

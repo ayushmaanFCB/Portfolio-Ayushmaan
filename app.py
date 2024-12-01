@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, jsonify
+from flask import Flask, render_template, request, redirect, flash, jsonify, url_for
 from flask_mail import Mail, Message
 from pymongo.mongo_client import MongoClient
 import os
@@ -108,24 +108,6 @@ def submit_form():
         return redirect("/")
 
 
-@application.route(
-    "/send-notification",
-)
-def send_notifications():
-    subscribers = subscribers_collection.find()
-    for subscriber in subscribers:
-        name = subscriber["name"]
-        email = subscriber["email"]
-        msg = Message(
-            subject=f"Knock Knock {name}, Ayushmaan just posted an update",
-            recipients=[email],
-            body=f"""
-                new bloggggg...""",
-        )
-
-        mail.send(msg)
-
-
 @application.route("/blog", methods=["GET"])
 def blog():
     # Get the filter parameters from the request
@@ -194,6 +176,31 @@ def toggle_upvote(blog_id):
         return jsonify({"newCount": new_count, "upvoted": upvote})
     else:
         return jsonify({"error": "Blog not found"}), 404
+
+
+@application.route("/subscribed", methods=["POST"])
+def subscribed():
+    email = request.form.get("userEmail")
+    print(f"New subscription added to Database: {email}")
+    return redirect(url_for("blog"))
+
+
+@application.route(
+    "/send-notification",
+)
+def send_notifications():
+    subscribers = subscribers_collection.find()
+    for subscriber in subscribers:
+        name = subscriber["name"]
+        email = subscriber["email"]
+        msg = Message(
+            subject=f"Knock Knock {name}, Ayushmaan just posted an update",
+            recipients=[email],
+            body=f"""
+                new bloggggg...""",
+        )
+
+        mail.send(msg)
 
 
 if __name__ == "__main__":

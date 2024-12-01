@@ -14,6 +14,16 @@
 </head>
 
 <body>
+    <div class="subscribe-banner">
+        <button type="button"
+            class="btn btn-warning w-100 d-flex justify-content-center align-items-center blinking-btn"
+            data-bs-toggle="modal" data-bs-target="#subscribeModal"
+            style="background-color: rgba(255, 255, 255, 0); color: yellow;">
+            <i class="bi bi-bell me-2"></i>
+        </button>
+    </div>
+
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -65,8 +75,15 @@
             <div class="card shadow-sm"
                 style="width: 75%; background-color: rgba(255, 255, 255, 0); padding:1.5rem; border:none">
 
-                <button type="submit" class="btn btn-warning w-100"
-                    style="background-color: rgba(255, 255, 255, 0); color:yellow">Apply Filters</button>
+                <button type="button"
+                    class="btn btn-warning w-100 d-flex justify-content-center align-items-center blinking-btn"
+                    data-bs-toggle="modal" data-bs-target="#subscribeModal"
+                    style="background-color: rgba(255, 255, 255, 0); color: yellow;">
+                    <i class="bi bi-bell me-2"></i>
+                    Subscribe to my Blogs
+                </button>
+
+
 
                 <hr>
 
@@ -307,6 +324,35 @@
                         </div>
                     </div>
                     {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="subscriber_modal"
+                    style="background-color:black; color:white;border-style:solid; border-color:yellow; padding:2rem">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="subscribeModalLabel">Subscribe to my Blogs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="subscribeForm" action="/subscribed" method="POST">
+                            <div class="mb-3">
+                                <label for="userEmail" class="form-label">Email address</label>
+                                <input name="userEmail" type="email" class="form-control" id="userEmail"
+                                    placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" id="agreeToTerms" required>
+                                <label class="form-check-label" for="agreeToTerms">
+                                    I agree to receive emails regarding projects and updates.
+                                </label>
+                            </div>
+                            <button type="submit" class="btn w-100" style="background-color: yellow;">Subscribe</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
