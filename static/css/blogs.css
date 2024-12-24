@@ -245,3 +245,65 @@ footer a:hover {
 .subscribe-banner {
   display: none;
 }
+
+@keyframes tick-animation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#tickSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px; /* Adjust based on modal size */
+}
+
+.tick-mark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid lightgreen;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: tick-animation 0.5s ease-in-out forwards;
+}
+
+.tick-mark:after {
+  content: "✔";
+  font-size: 24px;
+  color: lightgreen;
+}
+
+.filter-column .form-control,
+.filter-column .form-select {
+  background-color: rgba(220, 220, 220, 0.8); /* Light gray background */
+  border: none; /* Remove default borders */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 0.85rem;
+  color: #333; /* Dark text for readability */
+}
+
+.filter-column .form-control:focus,
+.filter-column .form-select:focus {
+  background-color: rgba(
+    220,
+    220,
+    220,
+    0.8
+  ); /* Slightly lighter gray when focused */
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Highlighted shadow on focus */
+}

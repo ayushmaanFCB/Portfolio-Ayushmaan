@@ -120,9 +120,7 @@ def blog():
     if blog_type:
         filter_query["type"] = blog_type
     if date_range:
-        filter_query["created_at"] = {
-            "$gte": datetime.datetime.strptime(date_range, "%Y-%m-%d")
-        }
+        filter_query["created_at"] = {"$gte": datetime.strptime(date_range, "%Y-%m-%d")}
 
     # Sort the blogs based on the sort_by parameter
     if sort_by == "date_desc":
@@ -180,7 +178,9 @@ def toggle_upvote(blog_id):
 
 @application.route("/subscribed", methods=["POST"])
 def subscribed():
+    name = request.form.get("userName")
     email = request.form.get("userEmail")
+    # subscribers_collection.insert_one({"name": name, "email": email})
     print(f"New subscription added to Database: {email}")
     return redirect(url_for("blog"))
 
