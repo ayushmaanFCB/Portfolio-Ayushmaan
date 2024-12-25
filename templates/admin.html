@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/favicon.png')}}">
+    <style>
+        .card,
+        .card-header,
+        .card-body {
+            background-color: transparent !important;
+            border: none !important;
+        }
+
+        .nav-link {
+            color: yellow;
+        }
+
+        h1 {
+            color: yellow;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Admin Blog Upload</h1>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="blogTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="updates-tab" data-bs-toggle="tab" data-bs-target="#updates"
+                    type="button" role="tab" aria-controls="updates" aria-selected="true">Updates</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects" type="button"
+                    role="tab" aria-controls="projects" aria-selected="false">Projects</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="blogTabsContent">
+            <!-- Updates Form -->
+            <div class="tab-pane fade show active" id="updates" role="tabpanel" aria-labelledby="updates-tab">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Upload Updates (what's happening in your life)</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="updateForm" action="/upload/update" method="POST">
+                            <div class="mb-3">
+                                <label for="updateContent" class="form-label">Content</label>
+                                <textarea class="form-control" id="updateContent" name="content" rows="4"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="background-color: yellow; color:black">Upload
+                                Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Form -->
+            <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Upload Project (Personal projects and descriptions)</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="projectForm" action="/upload/project" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="projectTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="projectTitle" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectContent" class="form-label">Content</label>
+                                <textarea class="form-control" id="projectContent" name="content" rows="4"
+                                    required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectImages" class="form-label">Upload Images</label>
+                                <input type="file" class="form-control" id="projectImages" name="images" multiple
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectTags" class="form-label">Tags (comma separated)</label>
+                                <input type="text" class="form-control" id="projectTags" name="tags"
+                                    placeholder="Tag1, Tag2, Tag3" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary"
+                                style="background-color: yellow; color:black">Upload Project</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

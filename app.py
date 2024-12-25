@@ -4,6 +4,9 @@ from pymongo.mongo_client import MongoClient
 import os
 from bson import ObjectId
 from datetime import datetime
+import cloudinary
+from cloudinary.uploader import upload
+
 
 application = Flask(__name__)
 
@@ -28,6 +31,17 @@ try:
     subscribers_collection = db["Subscribers"]
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
+
+try:
+    cloudinary_api_key = os.environ.get("cloudinary_api_key")
+    cloudinary_api_secret = os.environ.get("cloudinary_api_secret")
+    cloudinary.config(
+        api_key=cloudinary_api_key,
+        api_secret=cloudinary_api_secret,
+        cloud_name="dpviprc3b",
+    )
+except Exception as e:
+    print("Failed to configure cloudinary services : ", e)
 
 
 @application.route("/")
@@ -154,15 +168,12 @@ def blog():
 
 @application.route("/upvote/<blog_id>", methods=["POST"])
 def toggle_upvote(blog_id):
-
-    # Find the blog
     blog = blogs_collection.find_one({"_id": ObjectId(blog_id)})
     upvote = blog["upvotes"]
 
-    print(blog)
     if blog:
         # Adjust the upvote count
-        new_count = blog["upvotes"] + (1 if upvote else -1)
+        new_count = blog["upvotes"] + 1
         new_count = max(0, new_count)  # Prevent negative count
 
         # Update the database
@@ -180,7 +191,7 @@ def toggle_upvote(blog_id):
 def subscribed():
     name = request.form.get("userName")
     email = request.form.get("userEmail")
-    # subscribers_collection.insert_one({"name": name, "email": email})
+    subscribers_collection.insert_one({"name": name, "email": email})
     print(f"New subscription added to Database: {email}")
     return redirect(url_for("blog"))
 
@@ -201,6 +212,50 @@ def send_notifications():
         )
 
         mail.send(msg)
+
+
+@application.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+
+@application.route("/upload/project", methods=["POST"])
+def upload_project():
+    title = request.form["title"]
+    content = request.form["content"]
+    tags = request.form["tags"].split(",")
+    images = request.files.getlist("images")
+
+    uploaded_urls = []
+    for image in images:
+        response = upload(image, folder="Portofolio")
+        uploaded_urls.append(response["url"])
+
+    project_data = {
+        "title": title,
+        "content": content,
+        "tags": tags,
+        "images": uploaded_urls,
+        "created_at": datetime.utcnow(),
+        "type": "project",
+        "upvotes": 0,
+    }
+    blogs_collection.insert_one(project_data)
+    return jsonify({"message": "Project uploaded successfully!"}), 201
+
+
+@application.route("/upload/update", methods=["POST"])
+def upload_update():
+    content = request.form["content"]
+
+    update_data = {
+        "content": content,
+        "created_at": datetime.utcnow(),
+        "type": "updates",
+        "upvotes": 0,
+    }
+    blogs_collection.insert_one(update_data)
+    return jsonify({"message": "Update uploaded successfully!"}), 201
 
 
 if __name__ == "__main__":
