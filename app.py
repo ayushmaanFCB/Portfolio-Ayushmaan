@@ -1,4 +1,13 @@
-from flask import Flask, render_template, request, redirect, flash, jsonify, url_for
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    flash,
+    jsonify,
+    url_for,
+    Response,
+)
 from flask_mail import Mail, Message
 from pymongo.mongo_client import MongoClient
 import os
@@ -6,10 +15,15 @@ from bson import ObjectId
 from datetime import datetime
 import cloudinary
 from cloudinary.uploader import upload
+from werkzeug.security import generate_password_hash, check_password_hash
+from pprint import pprint
 
 
 application = Flask(__name__)
+application.secret_key = str(os.urandom(24))
 
+ADMIN_USERNAME = "ayushmaanFCB"
+ADMIN_PASSWORD_HASH = generate_password_hash(os.environ.get("admin_portal_password"))
 
 try:
     application.config["MAIL_SERVER"] = "smtp.gmail.com"
@@ -41,7 +55,7 @@ try:
         cloud_name="dpviprc3b",
     )
 except Exception as e:
-    print("Failed to configure cloudinary services : ", e)
+    print("Failed to configure Cloudinary services : ", e)
 
 
 @application.route("/")
@@ -216,6 +230,18 @@ def send_notifications():
 
 @application.route("/admin")
 def admin():
+    auth = request.authorization
+    if (
+        not auth
+        or auth.username != ADMIN_USERNAME
+        or not check_password_hash(ADMIN_PASSWORD_HASH, auth.password)
+    ):
+        return Response(
+            "Access Denied: Please provide valid credentials.",
+            401,
+            {"WWW-Authenticate": 'Basic realm="Admin Login"'},
+        )
+    print("Logged in as Administrator : ", ADMIN_USERNAME)
     return render_template("admin.html")
 
 
