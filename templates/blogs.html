@@ -445,20 +445,33 @@
             });
         }
 
-        document.getElementById('subscribeForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission behavior
+        document.getElementById('subscribeForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
 
-            // Hide form and show tick animation
             const form = event.target;
             const tick = document.getElementById('tickSuccess');
-            form.classList.add('d-none');
-            tick.classList.remove('d-none');
+            const formData = new FormData(form);
 
-            // Redirect to blogs page after a delay
-            setTimeout(() => {
-                window.location.href = '/blog';
-            }, 2000); // 2 seconds delay
+            try {
+                const response = await fetch('/subscribed', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    form.classList.add('d-none');
+                    tick.classList.remove('d-none');
+                    setTimeout(() => {
+                        window.location.href = '/blog';
+                    }, 1000); // Redirect after success
+                } else {
+                    console.error('Error subscribing:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Request failed:', error);
+            }
         });
+
 
     </script>
 
