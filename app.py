@@ -17,6 +17,7 @@ import cloudinary
 from cloudinary.uploader import upload
 from werkzeug.security import generate_password_hash, check_password_hash
 from pprint import pprint
+import markdown, re
 
 
 application = Flask(__name__)
@@ -136,6 +137,12 @@ def submit_form():
         return redirect("/")
 
 
+@application.template_filter("nl2br")
+def nl2br(value):
+    # Replace newlines with <br> tags
+    return re.sub(r"\n", "<br>", value)
+
+
 @application.route("/blog", methods=["GET"])
 def blog():
     # Get the filter parameters from the request
@@ -165,6 +172,8 @@ def blog():
     for blog in blogs:
         if "created_at" in blog:
             blog["created_at"] = blog["created_at"].strftime("%Y-%m-%d %H:%M:%S")
+        # if "content" in blog:
+        #     blog["content"] = markdown.markdown(blog['content'])
 
     # Get the unique date ranges for the dropdown
     date_ranges = sorted(set(blog["created_at"][:10] for blog in blogs))

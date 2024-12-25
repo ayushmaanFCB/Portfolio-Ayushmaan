@@ -238,10 +238,12 @@
                                 {% endfor %}
                             </div>
                             <p class="card-text mt-2 small">
-                                <span class="short-text">{{ blog.content[:135] }}{% if blog.content|length > 150 %}...{%
+                                <span class="short-text">{{ blog.content[:175]| nl2br|safe }}{% if blog.content|length >
+                                    150
+                                    %}...{%
                                     endif %}</span>
                                 {% if blog.content|length > 150 %}
-                                <span class="full-text d-none">{{ blog.content }}</span>
+                                <span class="full-text d-none">{{ blog.content|nl2br|safe }}</span>
                                 <a href="javascript:void(0);" class="read-more text-decoration-none small"
                                     onclick="toggleReadMore(this)">Read more</a>
                                 {% endif %}
@@ -266,7 +268,7 @@
                         <div class="card-body p-2">
                             <p class="card-subtitle mb-2 text small" style="color: #8a9199; text-align:right;">{{
                                 blog.created_at }}</p>
-                            <p class="card-text mt-2 small">{{ blog.content }}</p>
+                            <p class="card-text mt-2 small">{{ blog.content|nl2br|safe }}</p>
                             <div class="position-absolute bottom-0 end-0 me-2 mb-2">
                                 <button class="btn btn-outline-success btn-sm btn-lg-upvote"
                                     onclick="toggleUpvote(this, '{{ blog._id }}')">
@@ -302,17 +304,19 @@
                             </div>
                             {% endif %}
                             <p class="card-text small">
-                                <span class="short-text">{{ blog.content[:90] }}{% if blog.content|length > 100 %}...{%
+                                <span class="short-text">{{ blog.content[:90]| nl2br|safe }}{% if blog.content|length >
+                                    100 %}...{%
                                     endif %}</span>
                                 {% if blog.content|length > 100 %}
-                                <span class="full-text d-none">{{ blog.content }}</span>
+                                <span class="full-text d-none">{{ blog.content| nl2br|safe }}</span>
                                 <a href="javascript:void(0);" class="read-more text-decoration-none small"
                                     onclick="toggleReadMore(this)">Read more</a>
                                 {% endif %}
                             </p>
                             <div class="d-flex flex-wrap mb-2">
                                 {% for skill in blog.tags %}
-                                <span class="badge bg-secondary me-1 small">{{ skill }}</span>
+                                <span class="badge bg-secondary me-1 small"
+                                    style="background-color:#8a9199; color:black">{{ skill }}</span>
                                 {% endfor %}
                             </div>
                             <div class="text-end">
