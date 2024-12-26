@@ -219,21 +219,19 @@ def subscribed():
     return redirect(url_for("blog"))
 
 
-@application.route(
-    "/send-notification",
-)
-def send_notifications():
+def send_notifications(subject, template, context):
     subscribers = subscribers_collection.find()
     for subscriber in subscribers:
         name = subscriber["name"]
         email = subscriber["email"]
-        msg = Message(
-            subject=f"Knock Knock {name}, Ayushmaan just posted an update",
-            recipients=[email],
-            body=f"""
-                new bloggggg...""",
-        )
 
+        html_content = render_template(template, name=name, **context)
+
+        msg = Message(
+            subject=subject,
+            recipients=[email],
+            html=html_content,
+        )
         mail.send(msg)
 
 
@@ -250,7 +248,7 @@ def admin():
             401,
             {"WWW-Authenticate": 'Basic realm="Admin Login"'},
         )
-    print("Logged in as Administrator : ", ADMIN_USERNAME)
+    print("Logged in as Administrator : ", ADMIN_USERNAME, " at", str(datetime.now()))
     return render_template("admin.html")
 
 
@@ -263,7 +261,7 @@ def upload_project():
 
     uploaded_urls = []
     for image in images:
-        response = upload(image, folder="Portofolio")
+        response = upload(image, folder="Portfolio")
         uploaded_urls.append(response["url"])
 
     project_data = {
@@ -276,6 +274,17 @@ def upload_project():
         "upvotes": 0,
     }
     blogs_collection.insert_one(project_data)
+
+    try:
+        send_notifications(
+            subject=f"New Project: {title}",
+            template="project_notification.html",
+            context={"title": title, "content": content, "tags": tags},
+        )
+        print("Notification sent successfully!!!")
+    except Exception as e:
+        print("Error sending notification : ", e)
+
     return jsonify({"message": "Project uploaded successfully!"}), 201
 
 
@@ -290,6 +299,17 @@ def upload_update():
         "upvotes": 0,
     }
     blogs_collection.insert_one(update_data)
+
+    try:
+        send_notifications(
+            subject="New Update Posted!",
+            template="updates_notification.html",
+            context={"content": content},
+        )
+        print("Notification sent successfully!!!")
+    except Exception as e:
+        print("Error sending notification : ", e)
+
     return jsonify({"message": "Update uploaded successfully!"}), 201
 
 

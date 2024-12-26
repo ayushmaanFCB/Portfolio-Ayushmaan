@@ -17,3 +17,4 @@ Flask-Mail
 pymongo
 cloudinary
 markdown
+python-dotenv

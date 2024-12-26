@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "poppins", Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: yellow;
+        }
+
+        h1 {
+            color: yellow;
+        }
+
+        p {
+            color: white;
+        }
+
+        #content {
+            color: gray;
+        }
+
+        .card {
+            padding: 2rem;
+            width: fit-content;
+            max-width: 40rem;
+            margin: auto;
+            border-style: solid;
+            border-color: #8a9199;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+            background-image: url("https://homeless-margalo-ayushmaan-personal-109aa799.koyeb.app/static/images/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <p style="text-align: center;"><a class="navbar-brand" href="/">
+                <img src="https://homeless-margalo-ayushmaan-personal-109aa799.koyeb.app/static/images/logo.png"
+                    alt="Logo" height="40" class="d-inline-block align-text-top">
+            </a></p>
+        <h1>Hello, {{ name }}!</h1>
+        <p>There is a new update from Ayushmaan:</p>
+        <p id="content">{{ content }}</p>
+        <p><a href="https://homeless-margalo-ayushmaan-personal-109aa799.koyeb.app/blog">Check it out here!</a></p>
+    </div>
+</body>
+
+</html>
