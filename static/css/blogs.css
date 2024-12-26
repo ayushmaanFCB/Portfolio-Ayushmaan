@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "poppins";
+}
+
+.d-flex.flex-wrap > div {
+  padding: 2px;
+}
+
+.small-thumbnail {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.card .d-flex.flex-wrap {
+  padding: 5px;
+}
+
+.card {
+  width: fit-content;
+  max-width: 40rem;
+  margin: auto;
+  border-style: solid;
+  border-color: #8a9199;
+  border-radius: 2rem;
+  overflow: hidden; /* Prevent child elements from overflowing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; /* Smooth hover effect */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Subtle glowing border */
+}
+
+.card img {
+  border-radius: 8px; /* Smooth the image corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow around images */
+}
+
+.card:hover img {
+  filter: brightness(1.1); /* Brighten images slightly on hover */
+}
+
+.card-text.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal-body img {
+  border-radius: 2rem;
+}
+
+/* Prevent overlap with other content */
+.badge {
+  margin-bottom: 1.25rem; /* Push badges slightly upward if needed */
+}
+
+.btn-lg-upvote {
+  font-size: 1rem; /* Larger text for the icon */
+  padding: 0.5rem 1rem; /* Increase padding for a larger button */
+  border-radius: 50%; /* Make the button circular */
+  border: none;
+}
+
+.btn-lg-upvote i {
+  font-size: 1.2rem; /* Increase the icon size */
+}
+
+.btn-lg-upvote:hover {
+  background-color: black;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  /* Flex container for sidebar and blogs */
+  overflow: hidden;
+  /* Prevent scrolling outside this section */
+}
+
+.filter-column {
+  flex: 0 0 30%;
+  /* Sidebar width, adjustable */
+  overflow-y: auto;
+  /* Make filters scrollable if needed */
+  padding: 1rem;
+}
+
+.blogs-scrollable {
+  flex: 1;
+  /* Take remaining space */
+  overflow-y: auto;
+  /* Enable vertical scrolling for blogs column */
+  padding: 1rem;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem;
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.blogs-scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.blogs-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blogs-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 0, 0.8);
+  border-radius: 6px;
+  border: 3px solid transparent;
+}
+
+.blogs-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 0, 1);
+}
+
+.blogs-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 0, 0.8) transparent;
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  /* Hide the filter column on smaller screens */
+  .filter-column {
+    display: none;
+  }
+
+  /* Main content adjustments */
+  .main-content {
+    flex-direction: column; /* Stack children vertically */
+    align-items: stretch; /* Ensure children take full width */
+  }
+
+  /* Filter toggle button */
+  .filter-toggle-btn {
+    display: block;
+    width: 100%; /* Ensure the button takes full width */
+    margin: 0; /* Remove any unintended margins */
+    padding: 0.5rem 0; /* Add padding for clickability */
+  }
+
+  .filter-toggle-btn button {
+    width: 100%; /* Ensure button spans full width */
+    font-size: 1rem;
+    border: none;
+  }
+
+  /* Blogs container */
+  .blogs-scrollable {
+    flex: 1;
+    padding: 0.5rem;
+    width: 100%; /* Ensure the blogs container is full width */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 0.5rem;
+  }
+
+  /* Blog cards */
+  .blogs-scrollable .card {
+    /* width: 100%;  */
+    max-width: 100%;
+    margin-bottom: 1rem;
+    box-sizing: border-box; /* Include padding and borders in width calculations */
+    margin: 0.5rem auto; /* Center the card horizontally with auto margins */
+    padding: 0.5rem; /* Adjust padding for compact look */
+    width: calc(100% - 1rem); /* Ensure cards fit within the container */
+    box-sizing: border-box; /* Include padding and borders in width calculations */
+  }
+
+  /* Blog content adjustments */
+  .blogs-scrollable .card-body {
+    padding: 1rem;
+  }
+
+  .blogs-scrollable img.small-thumbnail {
+    width: 100%; /* Ensure images don't overflow */
+    height: auto;
+  }
+
+  .form-select {
+    max-width: 95%;
+  }
+
+  .same-size {
+    width: 100%; /* Full width of the container */
+    aspect-ratio: 16 / 9; /* Maintains a consistent aspect ratio (16:9 in this case) */
+    object-fit: cover; /* Ensures content fills the space while preserving aspect ratio */
+  }
+
+  .subscribe-banner {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: block !important;
+  }
+}
+
+.blinking-btn {
+  animation: blink 1.5s infinite; /* Animation with 1.5s duration, repeating infinitely */
+  border-radius: 50px; /* Optional: makes the button rounded */
+  box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.8); /* Glowing effect */
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1; /* Fully visible */
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    opacity: 0.5; /* Partially transparent */
+    /* transform: scale(1.05); */
+  }
+}
+
+.subscribe-banner {
+  display: none;
+}
+
+@keyframes tick-animation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#tickSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px; /* Adjust based on modal size */
+}
+
+.tick-mark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid lightgreen;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: tick-animation 0.5s ease-in-out forwards;
+}
+
+.tick-mark:after {
+  content: "✔";
+  font-size: 24px;
+  color: lightgreen;
+}
+
+.filter-column .form-control,
+.filter-column .form-select {
+  background-color: rgba(220, 220, 220, 0.8); /* Light gray background */
+  border: none; /* Remove default borders */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 0.85rem;
+  color: #333; /* Dark text for readability */
+}
+
+.filter-column .form-control:focus,
+.filter-column .form-select:focus {
+  background-color: rgba(
+    220,
+    220,
+    220,
+    0.8
+  ); /* Slightly lighter gray when focused */
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Highlighted shadow on focus */
+}

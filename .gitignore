@@ -1,3 +1,5 @@
 .venv
 portfolio-awsEBS.zip
 .tmp.driveupload
+test.py
+.env
