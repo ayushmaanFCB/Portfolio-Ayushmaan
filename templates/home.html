@@ -56,6 +56,24 @@
             font-size: 24px;
             color: lightgreen;
         }
+
+        @keyframes blinking {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .blinking-icon {
+            animation: blinking 2s infinite;
+        }
     </style>
 </head>
 
@@ -179,10 +197,10 @@
                         <!-- Subscribe Button -->
                         <div class="col-12 col-lg mt-2 mt-lg-0">
                             <button type="button"
-                                class="btn btn-warning w-100 d-flex justify-content-center align-items-center blinking-btn"
+                                class="btn btn-warning w-100 d-flex justify-content-center align-items-center"
                                 data-bs-toggle="modal" data-bs-target="#subscribeModal"
                                 style="background-color: rgba(255, 255, 255, 0); color: yellow;">
-                                <i class="bi bi-bell me-2"></i>
+                                <i class="bi bi-bell-fill  me-2 blinking-icon"></i>
                                 Subscribe to my Blogs
                             </button>
                         </div>
