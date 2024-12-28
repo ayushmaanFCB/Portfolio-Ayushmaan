@@ -1,0 +1,3 @@
+[submodule "Selenium-Testings"]
+	path = Selenium-Testings
+	url = https://github.com/ayushmaanFCB/Selenium-TestNG-Portfolio.git
