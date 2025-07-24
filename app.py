@@ -44,6 +44,7 @@ try:
     collection = db["Koyeb-Flask-Application"]
     blogs_collection = db["Blogs"]
     subscribers_collection = db["Subscribers"]
+    notes_collection = db["Notes-and-Materials"]
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
 
@@ -311,6 +312,21 @@ def upload_update():
         print("Error sending notification : ", e)
 
     return jsonify({"message": "Update uploaded successfully!"}), 201
+
+
+@application.route("/notes")
+def notes_page():
+    try:
+        notes = list(notes_collection.find().sort("date", -1))  # newest first
+        # Format the date to string
+        print(notes)
+        for note in notes:
+            note["date"] = note.get("date", datetime.utcnow()).strftime("%Y-%m-%d")
+        print(notes)
+        return render_template("notes.html", notes=notes)
+    except Exception as e:
+        print("Error fetching notes:", e)
+        return render_template("notes.html", notes=[])
 
 
 if __name__ == "__main__":
