@@ -59,6 +59,77 @@
             color: #ccc;
             margin-top: 0.25rem;
         }
+
+        .news-section {
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Fixed label stays static */
+        .banner-title {
+            color: yellow;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        /* The scrolling container starts AFTER the title */
+        .scroll-mask {
+            overflow: hidden;
+            flex: 1;
+            /* Take remaining width */
+            position: relative;
+        }
+
+        /* Actual scrolling items */
+        .scrolling-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll-left 20s linear infinite;
+        }
+
+        /* Items */
+        .upcoming-item {
+            display: inline-block;
+            color: white;
+            font-weight: 500;
+            margin: 0 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* Animation only applies inside the scroll-mask */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Pause on hover */
+        .scroll-mask:hover .scrolling-content {
+            animation-play-state: paused;
+        }
+
+        /* Mobile: stack instead */
+        @media (max-width: 768px) {
+            .news-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .scroll-mask {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -108,28 +179,45 @@
             </div>
         </nav>
 
+        {% if upcoming_notes%}
+        <div class="container mt-4">
+            <div class="news-section p-2 mb-4">
+                <span class="banner-title">📢 Upcoming Notes:</span>
+                <div class="scroll-mask">
+                    <div class="scrolling-content">
+                        {% for upcoming in upcoming_notes %}
+                        <span class="upcoming-item">{{ upcoming.title }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
-        <div class="row justify-content-center">
-            {% for note in notes %}
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="note-card" onclick="window.open('{{ note.notion_url }}', '_blank')">
-                    <div class="note-thumbnail" style="background-image: url('{{ note.thumbnail }}');">
-                        <div class="note-overlay">
-                            <div class="note-title">{{ note.title }}</div>
-                            <div class="note-description">{{ note.description }}</div>
-                            <div class="note-tags mt-2">
-                                {% for tag in note.tags %}
-                                <span class="badge bg-secondary me-1 small"
-                                    style="background-color:#8a9199; color:black">{{
-                                    tag }}</span>
-                                {% endfor %}
+
+        <div class="container" style="padding: 2rem 1rem;">
+            <div class="row justify-content-center">
+                {% for note in notes %}
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="note-card" onclick="window.open('{{ note.notion_url }}', '_blank')">
+                        <div class="note-thumbnail" style="background-image: url('{{ note.thumbnail }}');">
+                            <div class="note-overlay">
+                                <div class="note-title">{{ note.title }}</div>
+                                <div class="note-description">{{ note.description }}</div>
+                                <div class="note-tags mt-2">
+                                    {% for tag in note.tags %}
+                                    <span class="badge me-1 small" style="background-color:yellow; color:black">{{ tag
+                                        }}</span>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
+
 
 
     </div>

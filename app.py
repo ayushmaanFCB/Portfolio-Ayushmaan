@@ -318,15 +318,18 @@ def upload_update():
 def notes_page():
     try:
         notes = list(notes_collection.find().sort("date", -1))  # newest first
-        # Format the date to string
-        print(notes)
+        upcoming_notes = []
         for note in notes:
-            note["date"] = note.get("date", datetime.utcnow()).strftime("%Y-%m-%d")
-        print(notes)
-        return render_template("notes.html", notes=notes)
+            if note["published"]:
+                note["date"] = note.get("date", datetime.utcnow()).strftime("%Y-%m-%d")
+            else:
+                upcoming_notes.append(note)
+        notes = [note for note in notes if note.get("published")]
+
+        return render_template("notes.html", notes=notes, upcoming_notes=upcoming_notes)
     except Exception as e:
         print("Error fetching notes:", e)
-        return render_template("notes.html", notes=[])
+        return render_template("notes.html", notes=[], upcoming_notes=[])
 
 
 if __name__ == "__main__":
