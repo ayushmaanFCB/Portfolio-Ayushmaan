@@ -49,6 +49,13 @@
             opacity: 1;
         }
 
+        .note-card:hover .note-thumbnail {
+            .note-overlay {
+                opacity: 1 !important;
+                background: rgba(0, 0, 0, 0.8);
+            }
+        }
+
         .note-title {
             font-weight: 600;
             font-size: 1.1rem;
@@ -128,6 +135,15 @@
             .scroll-mask {
                 width: 100%;
                 margin-top: 0.5rem;
+            }
+
+            .note-overlay {
+                opacity: 1 !important;
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .note-card:hover .note-thumbnail {
+                filter: none;
             }
         }
     </style>

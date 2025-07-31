@@ -18,8 +18,9 @@ from cloudinary.uploader import upload
 from werkzeug.security import generate_password_hash, check_password_hash
 from pprint import pprint
 import markdown, re
+from dotenv import load_dotenv
 
-
+load_dotenv()
 application = Flask(__name__)
 application.secret_key = str(os.urandom(24))
 
