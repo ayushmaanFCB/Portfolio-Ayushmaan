@@ -125,6 +125,17 @@
             animation-play-state: paused;
         }
 
+        .search-box {
+            max-width: 250px;
+            min-width: 200px;
+        }
+
+        .note-card {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+
+
         /* Mobile: stack instead */
         @media (max-width: 768px) {
             .news-section {
@@ -144,6 +155,28 @@
 
             .note-card:hover .note-thumbnail {
                 filter: none;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                /* Centers horizontally */
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                /* Stack elements vertically */
+                align-items: center;
+                /* Center them */
+            }
+
+            .news-section {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
             }
         }
     </style>
@@ -195,20 +228,29 @@
             </div>
         </nav>
 
-        {% if upcoming_notes%}
         <div class="container mt-4">
-            <div class="news-section p-2 mb-4">
-                <span class="banner-title">📢 Upcoming Notes:</span>
-                <div class="scroll-mask">
-                    <div class="scrolling-content">
-                        {% for upcoming in upcoming_notes %}
-                        <span class="upcoming-item">{{ upcoming.title }}</span>
-                        {% endfor %}
+            <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                <!-- Upcoming Notes Banner -->
+                {% if upcoming_notes%}
+                <div class="news-section flex-grow-1 me-3 p-2">
+                    <span class="banner-title">Upcoming Notes:</span>
+                    <div class="scroll-mask">
+                        <div class="scrolling-content">
+                            {% for upcoming in upcoming_notes %}
+                            <span class="upcoming-item">{{ upcoming.title }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
+                </div>
+                {% endif %}
+
+                <!-- Tag Search Box -->
+                <div class="search-box">
+                    <input type="text" id="tagSearch" class="form-control" placeholder="Search for materials">
                 </div>
             </div>
         </div>
-        {% endif %}
+
 
 
         <div class="container" style="padding: 2rem 1rem;">
@@ -233,10 +275,48 @@
                 {% endfor %}
             </div>
         </div>
-
-
-
     </div>
+
+    <script>
+        document.getElementById("tagSearch").addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const cards = document.querySelectorAll(".note-card");
+
+            cards.forEach(card => {
+                const title = card.querySelector(".note-title").textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll(".badge")).map(tag => tag.textContent.toLowerCase());
+                let match = false;
+
+                // ✅ Match if title or any tag contains searchTerm
+                if (title.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
+                    match = true;
+                }
+
+                if (searchTerm.length >= 3) {
+                    if (match) {
+                        card.style.opacity = "1";
+                        card.style.transform = "scale(1)";
+                        card.style.pointerEvents = "auto";
+                        card.style.position = "";
+                    } else {
+                        card.style.opacity = "0";
+                        card.style.transform = "scale(0.9)";
+                        card.style.pointerEvents = "none";
+                        card.style.position = "absolute"; /* removes its space smoothly */
+                    }
+                } else {
+                    // ✅ Reset when search < 3 chars
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                    card.style.pointerEvents = "auto";
+                    card.style.position = "";
+                }
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>
