@@ -18,8 +18,9 @@ from cloudinary.uploader import upload
 from werkzeug.security import generate_password_hash, check_password_hash
 from pprint import pprint
 import markdown, re
+from dotenv import load_dotenv
 
-
+load_dotenv()
 application = Flask(__name__)
 application.secret_key = str(os.urandom(24))
 
@@ -44,6 +45,7 @@ try:
     collection = db["Koyeb-Flask-Application"]
     blogs_collection = db["Blogs"]
     subscribers_collection = db["Subscribers"]
+    notes_collection = db["Notes-and-Materials"]
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
 
@@ -311,6 +313,24 @@ def upload_update():
         print("Error sending notification : ", e)
 
     return jsonify({"message": "Update uploaded successfully!"}), 201
+
+
+@application.route("/notes")
+def notes_page():
+    try:
+        notes = list(notes_collection.find().sort("date", -1))  # newest first
+        upcoming_notes = []
+        for note in notes:
+            if note["published"]:
+                note["date"] = note.get("date", datetime.utcnow()).strftime("%Y-%m-%d")
+            else:
+                upcoming_notes.append(note)
+        notes = [note for note in notes if note.get("published")]
+
+        return render_template("notes.html", notes=notes, upcoming_notes=upcoming_notes)
+    except Exception as e:
+        print("Error fetching notes:", e)
+        return render_template("notes.html", notes=[], upcoming_notes=[])
 
 
 if __name__ == "__main__":
