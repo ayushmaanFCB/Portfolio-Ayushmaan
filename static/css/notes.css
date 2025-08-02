@@ -1,0 +1,233 @@
+.note-card {
+  cursor: pointer;
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.note-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(255, 255, 0, 0.6);
+}
+
+.note-thumbnail {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.note-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  color: white;
+  padding: 1rem;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.note-card:hover .note-overlay {
+  opacity: 1;
+}
+
+.note-card:hover .note-thumbnail {
+  .note-overlay {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.note-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.note-description {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 0.25rem;
+}
+
+.news-section {
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+}
+
+/* Fixed label stays static */
+.banner-title {
+  color: yellow;
+  font-weight: bold;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+/* The scrolling container starts AFTER the title */
+.scroll-mask {
+  overflow: hidden;
+  flex: 1;
+  /* Take remaining width */
+  position: relative;
+}
+
+/* Actual scrolling items */
+.scrolling-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Items */
+.upcoming-item {
+  display: inline-block;
+  color: white;
+  font-weight: 500;
+  margin: 0 1.5rem;
+  font-size: 1rem;
+}
+
+/* Animation only applies inside the scroll-mask */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Pause on hover */
+.scroll-mask:hover .scrolling-content {
+  animation-play-state: paused;
+}
+
+.search-box {
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.note-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Yellow Border for Modal */
+#upcomingModal .modal-content {
+  border: 2px solid yellow;
+  background: rgba(20, 20, 20, 0.95);
+  color: white;
+}
+
+/* Black Close Button */
+#upcomingModal .btn-close {
+  background-color: yellow;
+  opacity: 1;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-image: none;
+  /* remove default X */
+  position: relative;
+}
+
+/* Custom X icon inside button */
+#upcomingModal .btn-close::before {
+  content: "✕";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .note-description {
+    display: none;
+  }
+
+  .news-section {
+    display: none;
+    /* Hide banner in mobile view */
+  }
+
+  .show-upcoming-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 15px;
+    background: #333333;
+    color: black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.6);
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 255, 0, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 0, 0);
+    }
+  }
+
+  .scroll-mask {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .note-overlay {
+    opacity: 1 !important;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .note-card:hover .note-thumbnail {
+    filter: none;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    /* Centers horizontally */
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: center;
+    /* Center them */
+  }
+
+  .news-section {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
