@@ -1,0 +1,299 @@
+#main-content {
+  display: none;
+  opacity: 0;
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  color: white;
+  font-size: 0.92rem;
+}
+
+h2.section-title {
+  color: yellow;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+h2.section-title i {
+  margin-right: 10px;
+}
+
+/* Timeline */
+.timeline {
+  border-left: 2px solid yellow;
+  padding-left: 20px;
+  margin-left: 10px;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-entry h4 {
+  color: yellow;
+  position: relative;
+  padding-left: 25px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.timeline-entry h4::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.timeline-entry p {
+  margin-left: 25px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Sub-roles */
+.sub-role {
+  margin-left: 25px;
+  border-left: 1px dashed yellow;
+  padding-left: 15px;
+  margin-bottom: 8px;
+}
+
+.sub-role h5 {
+  color: yellow;
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 0.95rem;
+}
+
+.sub-role p {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 0.88rem;
+}
+
+/* Skills Section - Floating */
+.skills-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid yellow;
+  height: fit-content;
+  float: right;
+  margin: 0 0 1rem 1rem;
+  width: 45%;
+  min-width: 300px;
+}
+
+.skills-section h3 {
+  color: yellow;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem 0 0.4rem 0;
+}
+
+.skill-badge {
+  display: inline-block;
+  background: yellow;
+  color: black;
+  padding: 4px 9px;
+  border-radius: 12px;
+  margin: 3px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem 0.4rem;
+}
+
+@media (max-width: 992px) {
+  .skills-section {
+    float: none;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sticky Horizontal Section Navigation */
+.resume-nav-horizontal {
+  position: sticky;
+  top: 60px;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  z-index: 999;
+}
+
+.resume-nav-horizontal a {
+  text-decoration: none;
+  color: yellow;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid yellow;
+  transition: all 0.2s ease;
+}
+
+.resume-nav-horizontal a:hover {
+  background: yellow;
+  color: black;
+}
+
+.profile-img-floating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.profile-img-floating img {
+  width: 160px;
+  /* increased from 120px */
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid yellow;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px rgba(255, 255, 0, 0.4);
+}
+
+.download-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  /* Equal width & height for perfect circle */
+  height: 55px;
+  background: black;
+  color: yellow;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  border: 2px solid yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: glowEdge 2s infinite alternate ease-in-out;
+  z-index: 1000;
+  transition: all 0.25s ease-in-out;
+}
+
+.download-btn:hover {
+  background: yellow;
+  color: black;
+  transform: scale(1.1);
+}
+
+@keyframes glowEdge {
+  0% {
+    box-shadow: 0 0 0px yellow;
+  }
+
+  50% {
+    box-shadow: 0 0 25px yellow;
+  }
+
+  100% {
+    box-shadow: 0 0 5px yellow;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Make resume nav wrap instead of overflow */
+  .resume-nav-horizontal {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .resume-nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  /* Stack skills above resume */
+  .skills-section {
+    float: none;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  /* One column grid for skills */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ensure badges wrap text */
+  .skill-badge {
+    white-space: normal;
+  }
+
+  /* Prevent timeline from causing scroll */
+  .timeline {
+    padding-left: 15px;
+    margin-left: 0;
+  }
+
+  .timeline-entry h4 {
+    font-size: 1rem;
+  }
+
+  .timeline-entry p {
+    font-size: 0.85rem;
+  }
+}
+
+.skills-toggle-btn {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.skills-toggle-btn:hover {
+  background-color: yellow;
+  color: black;
+  transform: scale(1.03);
+}
+
+@media (max-width: 992px) {
+  .skills-section {
+    border: none;
+    background: none;
+    padding: 0;
+    width: 100%;
+  }
+}
