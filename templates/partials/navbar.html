@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"><span class="navbar-toggler-icon"></span></button>
+        <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header text-white">
+                <h5>Hello, take a look at my profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div>
+                <img id="profile1" src="{{ url_for('static', filename='images/profile1.png') }}" class="img-fluid"
+                    style="padding: 3rem; padding-top: 5rem">
+            </div>
+            <div class="offcanvas-body d-flex flex-column p-4">
+                <ul class="navbar-nav justify-content-end align-items-center fs-6 flex-grow-1 pe-3">
+                    <li class="nav-item mx-2"><a class="nav-link active" href="/projects"><i class="bi bi-kanban me-1 fs-6"></i> Projects</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link active" href="/skills"><i class="bi bi-tools me-1 fs-6"></i> Skills</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link active" href="/contact"><i class="bi bi-envelope me-1 fs-6"></i> Contact</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link active" href="/resume"><i class="bi bi-file-earmark-person me-1 fs-6"></i> Resume</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link active special-link" href="/notes"><i class="bi bi-lightbulb me-1 fs-6"></i> Knowledge Base</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link active special-link" href="/blog"><i class="bi bi-journal-text me-1 fs-6"></i> Blogs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,321 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- templates/resume.html -->
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayushmaan's Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/favicon.png')}}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/resume.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.css">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/loading.css')}}" />
-</head>
+{% block title %}Resume - Ayushmaan{% endblock %}
 
-<body class="d-flex flex-column min-vh-100">
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/resume.css') }}">
+{% endblock %}
 
-    <div class="social-banner">
-        <a href="https://www.github.com/ayushmaanFCB" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" alt="GitHub Icon">
-        </a>
-        <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="LinkedIn Icon">
-        </a>
-    </div>
+{% block content %}
+<!-- Sticky Section Nav -->
+<div class="resume-nav-horizontal">
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+</div>
 
-    <div id="loading">
-        <div class="center">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
-    </div>
+<div class="container mt-4">
+    <!-- Skills Card Floated Right -->
+    <div class="skills-section">
 
-    <div id="main-content">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo" height="60"
-                        class="d-inline-block align-text-top">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar"><span class="navbar-toggler-icon"></span></button>
-                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
-                    <div class="offcanvas-header text-white">
-                        <h5>Hello, take a look at my profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                    </div>
-                    <div>
-                        <img id="profile1" src="{{url_for('static',filename='images/profile1.png')}}" class="img-fluid"
-                            alt="..." style="padding: 3rem; padding-top: 5rem">
-                    </div>
-                    <div class="offcanvas-body d-flex flex-column p-4">
-                        <ul class="navbar-nav justify-content-end align-items-center fs-6 flex-grow-1 pe-3">
-                            <li class="nav-item mx-2"><a class="nav-link active" href="/projects"><i
-                                        class="bi bi-kanban me-1 fs-6"></i> Projects</a></li>
-                            <li class="nav-item mx-2"><a class="nav-link active" href="/skills"><i
-                                        class="bi bi-tools me-1 fs-6"></i> Skills</a></li>
-                            <li class="nav-item mx-2"><a class="nav-link active" href="/contact"><i
-                                        class="bi bi-envelope me-1 fs-6"></i> Contact</a></li>
-                            <li class="nav-item mx-2"><a class="nav-link active" href="/resume"><i
-                                        class="bi bi-file-earmark-person me-1 fs-6"></i> Resume</a></li>
-                            <li class="nav-item mx-2"><a class="nav-link active special-link" href="/notes"><i
-                                        class="bi bi-lightbulb me-1 fs-6"></i> Knowledge Base</a></li>
-                            <li class="nav-item mx-2"><a class="nav-link active special-link" href="/blog"><i
-                                        class="bi bi-journal-text me-1 fs-6"></i> Blogs</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <!-- Only visible on mobile -->
+        <button class="skills-toggle-btn w-100 d-lg-none mb-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#skillsContent" aria-expanded="false" aria-controls="skillsContent">
+            <i class="bi bi-tools"></i> Skills & Tools
+        </button>
 
-        <!-- Sticky Section Nav -->
-        <div class="resume-nav-horizontal">
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#projects">Projects</a>
-            <a href="#achievements">Achievements</a>
-        </div>
-
-        <div class="container mt-4">
-            <!-- Skills Card Floated Right -->
-            <div class="skills-section">
-
-                <!-- Only visible on mobile -->
-                <button class="skills-toggle-btn w-100 d-lg-none mb-2" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#skillsContent" aria-expanded="false" aria-controls="skillsContent">
-                    <i class="bi bi-tools"></i> Skills & Tools
-                </button>
-
-                <div id="skillsContent" class="collapse d-lg-block">
-                    <div class="profile-img-floating">
-                        <img src="{{url_for('static',filename='images/profile1.png')}}" alt="Profile" />
-                    </div>
-
-                    <div class="skills-grid">
-                        <div>
-                            <h3><i class="bi bi-tools"></i> Programming Languages</h3>
-                            <span class="skill-badge">Python</span>
-                            <span class="skill-badge">C</span>
-                            <span class="skill-badge">C++</span>
-                            <span class="skill-badge">Java</span>
-                            <span class="skill-badge">JavaScript</span>
-
-                            <h3><i class="bi bi-code-slash"></i> Frameworks</h3>
-                            <span class="skill-badge">Flask</span>
-                            <span class="skill-badge">Streamlit</span>
-                            <span class="skill-badge">FastAPI</span>
-                            <span class="skill-badge">Gradio</span>
-                            <span class="skill-badge">ExpressJS</span>
-                            <span class="skill-badge">Angular</span>
-                            <span class="skill-badge">React</span>
-                            <span class="skill-badge">Node.js</span>
-
-                            <h3><i class="bi bi-lightbulb-fill"></i> Areas of Interest</h3>
-                            <span class="skill-badge">Machine Learning</span>
-                            <span class="skill-badge">Deep Learning</span>
-                            <span class="skill-badge">Natural Language Processing</span>
-                            <span class="skill-badge">Data Analytics</span>
-                            <span class="skill-badge">Data Visualization</span>
-                            <span class="skill-badge">Computer Vision</span>
-                            <span class="skill-badge">Artificial Intelligence</span>
-                            <span class="skill-badge">Database Management</span>
-                            <span class="skill-badge">Web Development</span>
-                            <span class="skill-badge">Automation</span>
-                            <span class="skill-badge">Testing</span>
-                        </div>
-
-                        <div>
-                            <h3><i class="bi bi-cloud"></i> Cloud & Databases</h3>
-                            <span class="skill-badge">MySQL</span>
-                            <span class="skill-badge">PostgreSQL</span>
-                            <span class="skill-badge">MongoDB</span>
-                            <span class="skill-badge">AWS</span>
-                            <span class="skill-badge">Azure DevOps</span>
-                            <span class="skill-badge">Koyeb</span>
-
-                            <h3><i class="bi bi-gear-fill"></i> Tools & Technologies</h3>
-                            <span class="skill-badge">TensorFlow</span>
-                            <span class="skill-badge">Keras</span>
-                            <span class="skill-badge">PyTorch</span>
-                            <span class="skill-badge">Scikit-Learn</span>
-                            <span class="skill-badge">OpenCV</span>
-                            <span class="skill-badge">Hugging Face</span>
-                            <span class="skill-badge">SpaCy</span>
-
-                            <h3><i class="bi bi-people-fill"></i> Soft Skills</h3>
-                            <span class="skill-badge">Communication</span>
-                            <span class="skill-badge">Problem Solving</span>
-                            <span class="skill-badge">Critical Thinking</span>
-                            <span class="skill-badge">Time Management</span>
-                            <span class="skill-badge">Curiosity</span>
-                            <span class="skill-badge">Leadership</span>
-                            <span class="skill-badge">Creativity</span>
-
-                            <h3><i class="bi bi-hdd-stack"></i> Other Techs</h3>
-                            <span class="skill-badge">Tableau</span>
-                            <span class="skill-badge">Power BI</span>
-                            <span class="skill-badge">Docker</span>
-                            <span class="skill-badge">Git</span>
-                            <span class="skill-badge">GitHub</span>
-                            <span class="skill-badge">Postman</span>
-                            <span class="skill-badge">Linux</span>
-                            <span class="skill-badge">Visual Studio</span>
-                        </div>
-                    </div>
-                </div>
+        <div id="skillsContent" class="collapse d-lg-block">
+            <div class="profile-img-floating">
+                <img src="{{url_for('static',filename='images/profile1.png')}}" alt="Profile" />
             </div>
 
+            <div class="skills-grid">
+                <div>
+                    <h3><i class="bi bi-tools"></i> Programming Languages</h3>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">C</span>
+                    <span class="skill-badge">C++</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">JavaScript</span>
 
-            <!-- Main Resume Content -->
-            <div class="resume-main">
-                <h2 id="experience" class="section-title"><i class="bi bi-briefcase-fill"></i>Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-entry">
-                        <h4>MulticoreWare</h4>
-                        <div class="sub-role">
-                            <h5>Software Engineer (Full-Time)</h5>
-                            <p>Worked on AI, ML, and optimization pipelines including QAIC SDK integrations, ExecuTorch
-                                deployment, and model optimization.</p>
-                        </div>
-                        <div class="sub-role">
-                            <h5>Junior Engineer (Internship)</h5>
-                            <p>Focused on edge AI pipelines, stable diffusion optimizations, and hardware-accelerated
-                                model deployment.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Upraised – Software Development Intern</h4>
-                        <p>Automation, RAG Model, SaaS Architecture, Transformers, Hugging Face, Open AI Devs, Flask,
-                            MongoDB</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>RecruitNxt – Python and ML Intern</h4>
-                        <p>Machine Learning, NLP, Named Entity Recognition (NER), Computer Vision, Web Scraping, Flask
-                        </p>
-                    </div>
+                    <h3><i class="bi bi-code-slash"></i> Frameworks</h3>
+                    <span class="skill-badge">Flask</span>
+                    <span class="skill-badge">Streamlit</span>
+                    <span class="skill-badge">FastAPI</span>
+                    <span class="skill-badge">Gradio</span>
+                    <span class="skill-badge">ExpressJS</span>
+                    <span class="skill-badge">Angular</span>
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">Node.js</span>
+
+                    <h3><i class="bi bi-lightbulb-fill"></i> Areas of Interest</h3>
+                    <span class="skill-badge">Machine Learning</span>
+                    <span class="skill-badge">Deep Learning</span>
+                    <span class="skill-badge">Natural Language Processing</span>
+                    <span class="skill-badge">Data Analytics</span>
+                    <span class="skill-badge">Data Visualization</span>
+                    <span class="skill-badge">Computer Vision</span>
+                    <span class="skill-badge">Artificial Intelligence</span>
+                    <span class="skill-badge">Database Management</span>
+                    <span class="skill-badge">Web Development</span>
+                    <span class="skill-badge">Automation</span>
+                    <span class="skill-badge">Testing</span>
                 </div>
 
-                <h2 id="education" class="section-title"><i class="bi bi-mortarboard-fill"></i>Education</h2>
-                <div class="timeline">
-                    <div class="timeline-entry">
-                        <h4>B.Tech in CSE Artificial Intelligence & Machine Learning (2021-25)</h4>
-                        <p>Sri Ramachandra Faculty of Engineering and Technology - 9.9 CGPA</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Higher Secondary Education (2019)</h4>
-                        <p>BSF Senior Secondary Residential School, Kadamtala (Siliguri) - 89.6%</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Secondary Education (2017)</h4>
-                        <p>Good Shepherd School, Bagdogra (Siliguri) - 95.8%</p>
-                    </div>
-                </div>
+                <div>
+                    <h3><i class="bi bi-cloud"></i> Cloud & Databases</h3>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">AWS</span>
+                    <span class="skill-badge">Azure DevOps</span>
+                    <span class="skill-badge">Koyeb</span>
 
-                <h2 id="projects" class="section-title"><i class="bi bi-diagram-3-fill"></i>Projects</h2>
-                <div class="timeline">
-                    <div class="timeline-entry">
-                        <h4>GlossaCompiler – Text-to-Code for Young Learners <small>(2021 – 2024)</small></h4>
-                        <p><strong>Tools & Technologies:</strong> PyTorch, NLP, Transformers, Judge0 API, Flask, React,
-                            CORS</p>
-                        <p>PyTorch-based Transformer model for coding assistance with a live IDE for generated code
-                            compilation, built as a full-stack web app using Flask & React, integrating real-time
-                            Judge0-based execution.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Spotify Music Recommendation Engine <small>(Nov 2024)</small></h4>
-                        <p><strong>Tools & Technologies:</strong> TensorFlow, Keras, Cosine Similarity, CNN, Streamlit
-                        </p>
-                        <p>Music recommendation system suggesting songs from input or facial emotion detection using a
-                            custom CNN model, leveraging cosine similarity for accuracy.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Named Entity Recognition & Resume Summarisation <small>(Jun 2023)</small></h4>
-                        <p><strong>Tools & Technologies:</strong> SpaCy, Docanno, Gradio, FastAPI, MongoDB Atlas, NLP
-                        </p>
-                        <p>Custom NER-based system that automates hiring by extracting essential details from resumes
-                            and generating concise summaries, deployed via FastAPI & Gradio.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>ANPR with Live Dashboard & Chatbot <small>(Feb 2023)</small></h4>
-                        <p><strong>Tools & Technologies:</strong> TensorFlow, Keras, Power BI, PandasAI, Sheets API,
-                            Flask, Streamlit</p>
-                        <p>Automatic Number Plate Recognition detecting and storing license plates, connected to a live
-                            Power BI dashboard and chatbot for vehicle data retrieval.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Streaming Highway Traffic Alerts <small>(Jul 2022)</small></h4>
-                        <p><strong>Tools & Technologies:</strong> Scikit-Learn, Streamlit, Twitter API, ML
-                            Classification, NLP</p>
-                        <p>Real-time traffic alert system fetching tweets via Twitter API, classifying traffic-related
-                            content, and presenting live updates on a Streamlit dashboard.</p>
-                    </div>
-                </div>
+                    <h3><i class="bi bi-gear-fill"></i> Tools & Technologies</h3>
+                    <span class="skill-badge">TensorFlow</span>
+                    <span class="skill-badge">Keras</span>
+                    <span class="skill-badge">PyTorch</span>
+                    <span class="skill-badge">Scikit-Learn</span>
+                    <span class="skill-badge">OpenCV</span>
+                    <span class="skill-badge">Hugging Face</span>
+                    <span class="skill-badge">SpaCy</span>
 
-                <h2 id="achievements" class="section-title"><i class="bi bi-trophy-fill"></i>Achievements</h2>
-                <div class="timeline">
-                    <div class="timeline-entry">
-                        <h4>Research Day Winner <small>(2024)</small></h4>
-                        <p>Awarded for best project presentation with implementation.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Founder Chancellor Cash Award – SRIHER <small>(2023)</small></h4>
-                        <p>Recognised for excellent academic performance.</p>
-                    </div>
-                    <div class="timeline-entry">
-                        <h4>Book Chapter Publication <small>(2022)</small></h4>
-                        <p>Published in <em>Advancement of Data Processing Methods for Artificial & Computing
-                                Intelligence</em>.</p>
-                    </div>
+                    <h3><i class="bi bi-people-fill"></i> Soft Skills</h3>
+                    <span class="skill-badge">Communication</span>
+                    <span class="skill-badge">Problem Solving</span>
+                    <span class="skill-badge">Critical Thinking</span>
+                    <span class="skill-badge">Time Management</span>
+                    <span class="skill-badge">Curiosity</span>
+                    <span class="skill-badge">Leadership</span>
+                    <span class="skill-badge">Creativity</span>
+
+                    <h3><i class="bi bi-hdd-stack"></i> Other Techs</h3>
+                    <span class="skill-badge">Tableau</span>
+                    <span class="skill-badge">Power BI</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">GitHub</span>
+                    <span class="skill-badge">Postman</span>
+                    <span class="skill-badge">Linux</span>
+                    <span class="skill-badge">Visual Studio</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Floating Download Button -->
-    <a href="{{ url_for('static', filename='docs/resume.pdf') }}" download class="download-btn" title="Download Resume">
-        <i class="bi bi-download"></i>
-    </a>
 
-    <script>
-        setTimeout(() => {
-            const loading = document.getElementById('loading');
-            const mainContent = document.getElementById('main-content');
-            mainContent.style.display = 'block';
-            mainContent.style.opacity = '0';
-            mainContent.style.transition = 'opacity 0.6s ease';
-            loading.style.transition = 'opacity 0.5s ease';
-            loading.style.opacity = '0';
-            setTimeout(() => {
-                mainContent.style.opacity = '1';
-                loading.style.display = 'none';
-            }, 200);
-        }, 1000);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Main Resume Content -->
+    <div class="resume-main">
+        <h2 id="experience" class="section-title"><i class="bi bi-briefcase-fill"></i>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-entry">
+                <h4>MulticoreWare</h4>
+                <div class="sub-role">
+                    <h5>Software Engineer (Full-Time)</h5>
+                    <p>Worked on AI, ML, and optimization pipelines including QAIC SDK integrations, ExecuTorch
+                        deployment, and model optimization.</p>
+                </div>
+                <div class="sub-role">
+                    <h5>Junior Engineer (Internship)</h5>
+                    <p>Focused on edge AI pipelines, stable diffusion optimizations, and hardware-accelerated
+                        model deployment.</p>
+                </div>
+            </div>
+            <div class="timeline-entry">
+                <h4>Upraised – Software Development Intern</h4>
+                <p>Automation, RAG Model, SaaS Architecture, Transformers, Hugging Face, Open AI Devs, Flask,
+                    MongoDB</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>RecruitNxt – Python and ML Intern</h4>
+                <p>Machine Learning, NLP, Named Entity Recognition (NER), Computer Vision, Web Scraping, Flask
+                </p>
+            </div>
+        </div>
 
-<footer class="mt-auto">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12" id="footer-col">
-                <a href="mailto:dasayush5maan@gmail.com" style="padding-right: 1.5rem;">Email</a>
-                <a href="https://www.github.com/ayushmaanFCB" target="_blank" style="padding-right: 1.5rem;">GitHub</a>
-                <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" style="padding-right: 1.5rem;"
-                    target="_blank">LinkedIn</a>
-                <a href="tel:+917679622353">Phone</a>
+        <h2 id="education" class="section-title"><i class="bi bi-mortarboard-fill"></i>Education</h2>
+        <div class="timeline">
+            <div class="timeline-entry">
+                <h4>B.Tech in CSE Artificial Intelligence & Machine Learning (2021-25)</h4>
+                <p>Sri Ramachandra Faculty of Engineering and Technology - 9.9 CGPA</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Higher Secondary Education (2019)</h4>
+                <p>BSF Senior Secondary Residential School, Kadamtala (Siliguri) - 89.6%</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Secondary Education (2017)</h4>
+                <p>Good Shepherd School, Bagdogra (Siliguri) - 95.8%</p>
+            </div>
+        </div>
+
+        <h2 id="projects" class="section-title"><i class="bi bi-diagram-3-fill"></i>Projects</h2>
+        <div class="timeline">
+            <div class="timeline-entry">
+                <h4>GlossaCompiler – Text-to-Code for Young Learners <small>(2021 – 2024)</small></h4>
+                <p><strong>Tools & Technologies:</strong> PyTorch, NLP, Transformers, Judge0 API, Flask, React,
+                    CORS</p>
+                <p>PyTorch-based Transformer model for coding assistance with a live IDE for generated code
+                    compilation, built as a full-stack web app using Flask & React, integrating real-time
+                    Judge0-based execution.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Spotify Music Recommendation Engine <small>(Nov 2024)</small></h4>
+                <p><strong>Tools & Technologies:</strong> TensorFlow, Keras, Cosine Similarity, CNN, Streamlit
+                </p>
+                <p>Music recommendation system suggesting songs from input or facial emotion detection using a
+                    custom CNN model, leveraging cosine similarity for accuracy.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Named Entity Recognition & Resume Summarisation <small>(Jun 2023)</small></h4>
+                <p><strong>Tools & Technologies:</strong> SpaCy, Docanno, Gradio, FastAPI, MongoDB Atlas, NLP
+                </p>
+                <p>Custom NER-based system that automates hiring by extracting essential details from resumes
+                    and generating concise summaries, deployed via FastAPI & Gradio.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>ANPR with Live Dashboard & Chatbot <small>(Feb 2023)</small></h4>
+                <p><strong>Tools & Technologies:</strong> TensorFlow, Keras, Power BI, PandasAI, Sheets API,
+                    Flask, Streamlit</p>
+                <p>Automatic Number Plate Recognition detecting and storing license plates, connected to a live
+                    Power BI dashboard and chatbot for vehicle data retrieval.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Streaming Highway Traffic Alerts <small>(Jul 2022)</small></h4>
+                <p><strong>Tools & Technologies:</strong> Scikit-Learn, Streamlit, Twitter API, ML
+                    Classification, NLP</p>
+                <p>Real-time traffic alert system fetching tweets via Twitter API, classifying traffic-related
+                    content, and presenting live updates on a Streamlit dashboard.</p>
+            </div>
+        </div>
+
+        <h2 id="achievements" class="section-title"><i class="bi bi-trophy-fill"></i>Achievements</h2>
+        <div class="timeline">
+            <div class="timeline-entry">
+                <h4>Research Day Winner <small>(2024)</small></h4>
+                <p>Awarded for best project presentation with implementation.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Founder Chancellor Cash Award – SRIHER <small>(2023)</small></h4>
+                <p>Recognised for excellent academic performance.</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Book Chapter Publication <small>(2022)</small></h4>
+                <p>Published in <em>Advancement of Data Processing Methods for Artificial & Computing
+                        Intelligence</em>.</p>
             </div>
         </div>
     </div>
-</footer>
+</div>
+</div>
 
-</html>
+<!-- Floating Download Button -->
+<a href="{{ url_for('static', filename='docs/resume.pdf') }}" download class="download-btn" title="Download Resume">
+    <i class="bi bi-download"></i>
+</a>
+
+{% endblock %}
