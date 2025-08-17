@@ -81,11 +81,6 @@ def resume_page():
     return render_template("resume.html")
 
 
-@application.route("/skills")
-def skills_page():
-    return render_template("skills.html")
-
-
 @application.route("/contact")
 def contact_form():
     return render_template("contact.html")

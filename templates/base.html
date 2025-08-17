@@ -39,14 +39,16 @@
         </div>
     </div>
 
-    {% include 'partials/navbar.html' %}
 
-    <div id="main-content">
+    <div id="main-content" style="display: none;">
+
+        {% include 'partials/navbar.html' %}
+
         {% block content %}{% endblock %}
+
+        {% include 'partials/footer.html' %}
+
     </div>
-
-    {% include 'partials/footer.html' %}
-
     <script>
         setTimeout(() => {
             const loading = document.getElementById('loading');
