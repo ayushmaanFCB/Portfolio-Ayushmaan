@@ -10,479 +10,15 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+
 
     <style>
-        .skill-logo {
-            max-height: 60px;
-            margin-bottom: .5rem;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
 
-        .skill-logo:hover {
-            transform: scale(1.2);
-        }
-
-        .skill-label {
-            font-size: .85rem;
-            color: #8a9199;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #FFD700;
-            /* yellow to match glow */
-            transform: scale(0.6);
-            /* make buttons smaller */
-            opacity: 0.8;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            transform: scale(0.8);
-            opacity: 1;
-        }
-
-        .swiper-slide h6 {
-            color: yellow;
-        }
-
-        .swiper-pagination-bullet {
-            background: yellow !important;
-        }
-
-        /* enable smooth anchor scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* --- Sticky navbar polish --- */
-        .navbar {
-            transition: background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
-        }
-
-        .navbar.navbar-scrolled {
-            background-color: rgba(0, 0, 0, .55) !important;
-            /* subtle, keeps your dark style */
-            backdrop-filter: blur(6px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, .35);
-        }
-
-        /* --- Hero --- */
-        .home-hero {
-            min-height: 100vh;
-            /* full viewport */
-            display: flex;
-            justify-content: center;
-            /* centers content horizontally */
-            position: relative;
-            padding: clamp(2rem, 4vw, 4rem) 1rem;
-            overflow: hidden;
-            /* makes sure arrow doesn’t spill */
-        }
-
-
-        .home-hero .hero-wrap {
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .home-hero .hero-img {
-            width: 240px;
-            max-width: 60vw;
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid yellow;
-            box-shadow: 0 12px 40px rgba(255, 255, 0, .12);
-        }
-
-
-
-        .home-hero .headline {
-            line-height: 1.15;
-            margin-bottom: .5rem;
-        }
-
-        .home-hero .subhead {
-            color: #8a9199;
-            max-width: 50ch;
-        }
-
-        .home-hero .cta .btn {
-            border-radius: 999px;
-            padding: .6rem 1rem;
-            border-width: 2px;
-        }
-
-        /* --- Scroll Down Arrow --- */
-        .scroll-down {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: yellow;
-            font-size: 1.8rem;
-            cursor: pointer;
-            animation: sd-bounce 2s infinite;
-            /* use the corrected animation */
-            z-index: 20;
-        }
-
-
-        @keyframes sd-bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* --- Sections --- */
-        .home-section {
-            padding: clamp(2rem, 4vw, 4rem) 0;
-            /* so anchor scroll doesn't hide behind sticky nav */
-            scroll-margin-top: 80px;
-        }
-
-        .home-section .title-row {
-            margin-bottom: 1rem;
-        }
-
-        .home-section h2 {
-            font-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem);
-            letter-spacing: .3px;
-        }
-
-        .accent {
-            color: yellow;
-        }
-
-        /* --- Skills carousel --- */
-        .skills-carousel .carousel-item {
-            padding: 1rem .25rem 2rem;
-        }
-
-        .skill-pill {
-            display: inline-block;
-            border: 1px solid yellow;
-            color: yellow;
-            padding: .35rem .6rem;
-            border-radius: 999px;
-            margin: .25rem .35rem .35rem 0;
-            font-size: .9rem;
-            white-space: nowrap;
-        }
-
-        .skills-carousel .carousel-indicators [data-bs-target] {
-            background-color: yellow;
-        }
-
-        .skills-carousel .carousel-control-prev,
-        .skills-carousel .carousel-control-next {
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .6));
-        }
-
-        /* --- Companies/Clients --- */
-        .company-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 1.25rem;
-        }
-
-        @media (min-width: 576px) {
-            .company-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .company-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        .company-logo {
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: .75rem;
-            padding: .75rem;
-            display: grid;
-            place-items: center;
-            transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
-            min-height: 74px;
-        }
-
-        .company-logo img {
-            max-height: 56px;
-            max-width: 100%;
-            transition: filter .2s ease;
-        }
-
-        .company-logo:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(255, 255, 0, .08);
-            border-color: yellow;
-        }
-
-        /* --- Project cards --- */
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1rem;
-            height: 100%;
-            transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: yellow;
-            box-shadow: 0 10px 28px rgba(255, 255, 0, .08);
-        }
-
-        .project-card h5 {
-            color: white;
-        }
-
-        .project-card .badge {
-            background: #8a9199;
-            color: black;
-            margin-right: .25rem;
-        }
-
-        /* --- Achievements --- */
-        .ach-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1rem 1.25rem;
-            height: 100%;
-        }
-
-        /* --- Reveal on scroll --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
-
-        .reveal.in-view {
-            opacity: 1;
-            transform: none;
-        }
-
-        /* --- Back to top (optional) --- */
-        .back-to-top {
-            position: fixed;
-            right: 16px;
-            bottom: 16px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            border: 2px solid yellow;
-            color: yellow;
-            background: rgba(0, 0, 0, .4);
-            backdrop-filter: blur(4px);
-            cursor: pointer;
-            z-index: 30;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .2s ease, transform .2s ease;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 767.98px) {
-
-            #profile-pic-area,
-            .social-banner {
-                display: none;
-            }
-        }
-
-        /* Default button styles */
-        .btn-notes {
-            background-color: black;
-            color: white;
-            border: none;
-            box-shadow: 0 10px 28px rgba(255, 255, 0, .08);
-        }
-
-        .btn-notes:hover {
-            background-color: white;
-            color: black;
-            border-color: black;
-        }
-
-        .btn-blogs {
-            background-color: yellow;
-            color: black;
-            border: none;
-            box-shadow: 0 10px 28px rgba(255, 255, 0, .08);
-        }
-
-        .btn-blogs:hover {
-            background-color: black;
-            color: yellow;
-            border-color: black;
-        }
-
-        /* Mobile overrides */
-        @media (max-width: 768px) {
-
-            .home-hero {
-                text-align: center;
-            }
-
-            /* Make buttons icons-only */
-            .buttons-wrapper .btn-text {
-                display: none;
-                /* hide text on small screens */
-            }
-
-            .buttons-wrapper {
-                flex-direction: row !important;
-                /* force row layout */
-                justify-content: center;
-            }
-
-            .buttons-wrapper a {
-                flex: 1;
-                /* both buttons take equal width */
-                text-align: center;
-                /* center icons */
-            }
-
-            /* Scroll arrow right below buttons */
-            .scroll-down {
-                position: relative;
-                margin-top: 15px;
-                bottom: auto;
-                display: flex;
-                justify-content: center;
-                /* Center horizontally using Flexbox */
-                width: 100%;
-                /* Ensure it spans the parent */
-                transform: none;
-                /* Remove transform to avoid conflicts */
-            }
-        }
-
-        .alert-success {
-            color: green;
-            background-color: #d4edda;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: opacity 0.5s ease;
-        }
-
-        .alert-error {
-            color: red;
-            background-color: #f8d7da;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: opacity 0.5s ease;
-        }
-
-        #tickSuccess {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            /* Adjust based on modal size */
-        }
-
-        .tick-mark {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid lightgreen;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: tick-animation 0.5s ease-in-out forwards;
-        }
-
-        .tick-mark:after {
-            content: "✔";
-            font-size: 24px;
-            color: lightgreen;
-        }
-
-        @keyframes blinking {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Subtle glowing book/journals */
-        .book-glow {
-            animation: blink 2s infinite;
-        }
-
-        /* Existing bell blink */
-        .bell-blink {
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            50%,
-            100% {
-                opacity: 1;
-            }
-
-            25%,
-            75% {
-                opacity: 0;
-            }
-        }
-
-        .btn-outline-light:hover {
-            background-color: yellow;
-            color: black;
-            /* optional: makes text readable */
-            border-color: yellow;
-            /* optional: matches border */
-        }
     </style>
 </head>
 
@@ -601,9 +137,10 @@
 
 
                         <!-- Scroll Down Arrow -->
-                        <a href="#skills" class="scroll-down">
+                        <a href="javascript:void(0)" class="scroll-down" data-target="#skills">
                             <i class="bi bi-chevron-double-down"></i>
                         </a>
+
                     </div>
                     <!-- Right Side -->
                     <div class="col-md-5 text-center mt-4 mt-md-0" id="profile-pic-area">
@@ -868,14 +405,19 @@
                     <h2 style="color: white;"><i class="bi bi-kanban me-2"></i>Featured <span
                             class="accent">Projects</span>
                     </h2>
-                    <a href="https://www.github.com/ayushmaanFCB" class="btn btn-sm btn-outline-warning">View GitHub</a>
+                    <a href="https://www.github.com/ayushmaanFCB" class="btn btn-sm btn-outline-warning"
+                        style="transition: all 0.3s ease;"
+                        onmouseover="this.style.background='yellow'; this.style.color='black'; this.style.borderColor='yellow';"
+                        onmouseout="this.style.background=''; this.style.color=''; this.style.borderColor='';">
+                        View GitHub
+                    </a>
                 </div>
 
                 <div class="row g-3">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="project-card h-100">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="mb-1">GlossaCompiler</h5>
+                                <h6 class="mb-1">GlossaCompiler</h6>
                                 <span class="badge">NLP</span>
                             </div>
                             <div style="color:#8a9199" class="mb-2 small">
@@ -893,7 +435,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="project-card h-100">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="mb-1">Spotify Recommender</h5>
+                                <h6 class="mb-1">Spotify Recommendation Engine</h6>
                                 <span class="badge">ML/DL</span>
                             </div>
                             <div style="color:#8a9199" class="mb-2 small">
@@ -910,7 +452,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="project-card h-100">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="mb-1">ANPR + Dashboard</h5>
+                                <h6 class="mb-1">ANPR App with Live Dashboard</h6>
                                 <span class="badge">CV</span>
                             </div>
                             <div style="color:#8a9199" class="mb-2 small">
@@ -926,7 +468,10 @@
                 </div>
 
                 <div class="text-center mt-3">
-                    <a href="/projects" class="btn btn-outline-light"><i class="bi bi-arrow-right-circle me-1"></i>
+                    <a href="/projects" class="btn btn-sm btn-outline-warning" style="transition: all 0.3s ease;"
+                        onmouseover="this.style.background='yellow'; this.style.color='black'; this.style.borderColor='yellow';"
+                        onmouseout="this.style.background=''; this.style.color=''; this.style.borderColor='';"><i
+                            class="bi bi-arrow-right-circle me-1"></i>
                         Explore
                         More
                         Projects</a>
@@ -1119,6 +664,35 @@
             }
         });
     </script>
+
+    <script>
+        (function () {
+            const hero = document.querySelector('.home-hero');
+            const arrow = document.querySelector('.scroll-down');
+            if (hero && arrow) {
+                const io = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        arrow.style.display = "flex";   // show when hero in view
+                    } else {
+                        arrow.style.display = "none";   // hide once scrolled away
+                    }
+                }, { threshold: 0.2 }); // 20% of hero visible
+                io.observe(hero);
+            }
+        })();
+    </script>
+
+    <script>
+        document.querySelectorAll('.scroll-down').forEach(el => {
+            el.addEventListener('click', e => {
+                const target = document.querySelector(el.getAttribute('data-target'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
     <script>
         setTimeout(() => {
             const loading = document.getElementById('loading');
@@ -1131,6 +705,11 @@
             setTimeout(() => {
                 mainContent.style.opacity = '1';
                 loading.style.display = 'none';
+
+                // restart swiper autoplay after showing content
+                if (swiper && swiper.autoplay) {
+                    swiper.autoplay.start();
+                }
             }, 200);
         }, 1000);
     </script>
