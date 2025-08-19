@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent 
+     {% if sticky_nav %}sticky-top{% endif %}">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="60">
