@@ -63,7 +63,7 @@ except Exception as e:
 
 @application.route("/")
 def home_page_alt():
-    return render_template("home.html")
+    return render_template("home.html", sticky_nav=True)
 
 
 @application.route("/home")
@@ -79,11 +79,6 @@ def project_page():
 @application.route("/resume")
 def resume_page():
     return render_template("resume.html")
-
-
-@application.route("/skills")
-def skills_page():
-    return render_template("skills.html")
 
 
 @application.route("/contact")

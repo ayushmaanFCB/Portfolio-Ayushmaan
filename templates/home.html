@@ -1,346 +1,619 @@
-<!doctype html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AyushMaan's Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='images/favicon.png')}}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
-    <link rel="stylesheet" href="{{url_for('static',filename='css/loading.css')}}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        .alert-success {
-            color: green;
-            background-color: #d4edda;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: opacity 0.5s ease;
-        }
+{% block title %}Ayushmaan's Portfolio{% endblock %}
 
-        .alert-error {
-            color: red;
-            background-color: #f8d7da;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: opacity 0.5s ease;
-        }
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/notes.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
 
-        #tickSuccess {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            /* Adjust based on modal size */
-        }
+{% block content %}
+<!-- HERO -->
+<section class="home-hero">
+    <!-- Hero Section -->
+    <div class="container-fluid hero-section py-5">
+        <div class="row align-items-center">
 
-        .tick-mark {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid lightgreen;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: tick-animation 0.5s ease-in-out forwards;
-        }
+            <!-- Left Side -->
+            <div class="col-md-7 text-white">
+                <h5 style="color: yellow;">ARTIFICIAL INTELLIGENCE & MACHINE LEARNING</h5>
+                <h1>
+                    HI, I AM AYUSHMAAN.<br>
+                </h1>
+                <h3>
+                    An aspiring Machine Learning enthusiast,<br>
+                    Data Scientist, and Software Developer
+                </h3>
+                <p class="mt-3 text-secondary" style="text-align: justify;">
+                    Passionate and dedicated graduate specializing in <b>B.Tech CSE Artificial Intelligence and
+                        Machine
+                        Learning</b>,
+                    with a strong skill set spanning diverse domains. Driven by a relentless pursuit of
+                    excellence
+                    in Machine Learning Engineering and Data Science, I have successfully executed impactful
+                    projects and contributed to the field through publications and patents. My academic and
+                    practical experiences have honed my technical expertise, problem-solving abilities, and
+                    analytical thinking. Alongside my technical background, I excel in team collaboration and
+                    communication, enabling me to thrive in both leadership and supportive roles. I am eager to
+                    apply my knowledge to develop innovative AI solutions that solve real-world challenges and
+                    create meaningful impact.
+                </p>
 
-        .tick-mark:after {
-            content: "✔";
-            font-size: 24px;
-            color: lightgreen;
-        }
+                <!-- Buttons -->
+                <div class="d-flex flex-column flex-sm-row gap-3 mt-4 buttons-wrapper">
+                    <!-- Primary (Black) -->
+                    <a href="/notes" class="btn px-4 py-2 rounded-pill w-100 w-sm-auto btn-notes">
+                        <i class="bi bi-journals me-2 book-glow"></i>
+                        <span class="btn-text">Learn with Me</span>
+                    </a>
 
-        @keyframes blinking {
-            0% {
-                opacity: 1;
-            }
+                    <!-- Secondary (Yellow) -->
+                    <a href="#subscribeModal" class="btn px-4 py-2 rounded-pill w-100 w-sm-auto btn-blogs"
+                        data-bs-toggle="modal" data-bs-target="#subscribeModal">
+                        <i class="bi bi-bell-fill me-2 bell-blink"></i>
+                        <span class="btn-text"> Subscribe to my Blogs</span>
+                    </a>
+                </div>
 
-            50% {
-                opacity: 0;
-            }
 
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .blinking-icon {
-            animation: blinking 2s infinite;
-        }
-    </style>
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-
-    <div class="social-banner">
-        <a href="https://www.github.com/ayushmaanFCB" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" alt="GitHub Icon">
-        </a>
-        <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" target="_blank">
-            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="LinkedIn Icon">
-        </a>
-    </div>
-
-    {% with messages = get_flashed_messages(with_categories=True) %}
-    {% if messages %}
-    <div id="flash-message-container">
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
-
-    <div id="loading">
-        <div class="center">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
-    </div>
-
-    <div id="main-content">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-            <div class=" container">
-                <a class="navbar-brand" href="/">
-                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo" height="60"
-                        class="d-inline-block align-text-top">
+                <!-- Scroll Down Arrow -->
+                <a href="javascript:void(0)" class="scroll-down" data-target="#skills">
+                    <i class="bi bi-chevron-double-down"></i>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header text-white">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hello, take a look at my profile</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+            </div>
+            <!-- Right Side -->
+            <div class="col-md-5 text-center mt-4 mt-md-0" id="profile-pic-area">
+                <img src=" {{url_for('static',filename='images/profile1.png' )}}"
+                    class="img-fluid rounded-circle shadow-lg" style="max-width: 90%; height: auto;">
+            </div>
+        </div>
+
+
+</section>
+
+<!-- SKILLS (Swiper Carousel) -->
+<section id="skills" class="home-section skills-carousel reveal">
+    <div class="container">
+        <div class="title-row d-flex justify-content-between align-items-center">
+            <h2 style="color: white;"><i class="bi bi-tools me-2"></i>Skills <span class="accent">Spotlight</span>
+            </h2>
+            <small style="color:#8a9199">Swipe →</small>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper mySkillsSwiper">
+            <div class="swiper-wrapper">
+                <!-- AI/ML -->
+                <div class="swiper-slide">
+                    <h6 class="mb-3 text-center">Machine Learning, Neural Networks & Transformers</h6>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://blog.christianperone.com/wp-content/uploads/2018/10/pytorch-logo.png"
+                                class="img-fluid skill-logo" alt="PyTorch">
+                            <div class="skill-label">PyTorch</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/800px-Tensorflow_logo.svg.png"
+                                class="img-fluid skill-logo" alt="TensorFlow">
+                            <div class="skill-label">TensorFlow</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Keras_logo.svg/2048px-Keras_logo.svg.png"
+                                class="img-fluid skill-logo" alt="Keras">
+                            <div class="skill-label">Keras</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://opencv.org/wp-content/uploads/2020/07/OpenCV_logo_black-2.png"
+                                class="img-fluid skill-logo" alt="OpenCV">
+                            <div class="skill-label">OpenCV</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png"
+                                class="img-fluid skill-logo" alt="scikit_learn">
+                            <div class="skill-label">Scikit-Learn</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/huggingface-color.png"
+                                class="img-fluid skill-logo" alt="hugging_face">
+                            <div class="skill-label">HuggingFace</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="{{ url_for('static', filename='images/executorch.png') }}"
+                                class="img-fluid skill-logo" alt="executorch">
+                            <div class="skill-label">ExecuTorch</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://s7d1.scene7.com/is/image/dmqualcommprod/rectangle-15?$QC_Responsive$&fmt=png-alpha"
+                                class="img-fluid skill-logo" alt="qualcommAI">
+                            <div class="skill-label">Qualcomm AI Engine</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="{{ url_for('static', filename='images/litert.png') }}"
+                                class="img-fluid skill-logo" alt="litert">
+                            <div class="skill-label">LiteRT</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/SpaCy_logo.svg/2560px-SpaCy_logo.svg.png"
+                                class="img-fluid skill-logo" alt="spacy">
+                            <div class="skill-label">SpaCy</div>
+                        </div>
                     </div>
-                    <div>
-                        <img id="profile1" src="{{url_for('static',filename='images/profile1.png')}}" class="img-fluid"
-                            alt="..." style="padding: 3rem; padding-top: 5rem">
+                </div>
+
+                <!-- Data, Cloud & Ops -->
+                <div class="swiper-slide">
+                    <h6 class="mb-3 text-center">DevOps, Cloud and Other Technologies</h6>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png"
+                                class="img-fluid skill-logo" alt="AWS">
+                            <div class="skill-label">Amazon Web Services</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png"
+                                class="img-fluid skill-logo" alt="Docker">
+                            <div class="skill-label">Docker</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"
+                                class="img-fluid skill-logo" alt="GitHub">
+                            <div class="skill-label">Git & GitHub</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-azure-devops-3628645-3029870.png?f=webp"
+                                class=" img-fluid skill-logo" alt="Azure DevOps">
+                            <div class="skill-label">Azure DevOps</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="{{ url_for('static', filename='images/oci-oracle.png') }}"
+                                class=" img-fluid skill-logo" alt="Oracle Cloud">
+                            <div class="skill-label">Oracle Cloud</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://i.tracxn.com/logo/company/749bd5c833b951aaa34ec19bdcab7b"
+                                class=" img-fluid skill-logo" alt="Koyeb">
+                            <div class="skill-label">Koyeb Cloud</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png"
+                                class=" img-fluid skill-logo" alt="Linux">
+                            <div class="skill-label">Linux OS</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn.worldvectorlogo.com/logos/jira-1.svg" class=" img-fluid skill-logo"
+                                alt="Jira">
+                            <div class="skill-label">Atlassian Jira</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/44_Bitbucket_logo_logos-512.png"
+                                class=" img-fluid skill-logo" alt="Bitbucket">
+                            <div class="skill-label">BitBucket</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"
+                                class="img-fluid skill-logo" alt="PowerBI">
+                            <div class="skill-label">PowerBI</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://logos-world.net/wp-content/uploads/2021/10/Tableau-Symbol.png"
+                                class="img-fluid skill-logo" alt="Tableau">
+                            <div class="skill-label">Tableau</div>
+                        </div>
                     </div>
-                    <div class="offcanvas-body d-flex flex-column p-4">
-                        <ul class="navbar-nav justify-content-end align-items-center fs-6 flex-grow-1 pe-3">
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active" aria-current="page" href="/projects">
-                                    <i class="bi bi-kanban me-1 fs-6"></i> Projects
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active" href="/skills">
-                                    <i class="bi bi-tools me-1 fs-6"></i> Skills
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active" href="/contact">
-                                    <i class="bi bi-envelope me-1 fs-6"></i> Contact
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active" href="/resume">
-                                    <i class="bi bi-file-earmark-person me-1 fs-6"></i> Resume
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active special-link" href="/notes">
-                                    <i class="bi bi-lightbulb me-1 fs-6"></i> Knowledge Base
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link active special-link" href="/blog">
-                                    <i class="bi bi-journal-text me-1 fs-6"></i> Blogs
-                                </a>
-                            </li>
-                        </ul>
+                </div>
+
+                <!-- Frameworks & Web -->
+                <div class="swiper-slide">
+                    <h6 class="mb-3 text-center">Web Development, DBMS and API Development</h6>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://img.icons8.com/nolan/512/flask.png" class="img-fluid skill-logo"
+                                alt="Flask">
+                            <div class="skill-label">Flask</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png"
+                                class="img-fluid skill-logo" alt="React">
+                            <div class="skill-label">React</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png"
+                                class="img-fluid skill-logo" alt="Angular">
+                            <div class="skill-label">Angular</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png"
+                                class="img-fluid skill-logo" alt="Node.js">
+                            <div class="skill-label">Node.js</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn.worldvectorlogo.com/logos/fastapi.svg" class="img-fluid skill-logo"
+                                alt="fastapi">
+                            <div class="skill-label">FastAPI</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://images.seeklogo.com/logo-png/44/2/streamlit-logo-png_seeklogo-441815.png"
+                                class="img-fluid skill-logo" alt="streamlit">
+                            <div class="skill-label">Streamlit</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cf.appdrag.com/dashboard-openvm-clo-b2d42c/uploads/Gradio-ZOKL.png"
+                                class="img-fluid skill-logo" alt="gradio">
+                            <div class="skill-label">Gradio</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-postman-3628992-3030217.png?f=webp"
+                                class="img-fluid skill-logo" alt="Postman">
+                            <div class="skill-label">Postman</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://images.icon-icons.com/2415/PNG/512/mongodb_original_wordmark_logo_icon_146425.png"
+                                class="img-fluid skill-logo" alt="mongodb">
+                            <div class="skill-label">Mongo DB</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/MySQL_logo.svg/150px-MySQL_logo.svg.png"
+                                class="img-fluid skill-logo" alt="Node.js">
+                            <div class="skill-label">MySQL</div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/993px-Postgresql_elephant.svg.png"
+                                class="img-fluid skill-logo" alt="Node.js">
+                            <div class="skill-label">PostgreSQL</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Controls -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
+
+<section class="home-section reveal">
+    <div class="container">
+        <div class="title-row d-flex justify-content-between align-items-center">
+            <h2 style="color: white;">
+                <i class="bi bi-people-fill me-2"></i>Companies & <span class="accent">Clients</span>
+            </h2>
+            <small style="color:#8a9199">Work Experience</small>
+        </div>
+
+        <!-- Employers -->
+        <h5 class="mt-4" style="color:#aaa;">Employers</h5>
+        <div class="company-grid">
+            <div class="company-logo"><img src="https://multicorewareinc.com/wp-content/uploads/2023/09/logo-1.png"
+                    alt="MulticoreWare"></div>
+            <div class="company-logo"><img src="{{ url_for('static', filename='images/upraised.png') }}" alt="Upraised">
+            </div>
+            <div class="company-logo"><img src="{{ url_for('static', filename='images/recruitnxt.png') }}"
+                    alt="RecruitNxt"></div>
+        </div>
+
+        <!-- Clients -->
+        <h5 class="mt-4" style="color:#aaa;">Clients served</h5>
+        <div class="company-grid">
+            <div class="company-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Dell_Logo.png"
+                    alt="Dell"></div>
+            <div class="company-logo"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Qualcomm-Logo.svg/1200px-Qualcomm-Logo.svg.png"
+                    alt="Qualcomm"></div>
+            <div class="company-logo"><img
+                    src="https://www.elaia.com/wp-content/uploads/2024/04/Visual-FlexAI-launch.png" alt="FlexAI">
+            </div>
+            <div class="company-logo"><img
+                    src="https://brandlogos.net/wp-content/uploads/2020/11/Flipkart-logo-1-512x143.png" alt="Flipkart">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FEATURED PROJECTS PREVIEW -->
+<section class="home-section reveal">
+    <div class="container">
+        <div class="title-row d-flex justify-content-between align-items-center">
+            <h2 style="color: white;"><i class="bi bi-kanban me-2"></i>Featured <span class="accent">Projects</span>
+            </h2>
+            <a href="https://www.github.com/ayushmaanFCB" class="btn btn-sm btn-outline-warning"
+                style="transition: all 0.3s ease;"
+                onmouseover="this.style.background='yellow'; this.style.color='black'; this.style.borderColor='yellow';"
+                onmouseout="this.style.background=''; this.style.color=''; this.style.borderColor='';">
+                View GitHub
+            </a>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="project-card h-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-1">GlossaCompiler</h6>
+                        <span class="badge">NLP</span>
+                    </div>
+                    <div style="color:#8a9199" class="mb-2 small">
+                        PyTorch Transformer + live IDE (Judge0) for text-to-code with Flask & React.
+                    </div>
+                    <div class="small">
+                        <span class="badge">PyTorch</span>
+                        <span class="badge">Transformers</span>
+                        <span class="badge">Flask</span>
+                        <span class="badge">React</span>
                     </div>
                 </div>
             </div>
-        </nav>
 
-        <div class="container-fluid" style="padding: 3rem;">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row" id="sub-title">
-                        <h5 style="color:yellow;">ARTIFICIAL INTELLIGENCE & MACHINE LEARNING</h5>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="project-card h-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-1">Spotify Recommendation Engine</h6>
+                        <span class="badge">ML/DL</span>
                     </div>
-                    <div class="row" id="inner-row" style="color: white;">
-                        <h1>HI, I AM AYUSHMAAN.<br>AN ASPIRING MACHINE LEARNING ENTHUSIAST, DATA SCIENTIST AND A PYTHON
-                            DEVELOPER</h1>
+                    <div style="color:#8a9199" class="mb-2 small">
+                        Song suggestions from track input or facial emotion (CNN), cosine similarity.
                     </div>
-                    <div class="row" id="inner-row">
-                        <p style="text-align: justify; color:grey">Passionate and dedicated undergraduate specializing
-                            in
-                            Artificial
-                            Intelligence and Machine
-                            Learning, with a robust skill set spanning various domains which are gaining popularity and
-                            serves the demands of the modern world. Fueled by a relentless drive for excellence in
-                            Machine
-                            Learning Engineering and Data Science, I have successfully executed a multitude of projects
-                            across these disciplines. Actively engaged in the publication and patenting of my research,
-                            showcasing a steadfast dedication to advancing knowledge and fostering innovation in these
-                            cutting-edge fields. Also well versed with working in a team environment with proper
-                            coordination and communication.
-                        </p>
+                    <div class="small">
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">Keras</span>
+                        <span class="badge">Streamlit</span>
                     </div>
-                    <div class="row" id="inner-row">
-                        <!-- WhatsApp Button -->
-                        <div class="col-12 col-lg">
-                            <a href="https://wa.me/8145328571" target="_blank">
-                                <button type="button" class="btn btn-success w-100" style="border-radius: 100px;">
-                                    <img width="30" height="30"
-                                        src="https://img.icons8.com/ios-filled/30/FFFFFF/whatsapp--v1.png"
-                                        alt="whatsapp--v1" />
-                                    Let's chat on WhatsApp
-                                </button>
-                            </a>
-                        </div>
-                        <!-- Subscribe Button -->
-                        <div class="col-12 col-lg mt-2 mt-lg-0">
-                            <button type="button"
-                                class="btn btn-warning w-100 d-flex justify-content-center align-items-center"
-                                data-bs-toggle="modal" data-bs-target="#subscribeModal"
-                                style="background-color: rgba(255, 255, 255, 0); color: yellow;">
-                                <i class="bi bi-bell-fill  me-2 blinking-icon"></i>
-                                Subscribe to my Blogs
-                            </button>
-                        </div>
-                    </div>
-
-
                 </div>
-                <div class="col-md-5 d-none d-md-block">
-                    <img src="{{url_for('static',filename='images/profile1.png')}}" class="img-fluid" id="home-me">
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="project-card h-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-1">ANPR App with Live Dashboard</h6>
+                        <span class="badge">CV</span>
+                    </div>
+                    <div style="color:#8a9199" class="mb-2 small">
+                        Automatic number plate recognition with live Power BI dashboard & chatbot.
+                    </div>
+                    <div class="small">
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">Power BI</span>
+                        <span class="badge">Flask</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="/projects" class="btn btn-sm btn-outline-warning" style="transition: all 0.3s ease;"
+                onmouseover="this.style.background='yellow'; this.style.color='black'; this.style.borderColor='yellow';"
+                onmouseout="this.style.background=''; this.style.color=''; this.style.borderColor='';"><i
+                    class="bi bi-arrow-right-circle me-1"></i>
+                Explore
+                More
+                Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="home-section reveal">
+    <div class="container">
+        <div class="title-row">
+            <h2 style="color: white;"><i class="bi bi-trophy-fill me-2"></i>Recent <span
+                    class="accent">Achievements</span></h2>
+        </div>
+        <div class="row g-3">
+            <div class="col-12 col-md-4">
+                <div class="ach-card h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-award me-2" style="color:yellow;"></i>
+                        <h6 class="mb-0" style="color: white">Research Day Winner (2024)</h6>
+                    </div>
+                    <p class="mb-0 small" style="color:#8a9199">Best project presentation with implementation.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="ach-card h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-cash-coin me-2" style="color:yellow;"></i>
+                        <h6 class="mb-0" style="color: white">Founder Chancellor Cash Award – SRIHER (2023)</h6>
+                    </div>
+                    <p class="mb-0 small" style="color:#8a9199">Recognised for excellent academic performance.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="ach-card h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-journal-text me-2" style="color:yellow;"></i>
+                        <h6 class="mb-0" style="color: white">Book Chapter Publication (2022)</h6>
+                    </div>
+                    <p class="mb-0 small" style="color:#8a9199">
+                        <em>Advancement of Data Processing Methods for Artificial & Computing Intelligence</em>.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="subscriber_modal"
-                style="background-color:black; color:white;border-style:solid; border-color:yellow; padding:2rem">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe to my Blogs</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="subscribeForm" action="/subscribed" method="POST">
-                        <div class="mb-3">
-                            <label for="userName" class="form-label">Name</label>
-                            <input name="userName" class="form-control" id="userName" placeholder="Enter your name"
-                                required>
-                            <br>
-                            <label for="userEmail" class="form-label">Email address</label>
-                            <input name="userEmail" type="email" class="form-control" id="userEmail"
-                                placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="agreeToTerms" required>
-                            <label class="form-check-label" for="agreeToTerms">
-                                I agree to receive emails regarding projects and updates.
-                            </label>
-                        </div>
-                        <button type="submit" class="btn w-100" style="background-color: yellow;">Subscribe</button>
-                    </form>
-                    <div id="tickSuccess" class="text-center d-none">
-                        <div class="tick-mark"></div>
-                        <p class="mt-3">Subscribed successfully!</p>
+<!-- Back to top -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="bi bi-arrow-up-short"></i>
+</button>
+
+
+<div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="subscriber_modal"
+            style="background-color:black; color:white;border-style:solid; border-color:yellow; padding:2rem">
+            <div class="modal-header">
+                <h5 class="modal-title" id="subscribeModalLabel">Subscribe to my Blogs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="subscribeForm" action="/subscribed" method="POST">
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">Name</label>
+                        <input name="userName" class="form-control" id="userName" placeholder="Enter your name"
+                            required>
+                        <br>
+                        <label for="userEmail" class="form-label">Email address</label>
+                        <input name="userEmail" type="email" class="form-control" id="userEmail"
+                            placeholder="Enter your email" required>
                     </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="agreeToTerms" required>
+                        <label class="form-check-label" for="agreeToTerms">
+                            I agree to receive emails regarding projects and updates.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn w-100" style="background-color: yellow;">Subscribe</button>
+                </form>
+                <div id="tickSuccess" class="text-center d-none">
+                    <div class="tick-mark"></div>
+                    <p class="mt-3">Subscribed successfully!</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script>
-        setTimeout(() => {
-            const loading = document.getElementById('loading');
-            const mainContent = document.getElementById('main-content');
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Sticky/blur navbar
+    const nav = document.querySelector('.navbar');
+    const onScrollNav = () => {
+        if (window.scrollY > 12) nav.classList.add('navbar-scrolled');
+        else nav.classList.remove('navbar-scrolled');
+    };
+    onScrollNav(); window.addEventListener('scroll', onScrollNav);
 
-            // Prepare content for fade-in
-            mainContent.style.display = 'block';
-            mainContent.style.opacity = '0';
-            mainContent.style.transition = 'opacity 0.6s ease';
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            // Start loader fade out
-            loading.style.transition = 'opacity 0.5s ease';
-            loading.style.opacity = '0';
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    const onScrollTop = () => {
+        if (window.scrollY > 300) btt.classList.add('show'); else btt.classList.remove('show');
+    };
+    window.addEventListener('scroll', onScrollTop);
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 
-            // Simultaneously fade in content slightly after loader starts fading
-            setTimeout(() => {
-                mainContent.style.opacity = '1';
-                loading.style.display = 'none';
-            }, 200); // overlap: content starts fading in while loader is still fading out
-        }, 1000);
-    </script>
-    <script>
-        // Hide the flash message container after 3 seconds
-        setTimeout(function () {
-            const flashMessageContainer = document.getElementById("flash-message-container");
-            if (flashMessageContainer) {
-                flashMessageContainer.style.opacity = "0";
-                setTimeout(() => flashMessageContainer.remove(), 500);  // Remove element after fade-out
+<script>
+    var swiper = new Swiper(".mySkillsSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false, // keeps running even after user swipes
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
+<script>
+    // Hide the flash message container after 3 seconds
+    setTimeout(function () {
+        const flashMessageContainer = document.getElementById("flash-message-container");
+        if (flashMessageContainer) {
+            flashMessageContainer.style.opacity = "0";
+            setTimeout(() => flashMessageContainer.remove(), 500);  // Remove element after fade-out
+        }
+    }, 3000);
+    document.getElementById('subscribeForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const tick = document.getElementById('tickSuccess');
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/subscribed', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                form.classList.add('d-none');
+                tick.classList.remove('d-none');
+                setTimeout(() => {
+                    window.location.href = '/home';
+                }, 1000); // Redirect after success
+            } else {
+                console.error('Error subscribing:', response.statusText);
             }
-        }, 3000);
-        document.getElementById('subscribeForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
+        } catch (error) {
+            console.error('Request failed:', error);
+        }
+    });
+</script>
 
-            const form = event.target;
-            const tick = document.getElementById('tickSuccess');
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch('/subscribed', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (response.ok) {
-                    form.classList.add('d-none');
-                    tick.classList.remove('d-none');
-                    setTimeout(() => {
-                        window.location.href = '/home';
-                    }, 1000); // Redirect after success
+<script>
+    (function () {
+        const hero = document.querySelector('.home-hero');
+        const arrow = document.querySelector('.scroll-down');
+        if (hero && arrow) {
+            const io = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    arrow.style.display = "flex";   // show when hero in view
                 } else {
-                    console.error('Error subscribing:', response.statusText);
+                    arrow.style.display = "none";   // hide once scrolled away
                 }
-            } catch (error) {
-                console.error('Request failed:', error);
+            }, { threshold: 0.2 }); // 20% of hero visible
+            io.observe(hero);
+        }
+    })();
+</script>
+
+<script>
+    document.querySelectorAll('.scroll-down').forEach(el => {
+        el.addEventListener('click', e => {
+            const target = document.querySelector(el.getAttribute('data-target'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
+    });
+</script>
 
-    </script>
-</body>
+{% block loader_js %}
+<script>
+    setTimeout(() => {
+        const loading = document.getElementById('loading');
+        const mainContent = document.getElementById('main-content');
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '0';
+        mainContent.style.transition = 'opacity 0.6s ease';
+        loading.style.transition = 'opacity 0.5s ease';
+        loading.style.opacity = '0';
+        setTimeout(() => {
+            mainContent.style.opacity = '1';
+            loading.style.display = 'none';
 
-<footer class="mt-auto">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12" id="footer-col">
-                <a href="mailto:dasayush5maan@gmail.com" style="padding-right: 1.5rem;">Email</a>
-                <a href="https://www.github.com/ayushmaanFCB" target="_blank" style="padding-right: 1.5rem;">GitHub</a>
-                <a href="https://www.linkedin.com/in/ayushmaan-das-635ab621a/" style="padding-right: 1.5rem;"
-                    target="_blank">LinkedIn</a>
-                <a href="tel:+917679622353">Phone</a>
-            </div>
-        </div>
-    </div>
-</footer>
+            // restart swiper autoplay after showing content
+            if (swiper && swiper.autoplay) {
+                swiper.autoplay.start();
+            }
+        }, 200);
+    }, 1000);
+</script>
+{% endblock %}
 
-</html>
+
+{% endblock %}

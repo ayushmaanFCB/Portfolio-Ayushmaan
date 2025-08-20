@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayushmaan's Projects</title>
+    <title>Blogs and Updates</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.css">
@@ -15,6 +15,22 @@
 </head>
 
 <body>
+
+    <div id="loading">
+        <div class="center">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+
     <div class="subscribe-banner">
         <button type="button"
             class="btn btn-warning w-100 d-flex justify-content-center align-items-center blinking-btn"
@@ -53,11 +69,6 @@
                             </a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link active" href="/skills">
-                                <i class="bi bi-tools me-1 fs-6"></i> Skills
-                            </a>
-                        </li>
-                        <li class="nav-item mx-2">
                             <a class="nav-link active" href="/contact">
                                 <i class="bi bi-envelope me-1 fs-6"></i> Contact
                             </a>
@@ -88,7 +99,7 @@
     </div>
 
     <!-- Main Content: Filters and Blogs -->
-    <div class="main-content">
+    <div class="main-content" id="main-content">
         <!-- Filters Sidebar -->
         <div class="filter-column" style="overflow:hidden">
             <div class="card shadow-sm"
@@ -486,8 +497,21 @@
                 console.error('Request failed:', error);
             }
         });
+    </script>
 
-
+    <script>
+        setTimeout(() => {
+            const loading = document.getElementById('loading');
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.opacity = '0';
+            mainContent.style.transition = 'opacity 0.6s ease';
+            loading.style.transition = 'opacity 0.5s ease';
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                loading.style.display = 'none';
+            }, 200);
+        }, 1000);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
