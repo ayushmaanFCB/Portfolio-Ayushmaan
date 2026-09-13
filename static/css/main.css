@@ -105,7 +105,7 @@ nav .container {
 .logo span {
     color: var(--accent);
     display: inline-block;
-    animation: glitch-anim 6s infinite;
+    animation: glitch-anim 3s infinite;
 }
 
 .nav-links a {
@@ -231,6 +231,10 @@ section {
     0% { opacity: 0; filter: blur(10px); transform: translateY(20px); }
     100% { opacity: 1; filter: blur(0); transform: translateY(0); }
 }
+@keyframes cyber-reveal-centered {
+    0% { opacity: 0; filter: blur(10px); transform: translateY(20px) translateX(-50%); }
+    100% { opacity: 1; filter: blur(0); transform: translateY(0) translateX(-50%); }
+}
 
 .btn {
     display: inline-block;
@@ -243,7 +247,6 @@ section {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s;
-    margin-right: 15px;
 }
 
 .btn:hover {
@@ -251,6 +254,12 @@ section {
     box-shadow: 0 0 25px var(--accent), 0 0 50px var(--accent-glow);
     color: #fff;
     border-color: #fff;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 /* Skills Matrix */
@@ -518,16 +527,84 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(5, 5, 5, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 20px 0;
+        border-bottom: 1px solid var(--card-border);
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
     .hero-container {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
     }
     .hero-image {
-        max-width: 300px;
-        margin-bottom: 30px;
+        display: none !important;
+    }
+    
+    .scroll-indicator {
+        display: none !important;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .company-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-company {
+        font-size: 0.9rem;
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem;
+    }
+    
+    .experience-header-left {
+        gap: 12px;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .contact-section .btn {
+        width: 100%;
+        margin-bottom: 10px;
     }
 }
 
@@ -550,6 +627,15 @@ footer {
     animation: bounce 2s infinite;
     opacity: 0.7;
     transition: opacity 0.3s;
+}
+
+.scroll-indicator.reveal-on-type {
+    transform: translateY(20px) translateX(-50%);
+    animation: none;
+}
+
+.scroll-indicator.reveal-on-type.visible {
+    animation: cyber-reveal-centered 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards, bounce 2s infinite 0.6s;
 }
 
 .scroll-indicator:hover {

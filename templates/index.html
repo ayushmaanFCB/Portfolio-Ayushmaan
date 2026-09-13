@@ -13,7 +13,10 @@
     <nav>
         <div class="container">
             <div class="logo">ayushmaan<span>.is-a.dev</span></div>
-            <div class="nav-links">
+            <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--accent); z-index: 200;">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
@@ -36,7 +39,7 @@
                         AI/ML & Software Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps. Currently
                         building production AI systems from inference to deployment at MulticoreWare.
                     </p>
-                    <div class="reveal-on-type" style="animation-delay: 0.3s;">
+                    <div class="reveal-on-type hero-buttons" style="animation-delay: 0.3s;">
                         <a href="#contact" class="btn">Get In Touch</a>
                         <a href="https://github.com/ayushmaanFCB" target="_blank" class="btn"><i
                                 class="fab fa-github"></i> GitHub</a>
@@ -196,7 +199,7 @@
                 <!-- Role 1 -->
                 <div class="timeline-item">
                     <div class="timeline-date">Jul 2025 - Present</div>
-                    <details class="experience-accordion" open>
+                    <details class="experience-accordion">
                         <summary class="experience-header">
                             <div class="experience-header-left">
                                 <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
@@ -590,8 +593,28 @@
     </footer>
 
     <script>
-        // Terminal Typing Effect
+        // Terminal Typing Effect and Mobile Menu
         document.addEventListener("DOMContentLoaded", function() {
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById("mobile-menu");
+            const navLinks = document.getElementById("nav-links");
+            
+            if (menuToggle) {
+                menuToggle.addEventListener("click", () => {
+                    navLinks.classList.toggle("active");
+                    menuToggle.innerHTML = navLinks.classList.contains("active") 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+
+                document.querySelectorAll(".nav-links a").forEach(link => {
+                    link.addEventListener("click", () => {
+                        navLinks.classList.remove("active");
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
+
             // Lock scroll during boot sequence
             document.body.style.overflow = "hidden";
             
