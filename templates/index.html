@@ -25,6 +25,9 @@
                 <a href="#contact">Contact</a>
             </div>
         </div>
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="scroll-progress"></div>
+        </div>
     </nav>
 
     <div class="container">
@@ -59,7 +62,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about">
+        <section id="about" class="scroll-reveal">
             <h2 class="section-title">01. About Me</h2>
             <div class="about-content">
                 <div class="about-text" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
@@ -99,7 +102,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills">
+        <section id="skills" class="scroll-reveal">
             <h2 class="section-title">02. Technical Arsenal</h2>
 
             <div class="skills-grid">
@@ -192,7 +195,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience">
+        <section id="experience" class="scroll-reveal">
             <h2 class="section-title">03. Where I've Worked</h2>
 
             <div class="timeline">
@@ -326,7 +329,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
+        <section id="projects" class="scroll-reveal">
             <h2 class="section-title">04. Some Things I've Built</h2>
 
             <div class="projects-grid">
@@ -474,7 +477,7 @@
         </section>
 
         <!-- Highlights Section -->
-        <section id="highlights">
+        <section id="highlights" class="scroll-reveal">
             <h2 class="section-title">05. Recognitions & Research</h2>
             <div class="highlights-grid">
                 <!-- Achievements Column -->
@@ -563,7 +566,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact-section">
+        <section id="contact" class="contact-section scroll-reveal">
             <h2 class="section-title">06. What's Next?</h2>
             <h1 class="hero-title" style="font-size: 3rem;">Get In Touch</h1>
             <p>I'm always open to discussing modern AI systems, model optimization, or production AI infrastructure.
@@ -651,6 +654,34 @@
                 }
                 setTimeout(typeWriter, 500);
             }
+            
+            // Intersection Observer for Scroll Reveals
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only reveal once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach((section) => {
+                observer.observe(section);
+            });
+            
+            // Scroll Progress Bar
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('scroll-progress').style.width = scrolled + '%';
+            });
         });
     </script>
 </body>
