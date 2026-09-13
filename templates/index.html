@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayushmaan Das - AI/ML Engineer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">ayushmaan<span>.is-a.dev</span></div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#highlights">Highlights</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-subtitle">Hi, my name is</div>
+                    <h1 class="hero-title reveal-on-type">Ayushmaan Das.</h1>
+                    <h1 class="hero-title reveal-on-type" style="color: var(--text-muted); animation-delay: 0.1s;">I build AI systems that ship.</h1>
+                    <p class="hero-desc reveal-on-type" style="animation-delay: 0.2s;">
+                        AI/ML & Software Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps. Currently
+                        building production AI systems from inference to deployment at MulticoreWare.
+                    </p>
+                    <div class="reveal-on-type" style="animation-delay: 0.3s;">
+                        <a href="#contact" class="btn">Get In Touch</a>
+                        <a href="https://github.com/ayushmaanFCB" target="_blank" class="btn"><i
+                                class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" class="btn"><i
+                                class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+                <div class="reveal-on-type" style="animation-delay: 0.4s;">
+                    <div class="hero-image">
+                        <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Hero Image">
+                    </div>
+                </div>
+            </div>
+            <a href="#about" class="scroll-indicator reveal-on-type" style="animation-delay: 0.5s;">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">01. About Me</h2>
+            <div class="about-content">
+                <div class="about-text" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
+                    <p>I build AI systems that ship - from low-level model optimization on edge hardware to full-stack
+                        AI
+                        platforms serving real customers in production. My engineering focus spans building end-to-end
+                        MLOps pipelines, designing robust RAG architectures (embedding, re-ranking, retrieval),
+                        executing fine-tuning orchestration, and deploying multi-tenant adapter inference engines. I
+                        care just as much about the infrastructure layer as the models themselves. Using tools like AWS,
+                        Kubernetes, and Docker, I architect scalable backends featuring Stripe-based billing,
+                        LLM-token-based autoscaling, secure RBAC authentication, and comprehensive Prometheus
+                        observability to ensure production-grade reliability.</p>
+                    <br>
+                    <p>On the systems programming side, I write high-performance C++ for custom inference servers,
+                        leveraging asynchronous multi-threading and optimized KV Caching (achieving up to 33.71 tok/s).
+                        My expertise in Edge AI allows me to push hardware boundaries using state-of-the-art
+                        quantization and calibration techniques like LiteRT and AIMET. I recently applied these
+                        principles to architect an end-to-end AI-enabled IDE for embedded systems - featuring
+                        comprehensive model-optimization pipelines that take neural networks from raw import to
+                        hardware-ready deployment, alongside custom tooling like model visualizers, latency estimators,
+                        and debug dashboards.</p>
+                    <br>
+                    <p>Outside of my core engineering roles, I actively research and implement Agentic AI workflows,
+                        focusing on frameworks like LangChain, ReAct Agents, and the Model Context Protocol (MCP). My
+                        recent personal projects include a dual-pipeline medical diagnostic assistant combining fixed
+                        RAG with dynamic reasoning agents, and an emotion-aware Spotify recommendation engine driven by
+                        custom neural networks and LSTM-based generation. I graduated as the Founder Chancellor's Gold
+                        Medalist for my
+                        B.Tech in AI & ML, and I am always excited to tackle complex engineering challenges or talk shop
+                        on modern AI architecture.</p>
+                    <br>
+                    <p>Additionally, I am a <a href="#highlights"
+                            style="color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent);">3x
+                            published book chapter author</a>, with peer-reviewed contributions in the fields of Artificial Intelligence and Machine Learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">02. Technical Arsenal</h2>
+
+            <div class="skills-grid">
+                <!-- Languages -->
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Languages</h3>
+                    <div class="skills-container">
+                        <div class="skill-chip">Python</div>
+                        <div class="skill-chip">C++</div>
+                        <div class="skill-chip">C</div>
+                        <div class="skill-chip">Java</div>
+                        <div class="skill-chip">SQL</div>
+                        <div class="skill-chip">NoSQL</div>
+                    </div>
+                </div>
+
+                <!-- AI/ML Tools -->
+                <div class="skill-category-card span-2">
+                    <h3 class="skill-category-title">AI/ML Tools</h3>
+                    <div class="skills-container">
+                        <div class="skill-chip">LangChain</div>
+                        <div class="skill-chip">Agentic AI</div>
+                        <div class="skill-chip">ReAct Agents</div>
+                        <div class="skill-chip">MCP</div>
+                        <div class="skill-chip">KV Caching</div>
+                        <div class="skill-chip">RAG</div>
+                        <div class="skill-chip">Fine-Tuning</div>
+                        <div class="skill-chip">TensorFlow</div>
+                        <div class="skill-chip">PyTorch</div>
+                        <div class="skill-chip">Keras</div>
+                        <div class="skill-chip">LiteRT</div>
+                        <div class="skill-chip">AIMET</div>
+                        <div class="skill-chip">MLFlow</div>
+                        <div class="skill-chip">Hugging Face</div>
+                        <div class="skill-chip">FAISS</div>
+                        <div class="skill-chip">SpaCy</div>
+                        <div class="skill-chip">Scikit-Learn</div>
+                        <div class="skill-chip">OpenCV</div>
+                        <div class="skill-chip">Sentence-Transformers</div>
+                        <div class="skill-chip">Quantization</div>
+                        <div class="skill-chip">Neural Networks</div>
+                        <div class="skill-chip">Deep Learning</div>
+                        <div class="skill-chip">Reinforcement Learning</div>
+                        <div class="skill-chip">MLOps</div>
+                        <div class="skill-chip">Prompt Engineering</div>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Frameworks</h3>
+                    <div class="skills-container">
+                        <div class="skill-chip">Flask</div>
+                        <div class="skill-chip">FastAPI</div>
+                        <div class="skill-chip">Streamlit</div>
+                        <div class="skill-chip">Gradio</div>
+                        <div class="skill-chip">Node.js</div>
+                    </div>
+                </div>
+
+                <!-- Cloud & Infra -->
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Cloud & Infra</h3>
+                    <div class="skills-container">
+                        <div class="skill-chip">AWS (S3, EKS)</div>
+                        <div class="skill-chip">Kubernetes</div>
+                        <div class="skill-chip">Docker</div>
+                        <div class="skill-chip">Azure DevOps</div>
+                        <div class="skill-chip">Prometheus</div>
+                        <div class="skill-chip">CI/CD</div>
+                        <div class="skill-chip">Koyeb</div>
+                        <div class="skill-chip">OCI</div>
+                    </div>
+                </div>
+
+                <!-- Other Tools -->
+                <div class="skill-category-card">
+                    <h3 class="skill-category-title">Other Tools</h3>
+                    <div class="skills-container">
+                        <div class="skill-chip">Git / GitHub</div>
+                        <div class="skill-chip">Linux</div>
+                        <div class="skill-chip">MongoDB</div>
+                        <div class="skill-chip">Power BI</div>
+                        <div class="skill-chip">PlatformIO</div>
+                        <div class="skill-chip">APIs</div>
+                        <div class="skill-chip">IDE Development</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 class="section-title">03. Where I've Worked</h2>
+
+            <div class="timeline">
+                <!-- Role 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jul 2025 - Present</div>
+                    <details class="experience-accordion" open>
+                        <summary class="experience-header">
+                            <div class="experience-header-left">
+                                <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
+                                    class="company-logo">
+                                <div>
+                                    <h3 class="timeline-title">Software Engineer</h3>
+                                    <div class="timeline-company">MulticoreWare Inc.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                        </summary>
+                        <div class="timeline-content">
+                            <ul>
+                                <li>Built an AI IDE for embedded/edge hardware, integrating a quantization and optimizer
+                                    pipeline with model graph visualization, memory layout visualization, plotting
+                                    tools, and layer-wise optimization.</li>
+                                <li>Bridged the gap between IDE and hardware SDKs/toolchains, owning the effort
+                                    end-to-end - architecting, proposing new technologies, and implementing at the
+                                    hardware level.</li>
+                                <li>Completely owned the development of the production-grade product, extending multi-OS
+                                    support, testing, and monitoring releases to end-users.</li>
+                                <li>Engineered on-device model optimization with LiteRT and AIMET quantization,
+                                    shrinking model footprint and boosting inference throughput on edge hardware.</li>
+                                <li>Built the MVP of an AI Playground platform end-to-end - RAG infrastructure
+                                    (embedding + re-ranking), fine-tuning job orchestration, and adapter-based inference
+                                    modules serving multiple tenants.</li>
+                                <li>Architected core backend systems - RBAC, JWT-based auth, and file management - with
+                                    security and input-validation layers hardened across every service endpoint. Handled
+                                    monetization using Stripe.</li>
+                                <li>Deployed and scaled the platform on AWS (S3 + EKS) with Kubernetes, setting up
+                                    Prometheus monitoring and observability across microservices.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025 - Jun 2025</div>
+                    <details class="experience-accordion">
+                        <summary class="experience-header">
+                            <div class="experience-header-left">
+                                <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
+                                    class="company-logo">
+                                <div>
+                                    <h3 class="timeline-title">Junior Engineer</h3>
+                                    <div class="timeline-company">MulticoreWare Inc.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                        </summary>
+                        <div class="timeline-content">
+                            <ul>
+                                <li>Onboarded and optimized LLMs (CodeLlama-7B/13B, Codestral-22B, Qwen2.5-Coder-32B)
+                                    for Qualcomm edge hardware in C++, enabling hardware-accelerated, Mxfp6-quantized
+                                    inference with KV caching and layer-wise operator compatibility fixes, boosting
+                                    throughput up to 33.71 tok/s.</li>
+                                <li>Built a high-performance C++ web server exposing LLM inference endpoints - async
+                                    processing, multi-threaded architecture, and implicit load balancing - supporting
+                                    concurrent inference requests across multiple models.</li>
+                                <li>Extended deployment coverage across heterogeneous environments, contributing to OCI
+                                    cloud and edge-device-specific framework integrations spanning cloud and on-device
+                                    targets. Worked with MLflow for tracking experiments.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Jun 2024 - Dec 2024</div>
+                    <details class="experience-accordion">
+                        <summary class="experience-header">
+                            <div class="experience-header-left">
+                                <img src="{{ url_for('static', filename='images/upraised.png') }}" alt="Upraised"
+                                    class="company-logo">
+                                <div>
+                                    <h3 class="timeline-title">Software Development Intern (ML Team)</h3>
+                                    <div class="timeline-company">Upraised®</div>
+                                </div>
+                            </div>
+                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                        </summary>
+                        <div class="timeline-content">
+                            <ul>
+                                <li>Designed an intelligent proctoring system using pyannote speaker diarization to
+                                    detect and flag anomalous audio patterns during assessments.</li>
+                                <li>Built a RAG-powered backend for automated assignment generation - recruiters could
+                                    generate role-specific tech/non-tech assignments from natural language prompts.</li>
+                                <li>Developed and maintained core AI platform features, integrating AI-driven automation
+                                    to reduce manual recruiter workflows.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2023 - Oct 2023</div>
+                    <details class="experience-accordion">
+                        <summary class="experience-header">
+                            <div class="experience-header-left">
+                                <img src="{{ url_for('static', filename='images/recruitnxt.png') }}" alt="RecruitNXT"
+                                    class="company-logo">
+                                <div>
+                                    <h3 class="timeline-title">ML and Python Developer Intern</h3>
+                                    <div class="timeline-company">RecruitNXT</div>
+                                </div>
+                            </div>
+                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                        </summary>
+                        <div class="timeline-content">
+                            <ul>
+                                <li>Designed and implemented a complete resume parsing solution from scratch, enabling
+                                    automated extraction of key candidate information.</li>
+                                <li>Created and annotated custom datasets, built and fine-tuned Named Entity Recognition
+                                    (NER) models using SpaCy for precise data extraction, deploying them using Docker.
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">04. Some Things I've Built</h2>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/MedicalRAGBot---RAG-based-Medical-Assistance-Chatbot"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Medical Agentic RAG</h3>
+                    <p class="project-desc">Dual-pipeline diagnostic assistant for medical-field Q/A, utilizing
+                        LangChain ReAct orchestration with Llama 3.3 70B and FAISS-based RAG with a fine-tuned FLAN-T5
+                        model.</p>
+                    <div class="project-tech">
+                        <span>RAG</span>
+                        <span>LLaMA</span>
+                        <span>FLAN-T5</span>
+                        <span>LangChain</span>
+                        <span>ReAct</span>
+                        <span>FAISS</span>
+                        <span>TF Serving</span>
+                        <span>Docker</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/Spotify-Music-Recommendation-Engine"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Spotify Music Recommendation Engine</h3>
+                    <p class="project-desc">Emotion-based and custom ML algorithm-based song recommendation web
+                        application integrated with Spotify API. Built custom CNN model from scratch using TensorFlow
+                        and Keras.</p>
+                    <div class="project-tech">
+                        <span>TensorFlow</span>
+                        <span>Keras</span>
+                        <span>Cosine Similarity</span>
+                        <span>CNN</span>
+                        <span>LSTM</span>
+                        <span>Streamlit</span>
+                        <span>Spotify API</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/GlossaCompiler---Text-to-Code-for-Young-Learners"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">GlossaCompiler</h3>
+                    <p class="project-desc">Conversational AI for code assistance integrating a custom Transformer model
+                        in PyTorch. Generates executable Python code from plain English prompts via a Discord chatbot
+                        and React/Flask web app, with live compilation via Judge0.</p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>Transformers</span>
+                        <span>React</span>
+                        <span>Flask</span>
+                        <span>Discord API</span>
+                        <span>Judge0</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/ANPR-Application-with-PowerBI-Dashboard-and-Chatbot"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">ANPR Dashboard & Chatbot</h3>
+                    <p class="project-desc">Flask application utilizing TensorFlow Object Detection and EasyOCR to
+                        extract vehicular number plates. Stores live data in Google Sheets, visualized via a PowerBI
+                        dashboard, and features an OpenAI-powered chatbot.</p>
+                    <div class="project-tech">
+                        <span>OpenCV</span>
+                        <span>OCR</span>
+                        <span>TensorFlow</span>
+                        <span>PowerBI</span>
+                        <span>OpenAI API</span>
+                        <span>Flask</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/Streamlit-App-for-Highway-Traffic-Analysis-from-Twitter-API"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Highway Traffic Analysis</h3>
+                    <p class="project-desc">Machine Learning web app utilizing the Twitter API to fetch and analyze
+                        real-time highway traffic data. Features predictive modeling using Random Forest, Logistic
+                        Regression, and Naive Bayes Classifiers.</p>
+                    <div class="project-tech">
+                        <span>Random Forest</span>
+                        <span>Naive Bayes</span>
+                        <span>Logistic Regression</span>
+                        <span>scikit-learn</span>
+                        <span>Twitter API</span>
+                        <span>Streamlit</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushmaanFCB/Resume-and-Name-Card-Entity-Detection"
+                                target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Resume & Namecard NER</h3>
+                    <p class="project-desc">FastAPI-Gradio application automating the hiring process by extracting
+                        entities from resumes. Features a custom NER model built with SpaCy and Doccano, data stored in
+                        MongoDB Atlas, and a querying chatbot.</p>
+                    <div class="project-tech">
+                        <span>NLP</span>
+                        <span>SpaCy</span>
+                        <span>OpenCV</span>
+                        <span>Doccano</span>
+                        <span>FastAPI</span>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section id="highlights">
+            <h2 class="section-title">05. Recognitions & Research</h2>
+            <div class="highlights-grid">
+                <!-- Achievements Column -->
+                <div class="highlights-column">
+                    <h3 class="highlight-title">Achievements</h3>
+                    <ul class="highlight-list">
+                        <li>
+                            <i class="fas fa-trophy"></i>
+                            <div>
+                                <h4>Spot Award</h4>
+                                <p>MulticoreWare · 2026<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Recognized for exceptional
+                                        ownership, technical proficiency, and a proactive problem-solving approach
+                                        leading to smooth, timely feature deliveries.</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-medal"></i>
+                            <div>
+                                <h4>Gold Medal for Best Outgoing Student</h4>
+                                <p>SRIHER, Chennai · 2025<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Awarded for outstanding
+                                        academic performance and achieving the highest CGPA in the graduating
+                                        cohort.</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>Research Day Winner (Best Paper Presentation)</h4>
+                                <p>SRIHER, Chennai · 2024<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Won top honors for
+                                        presenting an emotion-based music recommendation engine integrated with the
+                                        Spotify API.</span></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Publications Column -->
+                <div class="highlights-column">
+                    <h3 class="highlight-title">Publications</h3>
+                    <ul class="highlight-list">
+                        <li>
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h4>Composite AI-Driven Music Recommendation <a
+                                        href="https://onlinelibrary.wiley.com/doi/abs/10.1002/9781394393060.ch10"
+                                        target="_blank"
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                            class="fas fa-external-link-alt"></i></a></h4>
+                                <p>Wiley · May 2026<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Composite Artificial
+                                        Intelligence: Fundamentals, Challenges, and Applications</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h4>Streaming Highway Traffic Alerts using Twitter API <a
+                                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781032630212-14/streaming-highway-traffic-alerts-using-twitter-api-jayanthi-ganapathy-ramya-mohanakrishnan-ayushmaan-das-fausto-pedro-garcia-marque"
+                                        target="_blank"
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                            class="fas fa-external-link-alt"></i></a></h4>
+                                <p>Taylor & Francis Group · 2024<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Advancement of Data
+                                        Processing Methods for Artificial and Computing Intelligence</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h4>Disseminating Dynamic Traffic Information for Sustainable Mobility <a
+                                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003409502-8/disseminating-dynamic-traffic-information-sustainable-mobility-transport-jayanthi-ganapathy-thanushram-sureshkumar-ambati-renuka-vamsi-krishna-ayushmaan-das"
+                                        target="_blank"
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                            class="fas fa-external-link-alt"></i></a></h4>
+                                <p>Taylor & Francis Group · 2024<br><span
+                                        style="font-size: 0.85rem; color: var(--text-muted);">Artificial Intelligence
+                                        and Machine Learning for Smart Community</span></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">06. What's Next?</h2>
+            <h1 class="hero-title" style="font-size: 3rem;">Get In Touch</h1>
+            <p>I'm always open to discussing modern AI systems, model optimization, or production AI infrastructure.
+                Whether you have a question or just want to say hi, my inbox is always open!</p>
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:dasayush5maan@gmail.com" class="btn"
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-envelope"></i> Email</a>
+                <a href="tel:+918145328571" class="btn"
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-phone-alt"></i> Phone</a>
+                <a href="https://wa.me/918145328571" target="_blank" class="btn"
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/ayushmaanFCB" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="https://discordapp.com/users/755447086476165172" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="mailto:dasayush5maan@gmail.com"><i class="far fa-envelope"></i></a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ayushmaan Das. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Terminal Typing Effect
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lock scroll during boot sequence
+            document.body.style.overflow = "hidden";
+            
+            const subtitleEl = document.querySelector(".hero-subtitle");
+            if (subtitleEl) {
+                const text = subtitleEl.innerText;
+                subtitleEl.innerText = "";
+                subtitleEl.style.borderRight = "2px solid var(--accent)";
+                subtitleEl.style.display = "inline-block";
+                subtitleEl.style.whiteSpace = "nowrap";
+                subtitleEl.style.overflow = "hidden";
+                subtitleEl.style.paddingRight = "5px";
+                
+                // Blinking cursor effect
+                setInterval(() => {
+                    subtitleEl.style.borderColor = subtitleEl.style.borderColor === "transparent" ? "var(--accent)" : "transparent";
+                }, 500);
+
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        subtitleEl.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    } else {
+                        const reveals = document.querySelectorAll('.reveal-on-type');
+                        reveals.forEach(el => el.classList.add('visible'));
+                        
+                        // Unlock scroll after animation starts
+                        setTimeout(() => {
+                            document.body.style.overflow = "";
+                        }, 500);
+                    }
+                }
+                setTimeout(typeWriter, 500);
+            }
+        });
+    </script>
+</body>
+
+</html>
