@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <canvas id="matrix-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
     <nav>
         <div class="container">
             <div class="logo">ayushmaan<span>.is-a.dev</span></div>
@@ -199,6 +200,7 @@
             <h2 class="section-title">03. Where I've Worked</h2>
 
             <div class="timeline">
+                <div class="data-pulse"></div>
                 <!-- Role 1 -->
                 <div class="timeline-item">
                     <div class="timeline-date">Jul 2025 - Present</div>
@@ -621,6 +623,38 @@
             // Lock scroll during boot sequence
             document.body.style.overflow = "hidden";
             
+            // Logo Boot Sequence
+            const logoEl = document.querySelector(".logo");
+            if (logoEl) {
+                const logoText1 = "ayushmaan";
+                const logoText2 = ".is-a.dev";
+                logoEl.innerHTML = "";
+                let l1 = 0;
+                let l2 = 0;
+                let logoSpan = null;
+                
+                function typeLogo() {
+                    if (l1 < logoText1.length) {
+                        logoEl.innerHTML += logoText1.charAt(l1);
+                        l1++;
+                        setTimeout(typeLogo, 80);
+                    } else if (l2 === 0) {
+                        logoSpan = document.createElement("span");
+                        logoEl.appendChild(logoSpan);
+                        typeLogo2();
+                    }
+                }
+                
+                function typeLogo2() {
+                    if (l2 < logoText2.length) {
+                        logoSpan.innerHTML += logoText2.charAt(l2);
+                        l2++;
+                        setTimeout(typeLogo2, 80);
+                    }
+                }
+                setTimeout(typeLogo, 100);
+            }
+            
             const subtitleEl = document.querySelector(".hero-subtitle");
             if (subtitleEl) {
                 const text = subtitleEl.innerText;
@@ -641,7 +675,7 @@
                     if (i < text.length) {
                         subtitleEl.innerHTML += text.charAt(i);
                         i++;
-                        setTimeout(typeWriter, 100);
+                        setTimeout(typeWriter, 80);
                     } else {
                         const reveals = document.querySelectorAll('.reveal-on-type');
                         reveals.forEach(el => el.classList.add('visible'));
@@ -682,6 +716,65 @@
                 const scrolled = (winScroll / height) * 100;
                 document.getElementById('scroll-progress').style.width = scrolled + '%';
             });
+            
+            // Matrix Digital Rain
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=<>?'.split('');
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            for(let x = 0; x < columns; x++) drops[x] = 1;
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(8, 11, 18, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4d7cff';
+                ctx.font = fontSize + 'px var(--font-mono)';
+                for(let i = 0; i < drops.length; i++) {
+                    const text = letters[Math.floor(Math.random() * letters.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
+            }
+            setInterval(drawMatrix, 50);
+
+            // Text Decryption Hover
+            const chars = '!<>-_\\\\/[]{}—=+*^?#_';
+            document.querySelectorAll('.nav-links a').forEach(el => {
+                el.dataset.original = el.innerText;
+                el.addEventListener('mouseenter', () => {
+                    let iterations = 0;
+                    const interval = setInterval(() => {
+                        el.innerText = el.innerText.split('').map((char, i) => {
+                            if (i < iterations) return el.dataset.original[i];
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        if (iterations >= el.dataset.original.length) clearInterval(interval);
+                        iterations += 1 / 3;
+                    }, 30);
+                });
+            });
+
+            // Holographic 3D Card Tilt
+            document.querySelectorAll('.project-card, .highlight-card, .award-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            });
+            
         });
     </script>
 </body>

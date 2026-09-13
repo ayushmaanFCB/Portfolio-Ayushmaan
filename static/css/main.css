@@ -81,6 +81,8 @@ a:hover {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Navbar */
@@ -156,6 +158,20 @@ nav .container {
     font-weight: 600;
     font-size: 1.2rem;
     color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.logo::after {
+    content: '█';
+    color: var(--accent);
+    margin-left: 6px;
+    font-size: 1rem;
+    animation: blink-cursor 1s step-start infinite;
+}
+
+@keyframes blink-cursor {
+    50% { opacity: 0; }
 }
 
 @keyframes glitch-anim {
@@ -329,9 +345,16 @@ section {
 }
 
 .scroll-reveal.visible {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+    animation: scroll-glitch-anim 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes scroll-glitch-anim {
+    0% { opacity: 0; filter: blur(10px); transform: translateY(30px); }
+    70% { opacity: 1; filter: blur(0); transform: translateY(0); }
+    75% { transform: translateX(-10px) skewX(10deg); filter: hue-rotate(90deg); }
+    80% { transform: translateX(10px) skewX(-10deg); filter: hue-rotate(-90deg); }
+    85% { transform: translateX(0) skewX(0); filter: hue-rotate(0); }
+    100% { opacity: 1; filter: blur(0); transform: translateY(0); }
 }
 
 @keyframes cyber-reveal {
@@ -453,6 +476,25 @@ section {
     margin-left: 15px;
 }
 
+.data-pulse {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 2px;
+    height: 100px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff, 0 0 20px var(--accent);
+    animation: data-flow 4s infinite linear;
+    z-index: 10;
+}
+
+@keyframes data-flow {
+    0% { top: -100px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
 .timeline-item {
     position: relative;
     margin-bottom: 40px;
@@ -519,13 +561,13 @@ section {
     border: 1px solid var(--card-border);
     padding: 25px;
     border-radius: 8px;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: transform 0.1s ease, border-color 0.3s;
     display: flex;
     flex-direction: column;
+    transform-style: preserve-3d;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
     border-color: var(--accent);
     box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.15), inset 0 0 10px rgba(var(--accent-rgb), 0.05);
 }
@@ -587,7 +629,8 @@ section {
     border: 1px solid var(--card-border);
     border-radius: 8px;
     padding: 30px;
-    transition: all 0.3s;
+    transition: transform 0.1s ease, border-color 0.3s, box-shadow 0.3s;
+    transform-style: preserve-3d;
 }
 
 .highlights-column:hover {
