@@ -11,11 +11,13 @@
 </head>
 
 <body>
-    <canvas id="matrix-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
+    <canvas id="matrix-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
     <nav>
         <div class="container">
             <div class="logo">ayushmaan<span>.is-a.dev</span></div>
-            <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--accent); z-index: 200;">
+            <div class="menu-toggle" id="mobile-menu"
+                style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--accent); z-index: 200;">
                 <i class="fas fa-bars"></i>
             </div>
             <div class="nav-links" id="nav-links">
@@ -25,7 +27,8 @@
                 <a href="#projects">Projects</a>
                 <a href="#highlights">Highlights</a>
                 <a href="#contact">Contact</a>
-                <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" class="nav-resume-btn">Resume</a>
+                <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
+                    class="nav-resume-btn">Resume</a>
             </div>
         </div>
         <div class="scroll-progress-container">
@@ -40,9 +43,10 @@
                 <div class="hero-content">
                     <div class="hero-subtitle">Hi, my name is</div>
                     <h1 class="hero-title reveal-on-type">Ayushmaan Das.</h1>
-                    <h1 class="hero-title reveal-on-type" style="color: var(--text-muted); animation-delay: 0.1s;">I build AI systems that ship.</h1>
+                    <h1 class="hero-title reveal-on-type" style="color: var(--text-muted); animation-delay: 0.1s;">I
+                        build AI systems that ship.</h1>
                     <p class="hero-desc reveal-on-type" style="animation-delay: 0.2s;">
-                        AI/ML & Software Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps. Currently
+                        AI/ML & Automation Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps. Currently
                         building production AI systems from inference to deployment at MulticoreWare.
                     </p>
                     <div class="reveal-on-type hero-buttons" style="animation-delay: 0.3s;">
@@ -53,7 +57,10 @@
                                 class="fab fa-linkedin"></i> LinkedIn</a>
                     </div>
                     <div class="reveal-on-type" style="animation-delay: 0.4s; margin-top: 20px;">
-                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" style="color: var(--text-muted); font-family: var(--font-mono); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
+                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
+                            style="color: var(--text-muted); font-family: var(--font-mono); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;"
+                            onmouseover="this.style.color='var(--accent)'"
+                            onmouseout="this.style.color='var(--text-muted)'">
                             <i class="fas fa-file-pdf"></i> [ Extract Resume.pdf ]
                         </a>
                     </div>
@@ -104,7 +111,8 @@
                     <br>
                     <p>Additionally, I am a <a href="#publications"
                             style="color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent);">3x
-                            published book chapter author</a>, with peer-reviewed contributions in the fields of Artificial Intelligence and Machine Learning.</p>
+                            published book chapter author</a>, with peer-reviewed contributions in the fields of
+                        Artificial Intelligence and Machine Learning.</p>
                 </div>
             </div>
         </section>
@@ -217,7 +225,7 @@
                                 <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
                                     class="company-logo">
                                 <div>
-                                    <h3 class="timeline-title">Software Engineer</h3>
+                                    <h3 class="timeline-title">AI/ML Engineer</h3>
                                     <div class="timeline-company">MulticoreWare Inc.</div>
                                 </div>
                             </div>
@@ -582,20 +590,25 @@
                 Whether you have a question or just want to say hi, my inbox is always open!</p>
             <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                 <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px; border-color: var(--accent);"><i class="fas fa-file-pdf"></i> Download Resume</a>
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px; border-color: var(--accent);"><i
+                        class="fas fa-file-pdf"></i> Download Resume</a>
                 <a href="mailto:dasayush5maan@gmail.com" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-envelope"></i> Email</a>
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-envelope"></i>
+                    Email</a>
                 <a href="tel:+918145328571" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-phone-alt"></i> Phone</a>
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-phone-alt"></i>
+                    Phone</a>
                 <a href="https://wa.me/918145328571" target="_blank" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fab fa-whatsapp"></i>
+                    WhatsApp</a>
             </div>
 
             <div class="social-links">
                 <a href="https://github.com/ayushmaanFCB" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"><i
                         class="fab fa-linkedin-in"></i></a>
-                <a href="https://discordapp.com/users/755447086476165172" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://discordapp.com/users/755447086476165172" target="_blank" title="Discord"><i
+                        class="fab fa-discord"></i></a>
                 <a href="mailto:dasayush5maan@gmail.com"><i class="far fa-envelope"></i></a>
             </div>
         </section>
@@ -608,16 +621,16 @@
 
     <script>
         // Terminal Typing Effect and Mobile Menu
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Mobile Menu Logic
             const menuToggle = document.getElementById("mobile-menu");
             const navLinks = document.getElementById("nav-links");
-            
+
             if (menuToggle) {
                 menuToggle.addEventListener("click", () => {
                     navLinks.classList.toggle("active");
-                    menuToggle.innerHTML = navLinks.classList.contains("active") 
-                        ? '<i class="fas fa-times"></i>' 
+                    menuToggle.innerHTML = navLinks.classList.contains("active")
+                        ? '<i class="fas fa-times"></i>'
                         : '<i class="fas fa-bars"></i>';
                 });
 
@@ -631,7 +644,7 @@
 
             // Lock scroll during boot sequence
             document.body.style.overflow = "hidden";
-            
+
             // Logo Boot Sequence
             const logoEl = document.querySelector(".logo");
             if (logoEl) {
@@ -641,7 +654,7 @@
                 let l1 = 0;
                 let l2 = 0;
                 let logoSpan = null;
-                
+
                 function typeLogo() {
                     if (l1 < logoText1.length) {
                         logoEl.innerHTML += logoText1.charAt(l1);
@@ -653,7 +666,7 @@
                         typeLogo2();
                     }
                 }
-                
+
                 function typeLogo2() {
                     if (l2 < logoText2.length) {
                         logoSpan.innerHTML += logoText2.charAt(l2);
@@ -663,7 +676,7 @@
                 }
                 setTimeout(typeLogo, 100);
             }
-            
+
             const subtitleEl = document.querySelector(".hero-subtitle");
             if (subtitleEl) {
                 const text = subtitleEl.innerText;
@@ -673,7 +686,7 @@
                 subtitleEl.style.whiteSpace = "nowrap";
                 subtitleEl.style.overflow = "hidden";
                 subtitleEl.style.paddingRight = "5px";
-                
+
                 // Blinking cursor effect
                 setInterval(() => {
                     subtitleEl.style.borderColor = subtitleEl.style.borderColor === "transparent" ? "var(--accent)" : "transparent";
@@ -688,7 +701,7 @@
                     } else {
                         const reveals = document.querySelectorAll('.reveal-on-type');
                         reveals.forEach(el => el.classList.add('visible'));
-                        
+
                         // Unlock scroll after animation starts
                         setTimeout(() => {
                             document.body.style.overflow = "";
@@ -697,7 +710,7 @@
                 }
                 setTimeout(typeWriter, 500);
             }
-            
+
             // Intersection Observer for Scroll Reveals
             const observerOptions = {
                 root: null,
@@ -717,7 +730,7 @@
             document.querySelectorAll('.scroll-reveal').forEach((section) => {
                 observer.observe(section);
             });
-            
+
             // Scroll Progress Bar
             window.addEventListener('scroll', () => {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -725,7 +738,7 @@
                 const scrolled = (winScroll / height) * 100;
                 document.getElementById('scroll-progress').style.width = scrolled + '%';
             });
-            
+
             // Matrix Digital Rain
             const canvas = document.getElementById('matrix-canvas');
             const ctx = canvas.getContext('2d');
@@ -735,16 +748,16 @@
             const fontSize = 14;
             const columns = canvas.width / fontSize;
             const drops = [];
-            for(let x = 0; x < columns; x++) drops[x] = 1;
+            for (let x = 0; x < columns; x++) drops[x] = 1;
             function drawMatrix() {
                 ctx.fillStyle = 'rgba(8, 11, 18, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4d7cff';
                 ctx.font = fontSize + 'px var(--font-mono)';
-                for(let i = 0; i < drops.length; i++) {
+                for (let i = 0; i < drops.length; i++) {
                     const text = letters[Math.floor(Math.random() * letters.length)];
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                     drops[i]++;
                 }
             }
@@ -783,7 +796,7 @@
                     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 });
             });
-            
+
         });
     </script>
 </body>
