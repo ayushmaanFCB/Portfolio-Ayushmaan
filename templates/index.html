@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,8 +15,6 @@
     <canvas id="particle-canvas"></canvas>
     <div id="cursor-trail"></div>
 
-    
-    <div class="cursor" id="custom-cursor"></div>
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -827,11 +825,10 @@
                     observer.observe(section);
                 });
 
-                // Scroll Progress Bar
-                window.addEventListener('scroll', () => {
-                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                    const scrolled = (winScroll / height) * 100;
+                // Scroll Progress Bar - listen on #main since it owns overflow-y scroll
+                const mainEl = document.getElementById('main');
+                mainEl.addEventListener('scroll', () => {
+                    const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
                     document.getElementById('scroll-progress').style.width = scrolled + '%';
                 });
 
@@ -908,6 +905,9 @@ window.addEventListener('load', () => {
 });
 // Custom cyberpunk cursor
 const cursor = document.getElementById('custom-cursor');
+// Start off-screen so it doesn't show at top-left before mouse enters
+cursor.style.left = '-100px';
+cursor.style.top = '-100px';
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
@@ -962,13 +962,13 @@ document.addEventListener('mousemove', e=>{
   setTimeout(()=>trail.remove(),600);
 });
 
-// Vertical scroll indicator
-window.addEventListener('scroll', () => {
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
+// Vertical scroll indicator - listen on #main (it owns overflow-y scroll)
+const _mainEl = document.getElementById('main');
+_mainEl.addEventListener('scroll', () => {
+  const scrolled = (_mainEl.scrollTop / (_mainEl.scrollHeight - _mainEl.clientHeight)) * 100;
   document.getElementById('scroll-progress').style.width = scrolled + '%';
-  document.getElementById('vertical-scroll-indicator').style.height = scrolled + '%';
+  const vi = document.getElementById('vertical-scroll-indicator');
+  if (vi) vi.style.height = scrolled + '%';
 });
 
 // Project modal
