@@ -12,6 +12,11 @@
 
 <body>
     <div class="cursor" id="custom-cursor"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div id="cursor-trail"></div>
+
+    
+    <div class="cursor" id="custom-cursor"></div>
     <div id="loader">
         <div class="spinner"></div>
     </div>
@@ -913,6 +918,72 @@ hoverTargets.forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
+// Particle field
+const particleCanvas = document.getElementById('particle-canvas');
+const pCtx = particleCanvas.getContext('2d');
+function resizeParticleCanvas(){ particleCanvas.width = window.innerWidth; particleCanvas.height = window.innerHeight; }
+window.addEventListener('resize', resizeParticleCanvas);
+resizeParticleCanvas();
+const particles = [];
+const particleCount = 80;
+for(let i=0;i<particleCount;i++){
+  particles.push({
+    x: Math.random()*particleCanvas.width,
+    y: Math.random()*particleCanvas.height,
+    r: Math.random()*2+1,
+    vx: (Math.random()-0.5)*0.5,
+    vy: (Math.random()-0.5)*0.5,
+    alpha: Math.random()*0.5+0.3
+  });
+}
+function drawParticles(){
+  pCtx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
+  pCtx.fillStyle = `rgba(var(--accent-rgb),0.2)`;
+  particles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>particleCanvas.width) p.vx*=-1;
+    if(p.y<0||p.y>particleCanvas.height) p.vy*=-1;
+    pCtx.beginPath();
+    pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    pCtx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// Cursor trail
+const trailContainer = document.getElementById('cursor-trail');
+document.addEventListener('mousemove', e=>{
+  const trail = document.createElement('div');
+  trail.className='cursor-trail-item';
+  trail.style.left = e.clientX+'px';
+  trail.style.top = e.clientY+'px';
+  trailContainer.appendChild(trail);
+  setTimeout(()=>trail.remove(),600);
+});
+
+// Vertical scroll indicator
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('scroll-progress').style.width = scrolled + '%';
+  document.getElementById('vertical-scroll-indicator').style.height = scrolled + '%';
+});
+
+// Project modal
+const modal = document.getElementById('project-modal');
+const modalContent = modal.querySelector('.modal-content');
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('click',()=> {
+    const title = card.querySelector('h3')?.innerText || 'Project';
+    const img = card.querySelector('img')?.src;
+    const desc = card.querySelector('.card-description')?.innerHTML || '';
+    modalContent.innerHTML = `<h2>${title}</h2>${img?'<img src="'+img+'" style="max-width:100%;">':''}<div>${desc}</div>`;
+    modal.classList.add('show');
+  });
+});
+modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
 </script>
 </body>
 
