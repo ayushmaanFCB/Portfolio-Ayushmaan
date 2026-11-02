@@ -29,6 +29,7 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     overflow-x: hidden;
+    cursor: none;
 }
 
 /* Background Cyber Grid effect */
@@ -971,4 +972,132 @@ footer {
     opacity: 0.9;
     border-radius: 4px;
     /* Slight rounding in case the images have solid edges */
+}
+
+/* Loader overlay */
+#loader {
+  position: fixed; inset: 0; background: var(--bg-color);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999; transition: opacity 0.5s ease;
+}
+#loader .spinner {
+  border: 3px solid var(--accent);
+  border-top: 3px solid transparent;
+  border-radius: 50%; width: 48px; height: 48px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Neon trail on hover */
+.neon-trail {
+  position: absolute; width: 12px; height: 12px; background: var(--accent);
+  border-radius: 50%; pointer-events: none;
+  box-shadow: 0 0 8px var(--accent-glow), 0 0 12px var(--accent);
+  animation: fade-out 0.6s forwards;
+}
+@keyframes fade-out { to { opacity: 0; transform: scale(1.5); } }
+
+/* Scroll‑snap layout */
+#main { scroll-snap-type: y mandatory; overflow-y: auto; height: 100vh; }
+section { scroll-snap-align: start; }
+
+/* SVG divider animation */
+.svg-divider {
+  overflow: hidden; height: 60px; width: 100%;
+}
+.svg-divider path {
+  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+  animation: draw 2s forwards ease-out;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* Card tilt polish */
+.project-card, .highlight-card, .award-card {
+  transition: transform 0.2s ease-out, box-shadow 0.2s;
+}
+.project-card:hover, .highlight-card:hover, .award-card:hover {
+  box-shadow: 0 12px 30px var(--accent-glow);
+}
+
+/* Staggered reveal (optional) */
+.scroll-reveal > * {
+  --stagger-index: 0;
+  transition-delay: calc(var(--stagger-index) * 0.1s);
+}
+/* ==== Additional UI Enhancements ==== */
+
+/* Nav active link */
+.nav-links a.active {
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Scroll‑snap layout */
+#main {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Ensure each section fills viewport and participates in snap */
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+/* Card stagger animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+/* Apply stagger to project/highlight/award cards */
+.project-card,
+.highlight-card,
+.award-card {
+  opacity: 0;
+  animation: fadeUp 0.6s forwards ease-out;
+}
+/* Example stagger – you can adjust delays in HTML via inline style or JS */
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Neon hover effect for skill chips and buttons */
+.skill-chip, .btn {
+  transition: box-shadow 0.3s, color 0.3s;
+}
+.skill-chip:hover, .btn:hover {
+  box-shadow: 0 0 12px var(--accent-glow);
+  color: #fff;
+}
+
+/* SVG divider styling */
+.svg-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.svg-divider svg {
+  width: 100%;
+  height: auto;
+}
+/* ==== Cyberpunk custom cursor ==== */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.3);
+  mix-blend-mode: normal;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out, width 0.2s, height 0.2s;
+  box-shadow: 0 0 8px var(--accent-glow), 0 0 20px var(--accent-glow);
+  z-index: 10000;
+}
+.cursor.hover {
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 0 16px var(--accent-glow), 0 0 40px var(--accent-glow);
 }
