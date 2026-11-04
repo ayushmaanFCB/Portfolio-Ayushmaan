@@ -997,20 +997,6 @@ footer {
 }
 @keyframes fade-out { to { opacity: 0; transform: scale(1.5); } }
 
-/* Scroll‑snap layout */
-#main { scroll-snap-type: y mandatory; overflow-y: auto; height: 100vh; }
-section { scroll-snap-align: start; }
-
-/* SVG divider animation */
-.svg-divider {
-  overflow: hidden; height: 60px; width: 100%;
-}
-.svg-divider path {
-  stroke-dasharray: 1500; stroke-dashoffset: 1500;
-  animation: draw 2s forwards ease-out;
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-
 /* Card tilt polish */
 .project-card, .highlight-card, .award-card {
   transition: transform 0.2s ease-out, box-shadow 0.2s;
@@ -1033,7 +1019,7 @@ section { scroll-snap-align: start; }
 
 /* Scroll‑snap layout */
 #main {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: auto;
   height: 100vh;
 }
@@ -1070,16 +1056,6 @@ section {
   color: #fff;
 }
 
-/* SVG divider styling */
-.svg-divider {
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.svg-divider svg {
-  width: 100%;
-  height: auto;
-}
 /* ==== Particle field background ==== */
 #particle-canvas {
   position: fixed;
@@ -1154,4 +1130,104 @@ section {
   width: 40px;
   height: 40px;
   box-shadow: 0 0 16px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+
+/* ==== Nav Resume Button ==== */
+.nav-resume-btn {
+  border: 1px solid var(--accent) !important;
+  border-radius: 4px !important;
+  padding: 5px 14px !important;
+  color: var(--accent) !important;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.nav-resume-btn:hover {
+  background: var(--accent-glow) !important;
+  box-shadow: 0 0 15px var(--accent-glow);
+  color: #fff !important;
+}
+
+/* ==== Mobile cursor guard ==== */
+@media (hover: none) {
+  body { cursor: auto !important; }
+  #custom-cursor, #cursor-trail { display: none !important; }
+}
+
+/* ==== About stat cards ==== */
+.about-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.stat-card {
+  flex: 1;
+  min-width: 110px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 18px 12px;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.stat-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+.stat-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.stat-unit {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-family: var(--font-mono);
+}
+
+/* ==== Section dot navigator ==== */
+#section-dots {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 500;
+}
+.section-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  border: 1px solid var(--card-border);
+  opacity: 0.35;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: block;
+}
+.section-dot:hover { opacity: 0.7; }
+.section-dot.active {
+  background: var(--accent);
+  opacity: 1;
+  box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent-glow);
+  transform: scale(1.4);
+}
+@media (max-width: 900px) {
+  #section-dots { display: none; }
+}
+
+/* ==== Active nav link ==== */
+.nav-links a.active {
+  color: var(--accent);
 }
