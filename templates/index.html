@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -919,29 +919,6 @@ document.addEventListener('mousemove', e=>{
   trailContainer.appendChild(trail);
   setTimeout(()=>trail.remove(),600);
 });
-
-// Vertical scroll indicator - listen on #main (it owns overflow-y scroll)
-const _mainEl = document.getElementById('main');
-_mainEl.addEventListener('scroll', () => {
-  const scrolled = (_mainEl.scrollTop / (_mainEl.scrollHeight - _mainEl.clientHeight)) * 100;
-  document.getElementById('scroll-progress').style.width = scrolled + '%';
-  const vi = document.getElementById('vertical-scroll-indicator');
-  if (vi) vi.style.height = scrolled + '%';
-});
-
-// Project modal
-const modal = document.getElementById('project-modal');
-const modalContent = modal.querySelector('.modal-content');
-document.querySelectorAll('.project-card').forEach(card=>{
-  card.addEventListener('click',()=> {
-    const title = card.querySelector('h3')?.innerText || 'Project';
-    const img = card.querySelector('img')?.src;
-    const desc = card.querySelector('.card-description')?.innerHTML || '';
-    modalContent.innerHTML = `<h2>${title}</h2>${img?'<img src="'+img+'" style="max-width:100%;">':''}<div>${desc}</div>`;
-    modal.classList.add('show');
-  });
-});
-modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
 </script>
 </body>
 
