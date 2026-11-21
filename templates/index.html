@@ -23,11 +23,10 @@
             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
         <nav>
             <div class="container">
-                <div class="logo">ayushmaan<span>.is-a.dev</span></div>
-                <div class="menu-toggle" id="mobile-menu"
-                    style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--accent); z-index: 200;">
-                    <i class="fas fa-bars"></i>
-                </div>
+                <a href="#hero" class="logo">
+                    <span class="logo-status-dot"></span>
+                    <span class="logo-text">ayushmaan<span class="logo-domain">.is-a.dev</span></span>
+                </a>
                 <div class="nav-links" id="nav-links">
                     <a href="#about">About</a>
                     <a href="#skills">Skills</a>
@@ -37,6 +36,10 @@
                     <a href="#contact">Contact</a>
                     <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
                         class="nav-resume-btn">Resume</a>
+                </div>
+                <div class="menu-toggle" id="mobile-menu"
+                    style="display: none; cursor: pointer; z-index: 200;">
+                    <i class="fas fa-bars"></i>
                 </div>
             </div>
             <div class="scroll-progress-container">
@@ -730,23 +733,24 @@
                 document.body.style.overflow = "hidden";
 
                 // Logo Boot Sequence
-                const logoEl = document.querySelector(".logo");
-                if (logoEl) {
+                const logoTextEl = document.querySelector(".logo-text");
+                if (logoTextEl) {
                     const logoText1 = "ayushmaan";
                     const logoText2 = ".is-a.dev";
-                    logoEl.innerHTML = "";
+                    logoTextEl.innerHTML = "";
                     let l1 = 0;
                     let l2 = 0;
                     let logoSpan = null;
 
                     function typeLogo() {
                         if (l1 < logoText1.length) {
-                            logoEl.innerHTML += logoText1.charAt(l1);
+                            logoTextEl.innerHTML += logoText1.charAt(l1);
                             l1++;
-                            setTimeout(typeLogo, 80);
+                            setTimeout(typeLogo, 70);
                         } else if (l2 === 0) {
                             logoSpan = document.createElement("span");
-                            logoEl.appendChild(logoSpan);
+                            logoSpan.className = "logo-domain";
+                            logoTextEl.appendChild(logoSpan);
                             typeLogo2();
                         }
                     }
@@ -755,10 +759,10 @@
                         if (l2 < logoText2.length) {
                             logoSpan.innerHTML += logoText2.charAt(l2);
                             l2++;
-                            setTimeout(typeLogo2, 80);
+                            setTimeout(typeLogo2, 70);
                         }
                     }
-                    setTimeout(typeLogo, 100);
+                    setTimeout(typeLogo, 90);
                 }
 
                 const subtitleEl = document.querySelector(".hero-subtitle");
