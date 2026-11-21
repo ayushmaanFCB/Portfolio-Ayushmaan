@@ -44,6 +44,17 @@
             </div>
         </nav>
 
+        <!-- Section Dot Navigator -->
+        <div id="section-dots" aria-label="Section navigation">
+            <a href="#hero" class="section-dot active" data-tooltip="Home" aria-label="Home"></a>
+            <a href="#about" class="section-dot" data-tooltip="About" aria-label="About"></a>
+            <a href="#skills" class="section-dot" data-tooltip="Skills" aria-label="Skills"></a>
+            <a href="#experience" class="section-dot" data-tooltip="Experience" aria-label="Experience"></a>
+            <a href="#projects" class="section-dot" data-tooltip="Projects" aria-label="Projects"></a>
+            <a href="#highlights" class="section-dot" data-tooltip="Highlights" aria-label="Highlights"></a>
+            <a href="#contact" class="section-dot" data-tooltip="Contact" aria-label="Contact"></a>
+        </div>
+
         <div class="container">
             <!-- Hero Section -->
             <section id="hero" class="hero">
@@ -133,6 +144,25 @@
                                 style="color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent);">3x
                                 published book chapter author</a>, with peer-reviewed contributions in the fields of
                             Artificial Intelligence and Machine Learning.</p>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-value"><span class="stat-counter" data-target="33.7">0</span><span class="stat-unit"> tok/s</span></div>
+                            <div class="stat-label">Edge AI KV-Cache</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value"><span class="stat-counter" data-target="3">0</span><span class="stat-unit">x</span></div>
+                            <div class="stat-label">Book Chapter Author</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value"><span class="stat-counter" data-target="100">0</span><span class="stat-unit">k+</span></div>
+                            <div class="stat-label">Processed Vectors & NER</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value"><span class="stat-counter" data-target="1">0</span><span class="stat-unit">st</span></div>
+                            <div class="stat-label">Gold Medalist (AI/ML)</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -240,7 +270,9 @@
                     <div class="data-pulse"></div>
                     <!-- Role 1 -->
                     <div class="timeline-item">
-                        <div class="timeline-date">Jul 2025 - Present</div>
+                        <div class="timeline-date">
+                            Jul 2025 - Present <span class="status-badge"><span class="pulse-dot"></span> Active</span>
+                        </div>
                         <details class="experience-accordion">
                             <summary class="experience-header">
                                 <div class="experience-header-left">
@@ -783,12 +815,76 @@
                     observer.observe(section);
                 });
 
-                // Scroll Progress Bar - listen on #main since it owns overflow-y scroll
+                // Scroll Progress Bar & Section Dot Tracking
                 const mainEl = document.getElementById('main');
+                const sections = document.querySelectorAll('section[id]');
+                const headerNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+                const dots = document.querySelectorAll('.section-dot');
+
                 mainEl.addEventListener('scroll', () => {
                     const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
-                    document.getElementById('scroll-progress').style.width = scrolled + '%';
+                    const progressBar = document.getElementById('scroll-progress');
+                    if (progressBar) progressBar.style.width = scrolled + '%';
+
+                    // Track active section on scroll
+                    let currentSectionId = '';
+                    const scrollPos = mainEl.scrollTop + (window.innerHeight / 3);
+                    sections.forEach(sec => {
+                        const top = sec.offsetTop;
+                        const height = sec.offsetHeight;
+                        if (scrollPos >= top && scrollPos < top + height) {
+                            currentSectionId = sec.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSectionId) {
+                        dots.forEach(dot => {
+                            dot.classList.toggle('active', dot.getAttribute('href') === `#${currentSectionId}`);
+                        });
+                        headerNavLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+                        });
+                    }
                 });
+
+                // About section stat counter animation
+                let statsAnimated = false;
+                function animateStats() {
+                    if (statsAnimated) return;
+                    statsAnimated = true;
+                    document.querySelectorAll('.stat-counter').forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        const isDecimal = target % 1 !== 0;
+                        const duration = 1200;
+                        const startTime = performance.now();
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            const current = target * easeOut;
+                            counter.innerText = isDecimal ? current.toFixed(1) : Math.floor(current);
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        }
+                        requestAnimationFrame(update);
+                    });
+                }
+
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                    const statsObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                animateStats();
+                                statsObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.25 });
+                    statsObserver.observe(aboutSection);
+                }
 
                 // Matrix Digital Rain
                 const canvas = document.getElementById('matrix-canvas');
@@ -831,20 +927,30 @@
                     });
                 });
 
-                // Holographic 3D Card Tilt
-                document.querySelectorAll('.project-card, .highlight-card, .award-card').forEach(card => {
+                // Bento Mouse-Torch Spotlight & Holographic 3D Tilt
+                document.querySelectorAll('.project-card, .highlight-card, .award-card, .skill-category-card, .stat-card').forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        const rotateX = ((y - centerY) / centerY) * -10;
-                        const rotateY = ((x - centerX) / centerX) * 10;
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                        card.style.setProperty('--mouse-x', `${x}px`);
+                        card.style.setProperty('--mouse-y', `${y}px`);
+
+                        // 3D tilt for cards that support it
+                        if (!card.classList.contains('stat-card')) {
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
+                            const rotateX = ((y - centerY) / centerY) * -8;
+                            const rotateY = ((x - centerX) / centerX) * 8;
+                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                        }
                     });
                     card.addEventListener('mouseleave', () => {
-                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                        card.style.setProperty('--mouse-x', '-500px');
+                        card.style.setProperty('--mouse-y', '-500px');
+                        if (!card.classList.contains('stat-card')) {
+                            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                        }
                     });
                 });
 
@@ -871,7 +977,7 @@ document.addEventListener('mousemove', e => {
   cursor.style.top = e.clientY + 'px';
 });
 // Hover effect – enlarge cursor on interactive elements
-const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card');
+const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .stat-card, .section-dot');
 hoverTargets.forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
