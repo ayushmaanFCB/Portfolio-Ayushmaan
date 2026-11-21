@@ -103,68 +103,113 @@
             <!-- About Section -->
             <section id="about" class="scroll-reveal">
                 <h2 class="section-title">01. About Me</h2>
-                <div class="about-content">
-                    <div class="about-text" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
-                        <p>I build AI systems that ship - from low-level model optimization on edge hardware to
-                            full-stack
-                            AI
-                            platforms serving real customers in production. My engineering focus spans building
-                            end-to-end
-                            MLOps pipelines, designing robust RAG architectures (embedding, re-ranking, retrieval),
-                            executing fine-tuning orchestration, and deploying multi-tenant adapter inference engines. I
-                            care just as much about the infrastructure layer as the models themselves. Using tools like
-                            AWS,
-                            Kubernetes, and Docker, I architect scalable backends featuring Stripe-based billing,
-                            LLM-token-based autoscaling, secure RBAC authentication, and comprehensive Prometheus
-                            observability to ensure production-grade reliability.</p>
-                        <br>
-                        <p>On the systems programming side, I write high-performance C++ for custom inference servers,
-                            leveraging asynchronous multi-threading and optimized KV Caching (achieving up to 33.71
-                            tok/s).
-                            My expertise in Edge AI allows me to push hardware boundaries using state-of-the-art
-                            quantization and calibration techniques like LiteRT and AIMET. I recently applied these
-                            principles to architect an end-to-end AI-enabled IDE for embedded systems - featuring
-                            comprehensive model-optimization pipelines that take neural networks from raw import to
-                            hardware-ready deployment, alongside custom tooling like model visualizers, latency
-                            estimators,
-                            and debug dashboards.</p>
-                        <br>
-                        <p>Outside of my core engineering roles, I actively research and implement Agentic AI workflows,
-                            focusing on frameworks like LangChain, ReAct Agents, and the Model Context Protocol (MCP).
-                            My
-                            recent personal projects include a dual-pipeline medical diagnostic assistant combining
-                            fixed
-                            RAG with dynamic reasoning agents, and an emotion-aware Spotify recommendation engine driven
-                            by
-                            custom neural networks and LSTM-based generation. I graduated as the Founder Chancellor's
-                            Gold
-                            Medalist for my
-                            B.Tech in AI & ML, and I am always excited to tackle complex engineering challenges or talk
-                            shop
-                            on modern AI architecture.</p>
-                        <br>
-                        <p>Additionally, I am a <a href="#publications"
-                                style="color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent);">3x
-                                published book chapter author</a>, with peer-reviewed contributions in the fields of
-                            Artificial Intelligence and Machine Learning.</p>
+                <div class="about-grid">
+                    <!-- Left Column: Comprehensive Bio Narrative -->
+                    <div class="about-left">
+                        <div class="about-card about-bio-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-terminal"></i> BIOGRAPHY // OVERVIEW</span>
+                            </div>
+                            <div class="about-text">
+                                <p>I build AI systems that ship - from low-level model optimization on edge hardware to full-stack AI platforms serving real customers in production. My engineering focus spans building end-to-end MLOps pipelines, designing robust RAG architectures (embedding, re-ranking, retrieval), executing fine-tuning orchestration, and deploying multi-tenant adapter inference engines. I care just as much about the infrastructure layer as the models themselves. Using tools like AWS, Kubernetes, and Docker, I architect scalable backends featuring Stripe-based billing, LLM-token-based autoscaling, secure RBAC authentication, and comprehensive Prometheus observability to ensure production-grade reliability.</p>
+
+                                <p>On the systems programming side, I write high-performance C++ for custom inference servers, leveraging asynchronous multi-threading and optimized KV Caching (achieving up to 33.71 tok/s). My expertise in Edge AI allows me to push hardware boundaries using state-of-the-art quantization and calibration techniques like LiteRT and AIMET. I recently applied these principles to architect an end-to-end AI-enabled IDE for embedded systems - featuring comprehensive model-optimization pipelines that take neural networks from raw import to hardware-ready deployment, alongside custom tooling like model visualizers, latency estimators, and debug dashboards.</p>
+
+                                <p>Outside of my core engineering roles, I actively research and implement Agentic AI workflows, focusing on frameworks like LangChain, ReAct Agents, and the Model Context Protocol (MCP). My recent personal projects include a dual-pipeline medical diagnostic assistant combining fixed RAG with dynamic reasoning agents, and an emotion-aware Spotify recommendation engine driven by custom neural networks and LSTM-based generation. I graduated as the Founder Chancellor's Gold Medalist for my B.Tech in AI &amp; ML, and I am always excited to tackle complex engineering challenges or talk shop on modern AI architecture.</p>
+
+                                <p class="about-highlight-note">Additionally, I am a <a href="#publications" class="about-link">3x published book chapter author</a>, with peer-reviewed contributions in the fields of Artificial Intelligence and Machine Learning.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <div class="stat-value"><span class="stat-counter" data-target="33.7">0</span><span class="stat-unit"> tok/s</span></div>
-                            <div class="stat-label">Edge AI KV-Cache</div>
+                    <!-- Right Column: Key Domains & Location -->
+                    <div class="about-right">
+                        <!-- Top Box: Key Domains from LinkedIn Bio -->
+                        <div class="about-card domains-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-brain"></i> CORE FOCUS</span>
+                            </div>
+                            <div class="domains-headline">
+                                <span class="domains-quote">"Building production AI systems from inference to deployment"</span>
+                            </div>
+                            <div class="domains-list">
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-robot"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Agentic AI &amp; LLMs</span>
+                                        <span class="domain-subtitle">Dynamic reasoning, ReAct, LangChain &amp; MCP</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-microchip"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Edge AI &amp; Embedded Systems</span>
+                                        <span class="domain-subtitle">C++ inference, LiteRT &amp; AIMET quantization</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-layer-group"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">RAG &amp; Vector Retrieval</span>
+                                        <span class="domain-subtitle">Embeddings, re-ranking &amp; adapter inference</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-server"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">MLOps &amp; Cloud Systems</span>
+                                        <span class="domain-subtitle">K8s, Docker, Token-autoscaling &amp; Prometheus</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-network-wired"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Automation Workflows</span>
+                                        <span class="domain-subtitle">End-to-end pipelines &amp; systems integration</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-value"><span class="stat-counter" data-target="3">0</span><span class="stat-unit">x</span></div>
-                            <div class="stat-label">Book Chapter Author</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value"><span class="stat-counter" data-target="100">0</span><span class="stat-unit">k+</span></div>
-                            <div class="stat-label">Processed Vectors & NER</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value"><span class="stat-counter" data-target="1">0</span><span class="stat-unit">st</span></div>
-                            <div class="stat-label">Gold Medalist (AI/ML)</div>
+
+                        <!-- Bottom Box: Location & Availability with Chennai Map -->
+                        <div class="about-card location-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-satellite-dish"></i> LOCATION &amp; STATUS</span>
+                                <span class="location-pulse-indicator" title="Active Status">
+                                    <span class="pulse-ring"></span>
+                                    <span class="pulse-core"></span>
+                                </span>
+                            </div>
+
+                            <!-- Styled Cyber Map Preview of Chennai -->
+                            <div class="location-map-container">
+                                <img src="{{ url_for('static', filename='images/chennai_map.png') }}" alt="Chennai, India Map" class="location-map-img" loading="lazy">
+                                <div class="location-map-overlay"></div>
+                                <div class="map-beacon" style="left: 47.6%; top: 50.1%;">
+                                    <div class="beacon-pulse"></div>
+                                    <div class="beacon-dot">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </div>
+                                    <div class="beacon-tooltip">
+                                        <span class="beacon-city">Chennai</span>
+                                        <span class="beacon-coords">13.08&deg;N, 80.27&deg;E</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="location-body">
+                                <div class="location-main">
+                                    <div class="location-pin-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div class="location-text-group">
+                                        <h4 class="location-title">Chennai, India</h4>
+                                        <span class="location-tz"><i class="far fa-clock"></i> GMT +5:30 &bull; IST</span>
+                                    </div>
+                                </div>
+                                <div class="location-status-badge">
+                                    <i class="fas fa-globe"></i> Available for Global &amp; Remote Roles
+                                </div>
+                                <p class="location-desc">Open to production AI engineering, Edge AI optimization, and high-impact distributed teams worldwide.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -851,45 +896,6 @@
                     }
                 });
 
-                // About section stat counter animation
-                let statsAnimated = false;
-                function animateStats() {
-                    if (statsAnimated) return;
-                    statsAnimated = true;
-                    document.querySelectorAll('.stat-counter').forEach(counter => {
-                        const target = parseFloat(counter.getAttribute('data-target'));
-                        const isDecimal = target % 1 !== 0;
-                        const duration = 1200;
-                        const startTime = performance.now();
-                        function update(currentTime) {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const easeOut = 1 - Math.pow(1 - progress, 3);
-                            const current = target * easeOut;
-                            counter.innerText = isDecimal ? current.toFixed(1) : Math.floor(current);
-                            if (progress < 1) {
-                                requestAnimationFrame(update);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        }
-                        requestAnimationFrame(update);
-                    });
-                }
-
-                const aboutSection = document.getElementById('about');
-                if (aboutSection) {
-                    const statsObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                animateStats();
-                                statsObserver.unobserve(entry.target);
-                            }
-                        });
-                    }, { threshold: 0.25 });
-                    statsObserver.observe(aboutSection);
-                }
-
                 // Matrix Digital Rain
                 const canvas = document.getElementById('matrix-canvas');
                 const ctx = canvas.getContext('2d');
@@ -981,7 +987,7 @@ document.addEventListener('mousemove', e => {
   cursor.style.top = e.clientY + 'px';
 });
 // Hover effect – enlarge cursor on interactive elements
-const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .stat-card, .section-dot');
+const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .section-dot');
 hoverTargets.forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
