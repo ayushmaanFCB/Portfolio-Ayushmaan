@@ -1662,6 +1662,7 @@ section.contact-section {
   pointer-events: none;
   transform: translate(-50%, -50%);
   animation: trail-fade 0.6s forwards;
+  z-index: 999999 !important;
 }
 @keyframes trail-fade {
   to { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
@@ -1708,7 +1709,7 @@ section.contact-section {
   transform: translate(-50%, -50%);
   transition: transform 0.05s ease-out, width 0.2s, height 0.2s;
   box-shadow: 0 0 8px var(--accent-glow), 0 0 20px var(--accent-glow);
-  z-index: 10000;
+  z-index: 1000000 !important;
 }
 .cursor.hover {
   width: 40px;
@@ -2290,4 +2291,667 @@ section.contact-section {
 .nav-links a.active {
   color: var(--accent);
   text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ==== Interactive Cyber Resume Modal ==== */
+.resume-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 32px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
+}
+
+.resume-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.resume-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 8, 14, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.resume-modal-dialog {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 960px;
+    max-height: 90vh;
+    background: #0b0f19;
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 45px rgba(var(--accent-rgb), 0.16);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.95) translateY(14px);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-modal-overlay.active .resume-modal-dialog {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.resume-modal-header {
+    padding: 16px 24px;
+    background: rgba(11, 15, 25, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.resume-modal-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.resume-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    border-radius: 9999px;
+    padding: 4px 12px;
+}
+
+.resume-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.resume-modal-title-group h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.resume-modal-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Modal Actions */
+.resume-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resume-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    outline: none;
+    white-space: nowrap;
+}
+
+.resume-btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.resume-btn-primary:hover {
+    background: #608eff;
+    border-color: #608eff;
+    color: #fff;
+    box-shadow: 0 0 24px rgba(var(--accent-rgb), 0.5);
+    transform: translateY(-1px);
+}
+
+.resume-btn-secondary {
+    background: rgba(var(--accent-rgb), 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(var(--accent-rgb), 0.25);
+}
+
+.resume-btn-secondary:hover {
+    background: rgba(var(--accent-rgb), 0.16);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.resume-btn-icon {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+}
+
+.resume-btn-icon:hover {
+    background: rgba(var(--accent-rgb), 0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.resume-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.resume-modal-close:hover {
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+/* Modal Body */
+.resume-modal-body {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    padding: 24px clamp(16px, 3vw, 36px);
+    background: #0b0f19;
+}
+
+/* Cyber Bento Resume Layout */
+.resume-bento-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.resume-bento-card {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(var(--accent-rgb), 0.18);
+    border-radius: 14px;
+    padding: clamp(16px, 2.5vw, 24px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-bento-card:hover {
+    border-color: rgba(var(--accent-rgb), 0.45);
+    box-shadow: 0 8px 30px rgba(77, 124, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Hero Header Card */
+.resume-hero-card {
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+
+.resume-hero-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.r-hero-name {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.02em;
+}
+
+.r-hero-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 10px 0;
+}
+
+.r-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.r-hero-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(var(--accent-rgb), 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(var(--accent-rgb), 0.25);
+    font-weight: 600;
+}
+
+.r-hero-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.r-contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+}
+
+.r-contact-chip:hover {
+    background: rgba(var(--accent-rgb), 0.14);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateX(2px);
+}
+
+.r-contact-chip i {
+    color: var(--accent);
+    font-size: 0.85rem;
+    width: 14px;
+    text-align: center;
+}
+
+/* Bento Groups & Section Headers */
+.resume-bento-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.r-group-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding-left: 4px;
+}
+
+.r-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.r-time-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+
+.r-badge-pill {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.05em;
+}
+
+.r-loc-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.r-cgpa-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+/* Education */
+.r-inst-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px 0;
+}
+
+.r-edu-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.r-degree-text {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+}
+
+/* Experience */
+.r-comp-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.r-comp-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+.r-role-subbox {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.r-role-subbox:hover {
+    border-color: rgba(var(--accent-rgb), 0.25);
+    background: rgba(var(--accent-rgb), 0.02);
+}
+
+.r-role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.r-role-badge {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.r-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.r-bullet-list li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.r-bullet-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Personal Projects Bento Grid */
+.r-projects-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px;
+}
+
+.r-project-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.r-proj-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.r-proj-title i {
+    color: var(--accent);
+}
+
+.r-proj-desc {
+    font-size: 0.86rem;
+    color: #94a3b8;
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+/* Skills Box */
+.r-skills-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.r-skill-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 14px;
+    align-items: baseline;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+}
+
+.r-skill-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.r-skill-cat {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.82rem;
+}
+
+.r-skill-val {
+    color: #cbd5e1;
+}
+
+/* Achievements Box */
+.r-achievements-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.r-achieve-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.86rem;
+    transition: all 0.2s ease;
+    flex-wrap: wrap;
+}
+
+.r-achieve-item:hover {
+    border-color: rgba(var(--accent-rgb), 0.3);
+    background: rgba(var(--accent-rgb), 0.03);
+    transform: translateX(3px);
+}
+
+.r-achieve-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #cbd5e1;
+    flex: 1;
+    min-width: 260px;
+}
+
+.r-achieve-icon {
+    color: var(--accent);
+    font-size: 0.95rem;
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.r-achieve-icon.medal-gold {
+    color: #fbbf24;
+}
+
+/* Modal Footer */
+.resume-modal-footer {
+    padding: 14px 24px;
+    border-top: 1px solid rgba(var(--accent-rgb), 0.16);
+    background: rgba(11, 15, 25, 0.96);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.resume-modal-footer-tip {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.resume-modal-footer-tip i {
+    color: var(--accent);
+}
+
+.resume-modal-footer-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Responsive Modal Styling */
+@media (max-width: 768px) {
+    .resume-modal-header {
+        padding: 12px 16px;
+    }
+
+    .resume-hero-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .r-hero-contacts {
+        width: 100%;
+    }
+
+    .r-skill-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .r-projects-bento-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .resume-btn-primary span {
+        display: none;
+    }
+
+    .resume-btn-primary {
+        padding: 8px 12px;
+    }
 }

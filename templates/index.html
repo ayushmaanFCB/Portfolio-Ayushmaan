@@ -34,11 +34,10 @@
                     <a href="#projects">Projects</a>
                     <a href="#highlights">Highlights</a>
                     <a href="#contact">Contact</a>
-                    <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
-                        class="nav-resume-btn">Resume</a>
+                    <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                        class="nav-resume-btn open-resume-modal" title="View Resume">Resume</a>
                 </div>
-                <div class="menu-toggle" id="mobile-menu"
-                    style="display: none; cursor: pointer; z-index: 200;">
+                <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; z-index: 200;">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
@@ -80,10 +79,11 @@
                                     class="fab fa-linkedin"></i> LinkedIn</a>
                         </div>
                         <div class="reveal-on-type" style="animation-delay: 0.4s; margin-top: 20px;">
-                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
+                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                                class="hero-resume-link open-resume-modal"
                                 style="color: var(--text-muted); font-family: var(--font-mono); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;"
                                 onmouseover="this.style.color='var(--accent)'"
-                                onmouseout="this.style.color='var(--text-muted)'">
+                                onmouseout="this.style.color='var(--text-muted)'" title="View Resume">
                                 <i class="fas fa-file-pdf"></i> [ Extract Resume.pdf ]
                             </a>
                         </div>
@@ -111,13 +111,37 @@
                                 <span class="about-badge"><i class="fas fa-terminal"></i> BIOGRAPHY // OVERVIEW</span>
                             </div>
                             <div class="about-text">
-                                <p>I build AI systems that ship - from low-level model optimization on edge hardware to full-stack AI platforms serving real customers in production. My engineering focus spans building end-to-end MLOps pipelines, designing robust RAG architectures (embedding, re-ranking, retrieval), executing fine-tuning orchestration, and deploying multi-tenant adapter inference engines. I care just as much about the infrastructure layer as the models themselves. Using tools like AWS, Kubernetes, and Docker, I architect scalable backends featuring Stripe-based billing, LLM-token-based autoscaling, secure RBAC authentication, and comprehensive Prometheus observability to ensure production-grade reliability.</p>
+                                <p>I build AI systems that ship - from low-level model optimization on edge hardware to
+                                    full-stack AI platforms serving real customers in production. My engineering focus
+                                    spans building end-to-end MLOps pipelines, designing robust RAG architectures
+                                    (embedding, re-ranking, retrieval), executing fine-tuning orchestration, and
+                                    deploying multi-tenant adapter inference engines. I care just as much about the
+                                    infrastructure layer as the models themselves. Using tools like AWS, Kubernetes, and
+                                    Docker, I architect scalable backends featuring Stripe-based billing,
+                                    LLM-token-based autoscaling, secure RBAC authentication, and comprehensive
+                                    Prometheus observability to ensure production-grade reliability.</p>
 
-                                <p>On the systems programming side, I write high-performance C++ for custom inference servers, leveraging asynchronous multi-threading and optimized KV Caching (achieving up to 33.71 tok/s). My expertise in Edge AI allows me to push hardware boundaries using state-of-the-art quantization and calibration techniques like LiteRT and AIMET. I recently applied these principles to architect an end-to-end AI-enabled IDE for embedded systems - featuring comprehensive model-optimization pipelines that take neural networks from raw import to hardware-ready deployment, alongside custom tooling like model visualizers, latency estimators, and debug dashboards.</p>
+                                <p>On the systems programming side, I write high-performance C++ for custom inference
+                                    servers, leveraging asynchronous multi-threading and optimized KV Caching (achieving
+                                    up to 33.71 tok/s). My expertise in Edge AI allows me to push hardware boundaries
+                                    using state-of-the-art quantization and calibration techniques like LiteRT and
+                                    AIMET. I recently applied these principles to architect an end-to-end AI-enabled IDE
+                                    for embedded systems - featuring comprehensive model-optimization pipelines that
+                                    take neural networks from raw import to hardware-ready deployment, alongside custom
+                                    tooling like model visualizers, latency estimators, and debug dashboards.</p>
 
-                                <p>Outside of my core engineering roles, I actively research and implement Agentic AI workflows, focusing on frameworks like LangChain, ReAct Agents, and the Model Context Protocol (MCP). My recent personal projects include a dual-pipeline medical diagnostic assistant combining fixed RAG with dynamic reasoning agents, and an emotion-aware Spotify recommendation engine driven by custom neural networks and LSTM-based generation. I graduated as the Founder Chancellor's Gold Medalist for my B.Tech in AI &amp; ML, and I am always excited to tackle complex engineering challenges or talk shop on modern AI architecture.</p>
+                                <p>Outside of my core engineering roles, I actively research and implement Agentic AI
+                                    workflows, focusing on frameworks like LangChain, ReAct Agents, and the Model
+                                    Context Protocol (MCP). My recent personal projects include a dual-pipeline medical
+                                    diagnostic assistant combining fixed RAG with dynamic reasoning agents, and an
+                                    emotion-aware Spotify recommendation engine driven by custom neural networks and
+                                    LSTM-based generation. I graduated as the Founder Chancellor's Gold Medalist for my
+                                    B.Tech in AI &amp; ML, and I am always excited to tackle complex engineering
+                                    challenges or talk shop on modern AI architecture.</p>
 
-                                <p class="about-highlight-note">Additionally, I am a <a href="#publications" class="about-link">3x published book chapter author</a>, with peer-reviewed contributions in the fields of Artificial Intelligence and Machine Learning.</p>
+                                <p class="about-highlight-note">Additionally, I am a <a href="#publications"
+                                        class="about-link">3x published book chapter author</a>, with peer-reviewed
+                                    contributions in the fields of Artificial Intelligence and Machine Learning.</p>
                             </div>
                         </div>
                     </div>
@@ -130,42 +154,48 @@
                                 <span class="about-badge"><i class="fas fa-brain"></i> CORE FOCUS</span>
                             </div>
                             <div class="domains-headline">
-                                <span class="domains-quote">"Building production AI systems from inference to deployment"</span>
+                                <span class="domains-quote">Building production AI systems from inference to
+                                    deployment</span>
                             </div>
                             <div class="domains-list">
                                 <div class="domain-item">
                                     <div class="domain-icon"><i class="fas fa-robot"></i></div>
                                     <div class="domain-content">
                                         <span class="domain-title">Agentic AI &amp; LLMs</span>
-                                        <span class="domain-subtitle">Dynamic reasoning, ReAct, LangChain &amp; MCP</span>
+                                        <span class="domain-subtitle">Dynamic reasoning, ReAct, LangChain &amp;
+                                            MCP</span>
                                     </div>
                                 </div>
                                 <div class="domain-item">
                                     <div class="domain-icon"><i class="fas fa-microchip"></i></div>
                                     <div class="domain-content">
                                         <span class="domain-title">Edge AI &amp; Embedded Systems</span>
-                                        <span class="domain-subtitle">C++ inference, LiteRT &amp; AIMET quantization</span>
+                                        <span class="domain-subtitle">C++ inference, LiteRT &amp; AIMET
+                                            quantization</span>
                                     </div>
                                 </div>
                                 <div class="domain-item">
                                     <div class="domain-icon"><i class="fas fa-layer-group"></i></div>
                                     <div class="domain-content">
                                         <span class="domain-title">RAG &amp; Vector Retrieval</span>
-                                        <span class="domain-subtitle">Embeddings, re-ranking &amp; adapter inference</span>
+                                        <span class="domain-subtitle">Embeddings, re-ranking &amp; adapter
+                                            inference</span>
                                     </div>
                                 </div>
                                 <div class="domain-item">
                                     <div class="domain-icon"><i class="fas fa-server"></i></div>
                                     <div class="domain-content">
                                         <span class="domain-title">MLOps &amp; Cloud Systems</span>
-                                        <span class="domain-subtitle">K8s, Docker, Token-autoscaling &amp; Prometheus</span>
+                                        <span class="domain-subtitle">K8s, Docker, Token-autoscaling &amp;
+                                            Prometheus</span>
                                     </div>
                                 </div>
                                 <div class="domain-item">
                                     <div class="domain-icon"><i class="fas fa-network-wired"></i></div>
                                     <div class="domain-content">
                                         <span class="domain-title">Automation Workflows</span>
-                                        <span class="domain-subtitle">End-to-end pipelines &amp; systems integration</span>
+                                        <span class="domain-subtitle">End-to-end pipelines &amp; systems
+                                            integration</span>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +204,8 @@
                         <!-- Bottom Box: Location & Availability with Chennai Map -->
                         <div class="about-card location-card">
                             <div class="about-card-header">
-                                <span class="about-badge"><i class="fas fa-satellite-dish"></i> LOCATION &amp; STATUS</span>
+                                <span class="about-badge"><i class="fas fa-satellite-dish"></i> LOCATION &amp;
+                                    STATUS</span>
                                 <span class="location-pulse-indicator" title="Active Status">
                                     <span class="pulse-ring"></span>
                                     <span class="pulse-core"></span>
@@ -183,7 +214,8 @@
 
                             <!-- Styled Cyber Map Preview of Chennai -->
                             <div class="location-map-container">
-                                <img src="{{ url_for('static', filename='images/chennai_map.png') }}" alt="Chennai, India Map" class="location-map-img" loading="lazy">
+                                <img src="{{ url_for('static', filename='images/chennai_map.png') }}"
+                                    alt="Chennai, India Map" class="location-map-img" loading="lazy">
                                 <div class="location-map-overlay"></div>
                                 <div class="map-beacon" style="left: 47.6%; top: 50.1%;">
                                     <div class="beacon-pulse"></div>
@@ -202,13 +234,15 @@
                                     <div class="location-pin-icon"><i class="fas fa-map-marker-alt"></i></div>
                                     <div class="location-text-group">
                                         <h4 class="location-title">Chennai, India</h4>
-                                        <span class="location-tz"><i class="far fa-clock"></i> GMT +5:30 &bull; IST</span>
+                                        <span class="location-tz"><i class="far fa-clock"></i> GMT +5:30 &bull;
+                                            IST</span>
                                     </div>
                                 </div>
                                 <div class="location-status-badge">
                                     <i class="fas fa-globe"></i> Available for Global &amp; Remote Roles
                                 </div>
-                                <p class="location-desc">Open to production AI engineering, Edge AI optimization, and high-impact distributed teams worldwide.</p>
+                                <p class="location-desc">Open to production AI engineering, Edge AI optimization, and
+                                    high-impact distributed teams worldwide.</p>
                             </div>
                         </div>
                     </div>
@@ -726,32 +760,39 @@
                             <h3 class="contact-title">Let's build something impactful together</h3>
 
                             <p class="contact-desc">
-                                I am actively open to production AI/ML engineering roles, Edge AI inference optimization, and scalable backend infrastructure projects. Whether you have a challenging engineering problem or want to talk shop on modern AI systems, feel free to reach out.
+                                I am actively open to production AI/ML engineering roles, Edge AI inference
+                                optimization, and scalable backend infrastructure projects. Whether you have a
+                                challenging engineering problem or want to talk shop on modern AI systems, feel free to
+                                reach out.
                             </p>
 
                             <!-- 1-Click Interactive Copy / Connect Chips -->
                             <div class="contact-chips-wrap">
-                                <button type="button" class="contact-chip copy-chip" data-copy="dasayush5maan@gmail.com" title="Click to copy email">
+                                <button type="button" class="contact-chip copy-chip" data-copy="dasayush5maan@gmail.com"
+                                    title="Click to copy email">
                                     <i class="fas fa-envelope chip-icon"></i>
                                     <span class="chip-label">dasayush5maan@gmail.com</span>
                                     <i class="far fa-copy copy-icon"></i>
                                     <span class="copied-feedback">Copied!</span>
                                 </button>
 
-                                <button type="button" class="contact-chip copy-chip" data-copy="+918145328571" title="Click to copy phone number">
+                                <button type="button" class="contact-chip copy-chip" data-copy="+918145328571"
+                                    title="Click to copy phone number">
                                     <i class="fas fa-phone-alt chip-icon"></i>
                                     <span class="chip-label">+91 81453 28571</span>
                                     <i class="far fa-copy copy-icon"></i>
                                     <span class="copied-feedback">Copied!</span>
                                 </button>
 
-                                <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Visit GitHub Profile">
+                                <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                                    class="contact-chip" title="Visit GitHub Profile">
                                     <i class="fab fa-github chip-icon"></i>
                                     <span class="chip-label">github.com/ayushmaanFCB</span>
                                     <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
                                 </a>
 
-                                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Connect on LinkedIn">
+                                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"
+                                    rel="noopener noreferrer" class="contact-chip" title="Connect on LinkedIn">
                                     <i class="fab fa-linkedin-in chip-icon"></i>
                                     <span class="chip-label">linkedin.com/in/ayushmaan-das</span>
                                     <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
@@ -761,7 +802,8 @@
 
                         <!-- Right Column: Primary High-Energy Action Buttons -->
                         <div class="contact-actions-col">
-                            <a href="https://wa.me/918145328571" target="_blank" rel="noopener noreferrer" class="contact-action-btn action-whatsapp">
+                            <a href="https://wa.me/918145328571" target="_blank" rel="noopener noreferrer"
+                                class="contact-action-btn action-whatsapp">
                                 <div class="action-icon-wrap"><i class="fab fa-whatsapp"></i></div>
                                 <div class="action-text">
                                     <span class="action-label">Chat on WhatsApp</span>
@@ -779,11 +821,12 @@
                                 <i class="fas fa-arrow-right action-arrow"></i>
                             </a>
 
-                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" rel="noopener noreferrer" class="contact-action-btn action-resume">
+                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                                class="contact-action-btn action-resume open-resume-modal" title="View Resume">
                                 <div class="action-icon-wrap"><i class="fas fa-file-pdf"></i></div>
                                 <div class="action-text">
                                     <span class="action-label">View / Download Resume</span>
-                                    <span class="action-sub">PDF Format &bull; Latest Version</span>
+                                    <span class="action-sub">Interactive &bull; PDF Format</span>
                                 </div>
                                 <i class="fas fa-arrow-up-right-from-square action-arrow"></i>
                             </a>
@@ -807,351 +850,717 @@
         <footer>
             <div class="footer-container">
                 <div class="footer-meta">
-                    <p class="footer-author">Designed &amp; Engineered by <span class="footer-name">Ayushmaan Das</span></p>
+                    <p class="footer-author">Designed &amp; Engineered by <span class="footer-name">Ayushmaan Das</span>
+                    </p>
                     <p class="footer-copy">&copy; 2026 Ayushmaan Das. All rights reserved.</p>
                 </div>
                 <div class="footer-right">
                     <div class="footer-social-links">
-                        <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://discordapp.com/users/755447086476165172" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://discordapp.com/users/755447086476165172" target="_blank"
+                            rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:dasayush5maan@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
                     </div>
-                    <button type="button" id="scroll-to-top" class="scroll-top-btn" title="Back to top" aria-label="Back to top">
+                    <button type="button" id="scroll-to-top" class="scroll-top-btn" title="Back to top"
+                        aria-label="Back to top">
                         <i class="fas fa-arrow-up"></i>
                         <span>TOP</span>
                     </button>
                 </div>
             </div>
         </footer>
+
+        <!-- Interactive Resume Modal -->
+        <div id="resume-modal" class="resume-modal-overlay" aria-hidden="true" role="dialog"
+            aria-labelledby="resume-modal-title">
+            <div class="resume-modal-backdrop"></div>
+            <div class="resume-modal-dialog">
+                <!-- Sticky Header -->
+                <div class="resume-modal-header">
+                    <div class="resume-modal-header-left">
+                        <div class="resume-badge">
+                            <span class="resume-badge-dot"></span>
+                            <i class="fas fa-file-pdf"></i>
+                            <span>OFFICIAL RESUME</span>
+                        </div>
+                    </div>
+
+                    <!-- Modal Actions (Download, Open PDF to Print/View, Close) placed directly on the right -->
+                    <div class="resume-modal-actions">
+                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                            download="Ayushmaan_Das_Resume.pdf" class="resume-action-btn resume-btn-primary"
+                            title="Download PDF to device">
+                            <i class="fas fa-download"></i>
+                            <span>Download PDF</span>
+                        </a>
+                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
+                            rel="noopener noreferrer" class="resume-action-btn resume-btn-icon"
+                            title="Open actual PDF (Print / View in new tab)"
+                            aria-label="Open actual PDF to print or view">
+                            <i class="fas fa-print"></i>
+                        </a>
+                        <button type="button" class="resume-modal-close" aria-label="Close resume modal"
+                            title="Close (Esc)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body with Scroll -->
+                <div class="resume-modal-body">
+                    <div class="resume-bento-container">
+                        <!-- Hero Header Card -->
+                        <div class="resume-bento-card resume-hero-card">
+                            <div class="resume-hero-main">
+                                <div class="resume-hero-text">
+                                    <h1 class="r-hero-name">Ayushmaan Das</h1>
+                                    <p class="r-hero-title">AI/ML Engineer &amp; Software Developer</p>
+                                    <div class="r-hero-pills">
+                                        <span class="r-hero-pill">LLMs</span>
+                                        <span class="r-hero-pill">RAG</span>
+                                        <span class="r-hero-pill">Agentic AI</span>
+                                        <span class="r-hero-pill">Edge AI</span>
+                                        <span class="r-hero-pill">MLOps</span>
+                                    </div>
+                                </div>
+                                <div class="r-hero-contacts">
+                                    <a href="tel:+918145328571" class="r-contact-chip">
+                                        <i class="fas fa-phone-alt"></i> <span>+91-8145328571</span>
+                                    </a>
+                                    <a href="mailto:dasayush5maan@gmail.com" class="r-contact-chip">
+                                        <i class="fas fa-envelope"></i> <span>dasayush5maan@gmail.com</span>
+                                    </a>
+                                    <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                                        class="r-contact-chip">
+                                        <i class="fab fa-github"></i> <span>ayushmaanFCB</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"
+                                        rel="noopener noreferrer" class="r-contact-chip">
+                                        <i class="fab fa-linkedin-in"></i> <span>ayushmaan-das</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Bento Card -->
+                        <div class="resume-bento-card resume-edu-card">
+                            <div class="r-card-header">
+                                <span class="r-badge-pill"><i class="fas fa-graduation-cap"></i> EDUCATION</span>
+                                <span class="r-time-pill">2021 - 2025</span>
+                            </div>
+                            <div class="r-edu-content">
+                                <h3 class="r-inst-title">Sri Ramachandra Faculty of Engineering and Technology, SRIHER
+                                </h3>
+                                <div class="r-edu-meta">
+                                    <span class="r-degree-text">B.Tech Computer Science and Engineering (Artificial
+                                        Intelligence and Machine Learning)</span>
+                                    <span class="r-cgpa-badge"><i class="fas fa-star"></i> CGPA: 9.91</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Bento Group -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-briefcase"></i> EXPERIENCE</div>
+
+                            <!-- MulticoreWare Inc. -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">MulticoreWare Inc.</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-map-marker-alt"></i> Chennai
+                                            (On-site)</span>
+                                    </div>
+                                </div>
+
+                                <!-- AI/ML Engineer -->
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">AI/ML Engineer</span>
+                                        <span class="r-time-pill">July 2025 - Present</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Developed an embedded-systems IDE to build, run, and flash firmware on
+                                            customer-specific boards, with an AI Pipeline for import, pre-check,
+                                            calibration, and quantization; Model Visualizer, Graphs, Memory Estimator,
+                                            Model Zoo, Latency Estimator, Debug Dashboards, Power Consumption, AI
+                                            Embedding, and SDK code generation tools</li>
+                                        <li>Built AI Playground (RAG: embedding + re-ranking, Fine-tuning, multi-tenant
+                                            Adapter Inference); live in production on AWS (S3, EKS)/Kubernetes with
+                                            Prometheus, LLM-token pod autoscaling, Stripe billing</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Junior Engineer -->
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Junior Engineer</span>
+                                        <span class="r-time-pill">January 2025 - June 2025</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Enabled coding-assistant LLMs (CodeLlama-7B/13B, Codestral-22B,
+                                            Qwen2.5-Coder-32B, Mxfp6-quantized) to run on Edge AI based Qualcomm
+                                            hardware (C++); built async Inference Server with Load Balancing, improved
+                                            performance by supporting KV Caching (results up to 33.71 tok/s), LiteRT,
+                                            AIMET quantization, MLFlow experiments</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Upraised (JobStop Inc.) -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">Upraised (JobStop Inc.)</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-globe"></i> Remote</span>
+                                    </div>
+                                    <span class="r-time-pill">June 2024 - December 2024</span>
+                                </div>
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Software Development Intern (ML Team)</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Built a RAG-powered backend to auto-generate assessments from prompts, and
+                                            an AI proctoring system with Pyannote speaker diarization flagging anomalous
+                                            audio; used Transformers, Hugging Face, Azure DevOps</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- RecruitNXT -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">RecruitNXT</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-globe"></i> Remote</span>
+                                    </div>
+                                    <span class="r-time-pill">February 2023 - November 2023</span>
+                                </div>
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Python Developer and ML Intern</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Designed a resume-parsing pipeline from scratch, building and annotating
+                                            datasets to train SpaCy-based NER models for candidate data extraction, and
+                                            containerized it with Docker for production deployment</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Projects (2-Column Bento Grid) -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-layer-group"></i> PERSONAL PROJECTS</div>
+                            <div class="r-projects-bento-grid">
+                                <!-- Project 1 -->
+                                <div class="resume-bento-card r-project-card">
+                                    <div class="r-card-header">
+                                        <h3 class="r-proj-title"><i class="far fa-folder-open"></i> Medical Agentic RAG
+                                        </h3>
+                                        <span class="r-time-pill">2026</span>
+                                    </div>
+                                    <p class="r-proj-desc">Dual-pipeline diagnostic assistant for Medical-field related
+                                        Q/A: fixed RAG vs. LangChain ReAct agentic orchestration</p>
+                                    <ul class="r-bullet-list">
+                                        <li>LangChain ReAct agent (Llama 3.3 70B), FAISS-based RAG with fine-tuned
+                                            FLAN-T5, Dockerized BERT classifier</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Project 2 -->
+                                <div class="resume-bento-card r-project-card">
+                                    <div class="r-card-header">
+                                        <h3 class="r-proj-title"><i class="far fa-folder-open"></i> Spotify Music
+                                            Recommendation Engine</h3>
+                                        <span class="r-time-pill">2025</span>
+                                    </div>
+                                    <p class="r-proj-desc">Emotion-based (using CNN) and custom ML algorithm-based song
+                                        recommendation web application integrated with Spotify</p>
+                                    <ul class="r-bullet-list">
+                                        <li>Custom CNN model from scratch using TensorFlow and Keras; Cosine Similarity,
+                                            Streamlit, Spotify API (playlists)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills and Interests Bento Card -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-code"></i> SKILLS AND INTERESTS</div>
+                            <div class="resume-bento-card r-skills-box">
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Languages:</span>
+                                    <span class="r-skill-val">Python, C++, C, Java, SQL, NoSQL</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">AI/ML Tools:</span>
+                                    <span class="r-skill-val">LangChain, Agentic AI, ReAct Agents, MCP (Model Context
+                                        Protocol), KV Caching, RAG, Fine-Tuning, TensorFlow, Keras, PyTorch,
+                                        Scikit-Learn, OpenCV, Hugging Face, SpaCy, FAISS, Sentence-Transformers, LiteRT,
+                                        Quantization, AIMET, MLFlow, Neural Networks, Deep Learning, Reinforcement
+                                        Learning, MLOps, Prompt Engineering</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Frameworks:</span>
+                                    <span class="r-skill-val">Flask, FastAPI, Streamlit, Gradio</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Cloud &amp; Infra:</span>
+                                    <span class="r-skill-val">AWS (S3, EKS), Azure DevOps, OCI, Kubernetes, Docker,
+                                        Prometheus, Koyeb, CI/CD</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Other Tools:</span>
+                                    <span class="r-skill-val">Power BI, Git, GitHub, Linux, MongoDB, APIs, PlatformIO,
+                                        IDE Development</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Certifications:</span>
+                                    <span class="r-skill-val">Agentic AI Foundations Associate (Oracle), Claude Code
+                                        &amp; MCPs (Anthropic), Docker (Great Learning)</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Soft Skills:</span>
+                                    <span class="r-skill-val">Communication, Problem Solving, Critical Thinking, Time
+                                        Management, Leadership, Creativity</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Linguistics:</span>
+                                    <span class="r-skill-val">English (Conversational, Read &amp; Write), Hindi &amp;
+                                        Bengali (Native, Bilingual)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements Bento Card -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-trophy"></i> ACHIEVEMENTS</div>
+                            <div class="resume-bento-card r-achievements-box">
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Composite AI: Fundamentals, Challenges, and Applications
+                                            (Chapter 10)</span>
+                                    </div>
+                                    <span class="r-time-pill">2026</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-award r-achieve-icon"></i>
+                                        <span>Spot Award (MulticoreWare Inc.) for outstanding delivery, ownership and
+                                            reliability</span>
+                                    </div>
+                                    <span class="r-time-pill">2026</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-medal r-achieve-icon medal-gold"></i>
+                                        <span>Founder Chancellor Gold Medal (SRIHER) for Best Outgoing Student</span>
+                                    </div>
+                                    <span class="r-time-pill">2025</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Artificial Intelligence and Machine Learning for Smart
+                                            Community</span>
+                                    </div>
+                                    <span class="r-time-pill">2024</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Advancement of Data Processing Methods for Artificial
+                                            &amp; Computing Intelligence</span>
+                                    </div>
+                                    <span class="r-time-pill">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="resume-modal-footer">
+                    <span class="resume-modal-footer-tip"><i class="fas fa-history"></i> Last updated on November
+                        2026</span>
+                    <div class="resume-modal-footer-btns">
+                        <button type="button" class="resume-action-btn resume-btn-secondary resume-close-btn-bottom">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-        <script>
-            // Terminal Typing Effect and Mobile Menu
-            document.addEventListener("DOMContentLoaded", function () {
-                // Mobile Menu Logic
-                const menuToggle = document.getElementById("mobile-menu");
-                const navLinks = document.getElementById("nav-links");
+    <script>
+        // Terminal Typing Effect and Mobile Menu
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById("mobile-menu");
+            const navLinks = document.getElementById("nav-links");
 
-                if (menuToggle) {
-                    menuToggle.addEventListener("click", () => {
-                        navLinks.classList.toggle("active");
-                        menuToggle.innerHTML = navLinks.classList.contains("active")
-                            ? '<i class="fas fa-times"></i>'
-                            : '<i class="fas fa-bars"></i>';
-                    });
-
-                    document.querySelectorAll(".nav-links a").forEach(link => {
-                        link.addEventListener("click", () => {
-                            navLinks.classList.remove("active");
-                            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                        });
-                    });
-                }
-
-                // Lock scroll during boot sequence
-                document.body.style.overflow = "hidden";
-
-                // Logo Boot Sequence
-                const logoTextEl = document.querySelector(".logo-text");
-                if (logoTextEl) {
-                    const logoText1 = "ayushmaan";
-                    const logoText2 = ".is-a.dev";
-                    logoTextEl.innerHTML = "";
-                    let l1 = 0;
-                    let l2 = 0;
-                    let logoSpan = null;
-
-                    function typeLogo() {
-                        if (l1 < logoText1.length) {
-                            logoTextEl.innerHTML += logoText1.charAt(l1);
-                            l1++;
-                            setTimeout(typeLogo, 70);
-                        } else if (l2 === 0) {
-                            logoSpan = document.createElement("span");
-                            logoSpan.className = "logo-domain";
-                            logoTextEl.appendChild(logoSpan);
-                            typeLogo2();
-                        }
-                    }
-
-                    function typeLogo2() {
-                        if (l2 < logoText2.length) {
-                            logoSpan.innerHTML += logoText2.charAt(l2);
-                            l2++;
-                            setTimeout(typeLogo2, 70);
-                        }
-                    }
-                    setTimeout(typeLogo, 90);
-                }
-
-                const subtitleEl = document.querySelector(".hero-subtitle");
-                if (subtitleEl) {
-                    const text = subtitleEl.innerText;
-                    subtitleEl.innerText = "";
-                    subtitleEl.style.borderRight = "2px solid var(--accent)";
-                    subtitleEl.style.display = "inline-block";
-                    subtitleEl.style.whiteSpace = "nowrap";
-                    subtitleEl.style.overflow = "hidden";
-                    subtitleEl.style.paddingRight = "5px";
-
-                    // Blinking cursor effect
-                    setInterval(() => {
-                        subtitleEl.style.borderColor = subtitleEl.style.borderColor === "transparent" ? "var(--accent)" : "transparent";
-                    }, 500);
-
-                    let i = 0;
-                    function typeWriter() {
-                        if (i < text.length) {
-                            subtitleEl.innerHTML += text.charAt(i);
-                            i++;
-                            setTimeout(typeWriter, 80);
-                        } else {
-                            const reveals = document.querySelectorAll('.reveal-on-type');
-                            reveals.forEach(el => el.classList.add('visible'));
-
-                            // Unlock scroll after animation starts
-                            setTimeout(() => {
-                                document.body.style.overflow = "";
-                            }, 500);
-                        }
-                    }
-                    setTimeout(typeWriter, 500);
-                }
-
-                // Intersection Observer for Scroll Reveals
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.15
-                };
-
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target); // Only reveal once
-                        }
-                    });
-                }, observerOptions);
-
-                document.querySelectorAll('.scroll-reveal').forEach((section) => {
-                    observer.observe(section);
+            if (menuToggle) {
+                menuToggle.addEventListener("click", () => {
+                    navLinks.classList.toggle("active");
+                    menuToggle.innerHTML = navLinks.classList.contains("active")
+                        ? '<i class="fas fa-times"></i>'
+                        : '<i class="fas fa-bars"></i>';
                 });
 
-                // Scroll Progress Bar & Section Dot Tracking
-                const mainEl = document.getElementById('main');
-                const sections = document.querySelectorAll('section[id]');
-                const headerNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-                const dots = document.querySelectorAll('.section-dot');
-
-                mainEl.addEventListener('scroll', () => {
-                    const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
-                    const progressBar = document.getElementById('scroll-progress');
-                    if (progressBar) progressBar.style.width = scrolled + '%';
-
-                    // Track active section on scroll
-                    let currentSectionId = '';
-                    const scrollPos = mainEl.scrollTop + (window.innerHeight / 3);
-                    sections.forEach(sec => {
-                        const top = sec.offsetTop;
-                        const height = sec.offsetHeight;
-                        if (scrollPos >= top && scrollPos < top + height) {
-                            currentSectionId = sec.getAttribute('id');
-                        }
+                document.querySelectorAll(".nav-links a").forEach(link => {
+                    link.addEventListener("click", () => {
+                        navLinks.classList.remove("active");
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                     });
-
-                    if (currentSectionId) {
-                        dots.forEach(dot => {
-                            dot.classList.toggle('active', dot.getAttribute('href') === `#${currentSectionId}`);
-                        });
-                        headerNavLinks.forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
-                        });
-                    }
                 });
+            }
 
-                // Matrix Digital Rain
-                const canvas = document.getElementById('matrix-canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=<>?'.split('');
-                const fontSize = 14;
-                const columns = canvas.width / fontSize;
-                const drops = [];
-                for (let x = 0; x < columns; x++) drops[x] = 1;
-                function drawMatrix() {
-                    ctx.fillStyle = 'rgba(8, 11, 18, 0.05)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4d7cff';
-                    ctx.font = fontSize + 'px var(--font-mono)';
-                    for (let i = 0; i < drops.length; i++) {
-                        const text = letters[Math.floor(Math.random() * letters.length)];
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                        drops[i]++;
+            // Lock scroll during boot sequence
+            document.body.style.overflow = "hidden";
+
+            // Logo Boot Sequence
+            const logoTextEl = document.querySelector(".logo-text");
+            if (logoTextEl) {
+                const logoText1 = "ayushmaan";
+                const logoText2 = ".is-a.dev";
+                logoTextEl.innerHTML = "";
+                let l1 = 0;
+                let l2 = 0;
+                let logoSpan = null;
+
+                function typeLogo() {
+                    if (l1 < logoText1.length) {
+                        logoTextEl.innerHTML += logoText1.charAt(l1);
+                        l1++;
+                        setTimeout(typeLogo, 70);
+                    } else if (l2 === 0) {
+                        logoSpan = document.createElement("span");
+                        logoSpan.className = "logo-domain";
+                        logoTextEl.appendChild(logoSpan);
+                        typeLogo2();
                     }
                 }
-                setInterval(drawMatrix, 50);
 
-                // Text Decryption Hover
-                const chars = '!<>-_\\\\/[]{}—=+*^?#_';
-                document.querySelectorAll('.nav-links a').forEach(el => {
-                    el.dataset.original = el.innerText;
-                    el.addEventListener('mouseenter', () => {
-                        let iterations = 0;
-                        const interval = setInterval(() => {
-                            el.innerText = el.innerText.split('').map((char, i) => {
-                                if (i < iterations) return el.dataset.original[i];
-                                return chars[Math.floor(Math.random() * chars.length)];
-                            }).join('');
-                            if (iterations >= el.dataset.original.length) clearInterval(interval);
-                            iterations += 1 / 3;
-                        }, 30);
-                    });
+                function typeLogo2() {
+                    if (l2 < logoText2.length) {
+                        logoSpan.innerHTML += logoText2.charAt(l2);
+                        l2++;
+                        setTimeout(typeLogo2, 70);
+                    }
+                }
+                setTimeout(typeLogo, 90);
+            }
+
+            const subtitleEl = document.querySelector(".hero-subtitle");
+            if (subtitleEl) {
+                const text = subtitleEl.innerText;
+                subtitleEl.innerText = "";
+                subtitleEl.style.borderRight = "2px solid var(--accent)";
+                subtitleEl.style.display = "inline-block";
+                subtitleEl.style.whiteSpace = "nowrap";
+                subtitleEl.style.overflow = "hidden";
+                subtitleEl.style.paddingRight = "5px";
+
+                // Blinking cursor effect
+                setInterval(() => {
+                    subtitleEl.style.borderColor = subtitleEl.style.borderColor === "transparent" ? "var(--accent)" : "transparent";
+                }, 500);
+
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        subtitleEl.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 80);
+                    } else {
+                        const reveals = document.querySelectorAll('.reveal-on-type');
+                        reveals.forEach(el => el.classList.add('visible'));
+
+                        // Unlock scroll after animation starts
+                        setTimeout(() => {
+                            document.body.style.overflow = "";
+                        }, 500);
+                    }
+                }
+                setTimeout(typeWriter, 500);
+            }
+
+            // Intersection Observer for Scroll Reveals
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only reveal once
+                    }
                 });
+            }, observerOptions);
 
-                // Bento Mouse-Torch Spotlight & Holographic 3D Tilt
-                document.querySelectorAll('.project-card, .highlight-card, .award-card, .skill-category-card, .stat-card').forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        card.style.setProperty('--mouse-x', `${x}px`);
-                        card.style.setProperty('--mouse-y', `${y}px`);
-
-                        // 3D tilt for cards that support it
-                        if (!card.classList.contains('stat-card')) {
-                            const centerX = rect.width / 2;
-                            const centerY = rect.height / 2;
-                            const rotateX = ((y - centerY) / centerY) * -8;
-                            const rotateY = ((x - centerX) / centerX) * 8;
-                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                        }
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        card.style.setProperty('--mouse-x', '-500px');
-                        card.style.setProperty('--mouse-y', '-500px');
-                        if (!card.classList.contains('stat-card')) {
-                            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                        }
-                    });
-                });
-
+            document.querySelectorAll('.scroll-reveal').forEach((section) => {
+                observer.observe(section);
             });
+
+            // Scroll Progress Bar & Section Dot Tracking
+            const mainEl = document.getElementById('main');
+            const sections = document.querySelectorAll('section[id]');
+            const headerNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            const dots = document.querySelectorAll('.section-dot');
+
+            mainEl.addEventListener('scroll', () => {
+                const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
+                const progressBar = document.getElementById('scroll-progress');
+                if (progressBar) progressBar.style.width = scrolled + '%';
+
+                // Track active section on scroll
+                let currentSectionId = '';
+                const scrollPos = mainEl.scrollTop + (window.innerHeight / 3);
+                sections.forEach(sec => {
+                    const top = sec.offsetTop;
+                    const height = sec.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentSectionId = sec.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    dots.forEach(dot => {
+                        dot.classList.toggle('active', dot.getAttribute('href') === `#${currentSectionId}`);
+                    });
+                    headerNavLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+                    });
+                }
+            });
+
+            // Matrix Digital Rain
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=<>?'.split('');
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            for (let x = 0; x < columns; x++) drops[x] = 1;
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(8, 11, 18, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4d7cff';
+                ctx.font = fontSize + 'px var(--font-mono)';
+                for (let i = 0; i < drops.length; i++) {
+                    const text = letters[Math.floor(Math.random() * letters.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    drops[i]++;
+                }
+            }
+            setInterval(drawMatrix, 50);
+
+            // Text Decryption Hover
+            const chars = '!<>-_\\\\/[]{}—=+*^?#_';
+            document.querySelectorAll('.nav-links a').forEach(el => {
+                el.dataset.original = el.innerText;
+                el.addEventListener('mouseenter', () => {
+                    let iterations = 0;
+                    const interval = setInterval(() => {
+                        el.innerText = el.innerText.split('').map((char, i) => {
+                            if (i < iterations) return el.dataset.original[i];
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        if (iterations >= el.dataset.original.length) clearInterval(interval);
+                        iterations += 1 / 3;
+                    }, 30);
+                });
+            });
+
+            // Bento Mouse-Torch Spotlight & Holographic 3D Tilt
+            document.querySelectorAll('.project-card, .highlight-card, .award-card, .skill-category-card, .stat-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+
+                    // 3D tilt for cards that support it
+                    if (!card.classList.contains('stat-card')) {
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -8;
+                        const rotateY = ((x - centerX) / centerX) * 8;
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    }
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--mouse-x', '-500px');
+                    card.style.setProperty('--mouse-y', '-500px');
+                    if (!card.classList.contains('stat-card')) {
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    }
+                });
+            });
+
+        });
         // Hide loader after full page load
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.transition = 'opacity 0.5s ease';
-    loader.style.opacity = '0';
-    setTimeout(() => {
-      loader.remove();
-      document.body.style.overflow = '';
-    }, 500);
-  }
-});
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.transition = 'opacity 0.5s ease';
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.remove();
+                    document.body.style.overflow = '';
+                }, 500);
+            }
+        });
 
-// Interactive 1-Click Copy on Contact Chips
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.copy-chip').forEach(chip => {
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-      const text = this.getAttribute('data-copy');
-      if (!text) return;
-      navigator.clipboard.writeText(text).then(() => {
-        chip.classList.add('copied');
-        const icon = chip.querySelector('.copy-icon');
-        if (icon) {
-          icon.classList.remove('fa-copy', 'far');
-          icon.classList.add('fa-check', 'fas');
+        // Interactive 1-Click Copy on Contact Chips
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.copy-chip').forEach(chip => {
+                chip.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const text = this.getAttribute('data-copy');
+                    if (!text) return;
+                    navigator.clipboard.writeText(text).then(() => {
+                        chip.classList.add('copied');
+                        const icon = chip.querySelector('.copy-icon');
+                        if (icon) {
+                            icon.classList.remove('fa-copy', 'far');
+                            icon.classList.add('fa-check', 'fas');
+                        }
+                        setTimeout(() => {
+                            chip.classList.remove('copied');
+                            if (icon) {
+                                icon.classList.remove('fa-check', 'fas');
+                                icon.classList.add('fa-copy', 'far');
+                            }
+                        }, 2000);
+                    }).catch(err => console.error('Copy failed:', err));
+                });
+            });
+        });
+
+        // Scroll to top button handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+            if (scrollTopBtn) {
+                scrollTopBtn.addEventListener('click', function () {
+                    const mainEl = document.getElementById('main');
+                    if (mainEl) {
+                        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+
+        // Custom cyberpunk cursor
+        const cursor = document.getElementById('custom-cursor');
+        // Start off-screen so it doesn't show at top-left before mouse enters
+        cursor.style.left = '-100px';
+        cursor.style.top = '-100px';
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        // Hover effect – enlarge cursor on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .contact-card, .contact-chip, .contact-action-btn, .section-dot, .scroll-top-btn, .open-resume-modal, .resume-action-btn, .resume-modal-close, .resume-close-btn-bottom');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Resume Modal Interactions
+        document.addEventListener('DOMContentLoaded', function () {
+            const resumeModal = document.getElementById('resume-modal');
+            if (!resumeModal) return;
+
+            const openResumeModal = function (e) {
+                if (e) e.preventDefault();
+                resumeModal.classList.add('active');
+                resumeModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeResumeModal = function () {
+                resumeModal.classList.remove('active');
+                resumeModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            };
+
+            // Open modal on all resume triggers
+            document.querySelectorAll('.open-resume-modal').forEach(btn => {
+                btn.addEventListener('click', openResumeModal);
+            });
+
+            // Close modal on close buttons or backdrop click
+            resumeModal.querySelectorAll('.resume-modal-close, .resume-close-btn-bottom, .resume-modal-backdrop').forEach(el => {
+                el.addEventListener('click', closeResumeModal);
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+                    closeResumeModal();
+                }
+            });
+        });
+        // Particle field
+        const particleCanvas = document.getElementById('particle-canvas');
+        const pCtx = particleCanvas.getContext('2d');
+        function resizeParticleCanvas() { particleCanvas.width = window.innerWidth; particleCanvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeParticleCanvas);
+        resizeParticleCanvas();
+        const particles = [];
+        const particleCount = 80;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * particleCanvas.width,
+                y: Math.random() * particleCanvas.height,
+                r: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                alpha: Math.random() * 0.5 + 0.3
+            });
         }
-        setTimeout(() => {
-          chip.classList.remove('copied');
-          if (icon) {
-            icon.classList.remove('fa-check', 'fas');
-            icon.classList.add('fa-copy', 'far');
-          }
-        }, 2000);
-      }).catch(err => console.error('Copy failed:', err));
-    });
-  });
-});
+        function drawParticles() {
+            pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            pCtx.fillStyle = `rgba(var(--accent-rgb),0.2)`;
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > particleCanvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > particleCanvas.height) p.vy *= -1;
+                pCtx.beginPath();
+                pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                pCtx.fill();
+            });
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
 
-// Scroll to top button handler
-document.addEventListener('DOMContentLoaded', function() {
-  const scrollTopBtn = document.getElementById('scroll-to-top');
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', function() {
-      const mainEl = document.getElementById('main');
-      if (mainEl) {
-        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-});
-
-// Custom cyberpunk cursor
-const cursor = document.getElementById('custom-cursor');
-// Start off-screen so it doesn't show at top-left before mouse enters
-cursor.style.left = '-100px';
-cursor.style.top = '-100px';
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-// Hover effect – enlarge cursor on interactive elements
-const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .contact-card, .contact-chip, .contact-action-btn, .section-dot, .scroll-top-btn');
-hoverTargets.forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
-// Particle field
-const particleCanvas = document.getElementById('particle-canvas');
-const pCtx = particleCanvas.getContext('2d');
-function resizeParticleCanvas(){ particleCanvas.width = window.innerWidth; particleCanvas.height = window.innerHeight; }
-window.addEventListener('resize', resizeParticleCanvas);
-resizeParticleCanvas();
-const particles = [];
-const particleCount = 80;
-for(let i=0;i<particleCount;i++){
-  particles.push({
-    x: Math.random()*particleCanvas.width,
-    y: Math.random()*particleCanvas.height,
-    r: Math.random()*2+1,
-    vx: (Math.random()-0.5)*0.5,
-    vy: (Math.random()-0.5)*0.5,
-    alpha: Math.random()*0.5+0.3
-  });
-}
-function drawParticles(){
-  pCtx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
-  pCtx.fillStyle = `rgba(var(--accent-rgb),0.2)`;
-  particles.forEach(p=>{
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0||p.x>particleCanvas.width) p.vx*=-1;
-    if(p.y<0||p.y>particleCanvas.height) p.vy*=-1;
-    pCtx.beginPath();
-    pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    pCtx.fill();
-  });
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
-// Cursor trail
-const trailContainer = document.getElementById('cursor-trail');
-document.addEventListener('mousemove', e=>{
-  const trail = document.createElement('div');
-  trail.className='cursor-trail-item';
-  trail.style.left = e.clientX+'px';
-  trail.style.top = e.clientY+'px';
-  trailContainer.appendChild(trail);
-  setTimeout(()=>trail.remove(),600);
-});
-</script>
+        // Cursor trail
+        const trailContainer = document.getElementById('cursor-trail');
+        document.addEventListener('mousemove', e => {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail-item';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trailContainer.appendChild(trail);
+            setTimeout(() => trail.remove(), 600);
+        });
+    </script>
 </body>
 
 </html>
