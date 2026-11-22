@@ -1172,19 +1172,22 @@ button.contact-chip {
     box-shadow: 0 6px 20px var(--accent-glow);
 }
 
-.action-phone {
+.action-phone,
+.action-discord {
     background: rgba(var(--accent-rgb), 0.03);
     border: 1px solid rgba(var(--accent-rgb), 0.16);
     color: #e2e8f0;
 }
 
-.action-phone .action-icon-wrap {
+.action-phone .action-icon-wrap,
+.action-discord .action-icon-wrap {
     background: rgba(var(--accent-rgb), 0.1);
     color: var(--accent);
     border: 1px solid rgba(var(--accent-rgb), 0.22);
 }
 
-.action-phone:hover {
+.action-phone:hover,
+.action-discord:hover {
     background: rgba(var(--accent-rgb), 0.08);
     border-color: var(--accent);
     color: #fff;
