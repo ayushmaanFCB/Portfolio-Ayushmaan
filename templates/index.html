@@ -715,32 +715,89 @@
             <!-- Contact Section -->
             <section id="contact" class="contact-section scroll-reveal">
                 <h2 class="section-title">06. What's Next?</h2>
-                <h1 class="hero-title" style="font-size: 3rem;">Get In Touch</h1>
-                <p>I'm always open to discussing modern AI systems, model optimization, or production AI infrastructure.
-                    Whether you have a question or just want to say hi, my inbox is always open!</p>
-                <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" class="btn"
-                        style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px; border-color: var(--accent);"><i
-                            class="fas fa-file-pdf"></i> Download Resume</a>
-                    <a href="mailto:dasayush5maan@gmail.com" class="btn"
-                        style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-envelope"></i>
-                        Email</a>
-                    <a href="tel:+918145328571" class="btn"
-                        style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i
-                            class="fas fa-phone-alt"></i>
-                        Phone</a>
-                    <a href="https://wa.me/918145328571" target="_blank" class="btn"
-                        style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fab fa-whatsapp"></i>
-                        WhatsApp</a>
-                </div>
 
-                <div class="social-links">
-                    <a href="https://github.com/ayushmaanFCB" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a href="https://discordapp.com/users/755447086476165172" target="_blank" title="Discord"><i
-                            class="fab fa-discord"></i></a>
-                    <a href="mailto:dasayush5maan@gmail.com"><i class="far fa-envelope"></i></a>
+                <div class="contact-card">
+                    <!-- Ambient Cyber Glow Backdrop -->
+                    <div class="contact-ambient-glow"></div>
+
+                    <div class="contact-grid">
+                        <!-- Left Column: Narrative & Interactive Quick Connect Chips -->
+                        <div class="contact-info-col">
+                            <h3 class="contact-title">Let's build something impactful together</h3>
+
+                            <p class="contact-desc">
+                                I am actively open to production AI/ML engineering roles, Edge AI inference optimization, and scalable backend infrastructure projects. Whether you have a challenging engineering problem or want to talk shop on modern AI systems, feel free to reach out.
+                            </p>
+
+                            <!-- 1-Click Interactive Copy / Connect Chips -->
+                            <div class="contact-chips-wrap">
+                                <button type="button" class="contact-chip copy-chip" data-copy="dasayush5maan@gmail.com" title="Click to copy email">
+                                    <i class="fas fa-envelope chip-icon"></i>
+                                    <span class="chip-label">dasayush5maan@gmail.com</span>
+                                    <i class="far fa-copy copy-icon"></i>
+                                    <span class="copied-feedback">Copied!</span>
+                                </button>
+
+                                <button type="button" class="contact-chip copy-chip" data-copy="+918145328571" title="Click to copy phone number">
+                                    <i class="fas fa-phone-alt chip-icon"></i>
+                                    <span class="chip-label">+91 81453 28571</span>
+                                    <i class="far fa-copy copy-icon"></i>
+                                    <span class="copied-feedback">Copied!</span>
+                                </button>
+
+                                <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Visit GitHub Profile">
+                                    <i class="fab fa-github chip-icon"></i>
+                                    <span class="chip-label">github.com/ayushmaanFCB</span>
+                                    <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Connect on LinkedIn">
+                                    <i class="fab fa-linkedin-in chip-icon"></i>
+                                    <span class="chip-label">linkedin.com/in/ayushmaan-das</span>
+                                    <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Primary High-Energy Action Buttons -->
+                        <div class="contact-actions-col">
+                            <a href="https://wa.me/918145328571" target="_blank" rel="noopener noreferrer" class="contact-action-btn action-whatsapp">
+                                <div class="action-icon-wrap"><i class="fab fa-whatsapp"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Chat on WhatsApp</span>
+                                    <span class="action-sub">+91 81453 28571 &bull; Instant Reply</span>
+                                </div>
+                                <i class="fas fa-arrow-right action-arrow"></i>
+                            </a>
+
+                            <a href="mailto:dasayush5maan@gmail.com" class="contact-action-btn action-email">
+                                <div class="action-icon-wrap"><i class="fas fa-paper-plane"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Send Direct Email</span>
+                                    <span class="action-sub">dasayush5maan@gmail.com</span>
+                                </div>
+                                <i class="fas fa-arrow-right action-arrow"></i>
+                            </a>
+
+                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" rel="noopener noreferrer" class="contact-action-btn action-resume">
+                                <div class="action-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">View / Download Resume</span>
+                                    <span class="action-sub">PDF Format &bull; Latest Version</span>
+                                </div>
+                                <i class="fas fa-arrow-up-right-from-square action-arrow"></i>
+                            </a>
+
+                            <a href="tel:+918145328571" class="contact-action-btn action-phone">
+                                <div class="action-icon-wrap"><i class="fas fa-phone-alt"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Direct Voice Call</span>
+                                    <span class="action-sub">+91 81453 28571</span>
+                                </div>
+                                <i class="fas fa-arrow-right action-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -748,8 +805,26 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 Ayushmaan Das. All rights reserved.</p>
+            <div class="footer-container">
+                <div class="footer-meta">
+                    <p class="footer-author">Designed &amp; Engineered by <span class="footer-name">Ayushmaan Das</span></p>
+                    <p class="footer-copy">&copy; 2026 Ayushmaan Das. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-social-links">
+                        <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://discordapp.com/users/755447086476165172" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:dasayush5maan@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
+                    </div>
+                    <button type="button" id="scroll-to-top" class="scroll-top-btn" title="Back to top" aria-label="Back to top">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>TOP</span>
+                    </button>
+                </div>
+            </div>
         </footer>
+    </main>
 
         <script>
             // Terminal Typing Effect and Mobile Menu
@@ -977,6 +1052,47 @@ window.addEventListener('load', () => {
     }, 500);
   }
 });
+
+// Interactive 1-Click Copy on Contact Chips
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.copy-chip').forEach(chip => {
+    chip.addEventListener('click', function(e) {
+      e.preventDefault();
+      const text = this.getAttribute('data-copy');
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        chip.classList.add('copied');
+        const icon = chip.querySelector('.copy-icon');
+        if (icon) {
+          icon.classList.remove('fa-copy', 'far');
+          icon.classList.add('fa-check', 'fas');
+        }
+        setTimeout(() => {
+          chip.classList.remove('copied');
+          if (icon) {
+            icon.classList.remove('fa-check', 'fas');
+            icon.classList.add('fa-copy', 'far');
+          }
+        }, 2000);
+      }).catch(err => console.error('Copy failed:', err));
+    });
+  });
+});
+
+// Scroll to top button handler
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollTopBtn = document.getElementById('scroll-to-top');
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function() {
+      const mainEl = document.getElementById('main');
+      if (mainEl) {
+        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+
 // Custom cyberpunk cursor
 const cursor = document.getElementById('custom-cursor');
 // Start off-screen so it doesn't show at top-left before mouse enters
@@ -987,7 +1103,7 @@ document.addEventListener('mousemove', e => {
   cursor.style.top = e.clientY + 'px';
 });
 // Hover effect – enlarge cursor on interactive elements
-const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .section-dot');
+const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .contact-card, .contact-chip, .contact-action-btn, .section-dot, .scroll-top-btn');
 hoverTargets.forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
