@@ -1314,14 +1314,34 @@
 
             // Scroll Progress Bar & Section Dot Tracking
             const mainEl = document.getElementById('main');
+            const navEl = document.querySelector('nav');
             const sections = document.querySelectorAll('section[id]');
             const headerNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
             const dots = document.querySelectorAll('.section-dot');
+            let lastScrollTop = 0;
+            const scrollDelta = 10;
 
             mainEl.addEventListener('scroll', () => {
                 const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
                 const progressBar = document.getElementById('scroll-progress');
                 if (progressBar) progressBar.style.width = scrolled + '%';
+
+                const currentScroll = mainEl.scrollTop;
+
+                // Dynamic Island Navbar: Contract to logo capsule on scroll down, expand on scroll up / top
+                if (navEl) {
+                    const isMobileMenuOpen = navLinks && navLinks.classList.contains('active');
+                    if (currentScroll < 100) {
+                        navEl.classList.remove('collapsed');
+                    } else if (!isMobileMenuOpen) {
+                        if (currentScroll > lastScrollTop + scrollDelta) {
+                            navEl.classList.add('collapsed');
+                        } else if (currentScroll < lastScrollTop - scrollDelta) {
+                            navEl.classList.remove('collapsed');
+                        }
+                    }
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 
                 // Track active section on scroll
                 let currentSectionId = '';

@@ -125,6 +125,78 @@ nav {
     z-index: 1000;
     animation: navbar-slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     box-sizing: border-box;
+    transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.35s ease, 
+                border-color 0.3s ease;
+}
+
+/* Contracted Dynamic Island Capsule State */
+nav.collapsed {
+    width: 248px;
+    padding: 8px 12px;
+    box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35),
+        0 12px 32px -4px rgba(0, 0, 0, 0.7),
+        0 0 24px rgba(var(--accent-rgb), 0.14);
+}
+
+nav.collapsed .logo {
+    margin: 0 auto;
+}
+
+nav.collapsed .nav-links {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(18px);
+    max-width: 0;
+    overflow: hidden;
+}
+
+nav.collapsed .menu-toggle {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.7);
+    display: none !important;
+}
+
+nav.collapsed .scroll-progress-container {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hover over contracted capsule expands navigation */
+nav.collapsed:hover {
+    width: min(calc(100% - 32px), 1160px);
+    padding: 8px 16px;
+    box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35),
+        0 20px 45px -4px rgba(0, 0, 0, 0.75),
+        0 0 28px rgba(var(--accent-rgb), 0.18);
+}
+
+nav.collapsed:hover .logo {
+    margin: 0;
+}
+
+nav.collapsed:hover .nav-links {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    max-width: 800px;
+}
+
+nav.collapsed:hover .menu-toggle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    display: flex !important;
+}
+
+nav.collapsed:hover .scroll-progress-container {
+    opacity: 1;
 }
 
 nav .container {
@@ -150,6 +222,7 @@ nav .container {
     background: transparent;
     overflow: hidden;
     border-radius: 2px;
+    transition: opacity 0.3s ease;
 }
 
 .scroll-progress-bar {
@@ -193,10 +266,11 @@ nav .container {
     border-radius: 9999px;
     background: transparent;
     border: 1px solid transparent;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1), margin 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
     cursor: pointer;
     flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .logo:hover {
@@ -294,6 +368,12 @@ nav .container {
     display: flex;
     align-items: center;
     gap: 4px;
+    max-width: 800px;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
+                max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-links a {
@@ -1264,6 +1344,11 @@ footer {
         width: calc(100% - 24px);
         padding: 8px 14px;
         border-radius: 20px;
+    }
+
+    nav.collapsed {
+        width: 248px !important;
+        padding: 8px 12px;
     }
 
     .menu-toggle {
