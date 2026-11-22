@@ -101,7 +101,7 @@ a:hover {
     }
 }
 
-/* Floating Center Island Navbar */
+/* Floating Center Island Navbar - Apple Liquid Glass Aesthetic */
 nav {
     position: fixed;
     top: 16px;
@@ -109,13 +109,19 @@ nav {
     right: 0;
     margin: 0 auto;
     width: min(calc(100% - 32px), 1160px);
-    padding: 8px 14px 8px 16px;
-    background: rgba(8, 11, 18, 0.82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 15, 26, 0.72) 100%);
+    backdrop-filter: blur(24px) saturate(190%) contrast(102%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%) contrast(102%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid rgba(255, 255, 255, 0.32);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 9999px;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--accent-rgb), 0.08);
+    box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35),
+        0 16px 36px -4px rgba(0, 0, 0, 0.65),
+        0 0 20px rgba(var(--accent-rgb), 0.08);
     z-index: 1000;
     animation: navbar-slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     box-sizing: border-box;
@@ -130,7 +136,8 @@ nav .container {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    position: static;
+    position: relative;
+    z-index: 2;
 }
 
 .scroll-progress-container {
@@ -182,21 +189,19 @@ nav .container {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 10px rgba(var(--accent-rgb), 0.05);
-    transition: all 0.25s ease;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
     cursor: pointer;
     flex-shrink: 0;
 }
 
 .logo:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow), inset 0 0 12px rgba(var(--accent-rgb), 0.12);
-    background: rgba(var(--accent-rgb), 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
     transform: translateY(-1px);
 }
 
@@ -298,16 +303,24 @@ nav .container {
     font-family: var(--font-mono);
     font-size: 0.84rem;
     font-weight: 500;
-    color: var(--text-muted);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #cbd5e1;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     letter-spacing: 0.01em;
     text-decoration: none;
     white-space: nowrap;
+    position: relative;
+    border: 1px solid transparent;
 }
 
 .nav-links a:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-top: 1px solid rgba(255, 255, 255, 0.32);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.22), 0 4px 14px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateY(-1px);
 }
 
 /* Sections */
@@ -1280,13 +1293,14 @@ footer {
         position: absolute;
         top: calc(100% + 10px);
         left: 0;
-        background: rgba(8, 11, 18, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(13, 18, 30, 0.88) 50%, rgba(8, 11, 20, 0.96) 100%);
+        backdrop-filter: blur(28px) saturate(190%);
+        -webkit-backdrop-filter: blur(28px) saturate(190%);
         padding: 16px;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.28), 0 20px 45px rgba(0, 0, 0, 0.7);
         gap: 6px;
         box-sizing: border-box;
     }
@@ -1720,23 +1734,27 @@ section.contact-section {
 
 /* ==== Nav Resume Button ==== */
 .nav-resume-btn {
-  border: 1px solid var(--accent) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.5) !important;
   border-radius: 9999px !important;
-  padding: 6px 16px !important;
-  color: var(--accent) !important;
+  padding: 6px 18px !important;
+  color: #fff !important;
   font-family: var(--font-mono) !important;
   font-size: 0.85rem !important;
   font-weight: 600 !important;
-  background: rgba(var(--accent-rgb), 0.08) !important;
-  transition: all 0.3s ease !important;
+  background: rgba(var(--accent-rgb), 0.18) !important;
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  transition: all 0.25s ease !important;
   display: inline-flex !important;
   align-items: center !important;
 }
 .nav-resume-btn:hover {
   background: var(--accent) !important;
+  border-color: var(--accent) !important;
   box-shadow: 0 0 20px var(--accent-glow) !important;
   color: #fff !important;
-  transform: translateY(-1px);
+  transform: translateY(-1px) !important;
 }
 
 /* ==== Mobile cursor guard ==== */
@@ -2317,9 +2335,9 @@ section.contact-section {
 .resume-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(5, 8, 14, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .resume-modal-dialog {
@@ -2328,14 +2346,22 @@ section.contact-section {
     width: 100%;
     max-width: 960px;
     max-height: 90vh;
-    background: #0b0f19;
-    border: 1px solid rgba(var(--accent-rgb), 0.28);
-    border-radius: 20px;
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 45px rgba(var(--accent-rgb), 0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(10, 15, 28, 0.6) 80px, rgba(7, 10, 18, 0.72) 100%);
+    backdrop-filter: blur(28px) saturate(190%) contrast(105%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(105%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-top: 1px solid rgba(255, 255, 255, 0.38);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4),
+        0 24px 60px -8px rgba(0, 0, 0, 0.75),
+        0 0 35px rgba(var(--accent-rgb), 0.14);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transform: scale(0.95) translateY(14px);
+    transform: scale(0.96) translateY(14px);
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2343,13 +2369,13 @@ section.contact-section {
     transform: scale(1) translateY(0);
 }
 
-/* Modal Header */
+/* Modal Header - Liquid Glass */
 .resume-modal-header {
     padding: 16px 24px;
-    background: rgba(11, 15, 25, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(var(--accent-rgb), 0.16);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2373,8 +2399,10 @@ section.contact-section {
     font-weight: 600;
     letter-spacing: 0.08em;
     color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.1);
-    border: 1px solid rgba(var(--accent-rgb), 0.28);
+    background: rgba(var(--accent-rgb), 0.12);
+    border: 1px solid rgba(var(--accent-rgb), 0.32);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 9999px;
     padding: 4px 12px;
 }
@@ -2401,7 +2429,7 @@ section.contact-section {
     color: var(--text-muted);
 }
 
-/* Modal Actions */
+/* Modal Actions - Liquid Glass */
 .resume-modal-actions {
     display: flex;
     align-items: center;
@@ -2426,52 +2454,64 @@ section.contact-section {
 }
 
 .resume-btn-primary {
-    background: var(--accent);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.9) 0%, rgba(37, 99, 235, 0.95) 100%);
     color: #fff;
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 16px var(--accent-glow);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.48);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 0 18px var(--accent-glow);
 }
 
 .resume-btn-primary:hover {
-    background: #608eff;
-    border-color: #608eff;
+    background: linear-gradient(135deg, rgba(96, 142, 255, 1) 0%, rgba(45, 108, 255, 1) 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
     color: #fff;
-    box-shadow: 0 0 24px rgba(var(--accent-rgb), 0.5);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 0 28px rgba(var(--accent-rgb), 0.5);
     transform: translateY(-1px);
 }
 
 .resume-btn-secondary {
-    background: rgba(var(--accent-rgb), 0.08);
-    color: var(--accent);
-    border: 1px solid rgba(var(--accent-rgb), 0.25);
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .resume-btn-secondary:hover {
     background: rgba(var(--accent-rgb), 0.16);
     border-color: var(--accent);
+    border-top-color: rgba(255, 255, 255, 0.4);
     color: #fff;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 0 16px var(--accent-glow);
     transform: translateY(-1px);
 }
 
 .resume-btn-icon {
     padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
     color: #cbd5e1;
 }
 
 .resume-btn-icon:hover {
-    background: rgba(var(--accent-rgb), 0.12);
+    background: rgba(var(--accent-rgb), 0.16);
     border-color: var(--accent);
-    color: var(--accent);
+    border-top-color: rgba(255, 255, 255, 0.45);
+    color: #fff;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 0 16px var(--accent-glow);
 }
 
 .resume-modal-close {
     width: 36px;
     height: 36px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
     color: var(--text-muted);
     display: flex;
     align-items: center;
@@ -2483,8 +2523,9 @@ section.contact-section {
 }
 
 .resume-modal-close:hover {
-    background: rgba(239, 68, 68, 0.16);
-    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.45);
+    border-top-color: rgba(255, 255, 255, 0.5);
     color: #ef4444;
     transform: rotate(90deg);
 }
@@ -2495,10 +2536,27 @@ section.contact-section {
     flex: 1;
     min-height: 0;
     padding: 24px clamp(16px, 3vw, 36px);
-    background: #0b0f19;
+    background: transparent;
 }
 
-/* Cyber Bento Resume Layout */
+.resume-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.resume-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.resume-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+}
+
+.resume-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-rgb), 0.5);
+}
+
+/* Cyber Bento Resume Layout - Liquid Glass Aesthetic */
 .resume-bento-container {
     display: flex;
     flex-direction: column;
@@ -2509,28 +2567,32 @@ section.contact-section {
 }
 
 .resume-bento-card {
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(var(--accent-rgb), 0.18);
-    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
     padding: clamp(16px, 2.5vw, 24px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 6px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
 
 .resume-bento-card:hover {
+    background: rgba(255, 255, 255, 0.055);
     border-color: rgba(var(--accent-rgb), 0.45);
-    box-shadow: 0 8px 30px rgba(77, 124, 255, 0.15);
+    border-top-color: rgba(255, 255, 255, 0.38);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--accent-rgb), 0.15);
     transform: translateY(-2px);
 }
 
 /* Hero Header Card */
 .resume-hero-card {
-    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
-    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.12) 0%, rgba(255, 255, 255, 0.035) 100%);
+    border: 1px solid rgba(var(--accent-rgb), 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .resume-hero-main {
@@ -2889,11 +2951,13 @@ section.contact-section {
     color: #fbbf24;
 }
 
-/* Modal Footer */
+/* Modal Footer - Liquid Glass */
 .resume-modal-footer {
     padding: 14px 24px;
-    border-top: 1px solid rgba(var(--accent-rgb), 0.16);
-    background: rgba(11, 15, 25, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
     justify-content: space-between;
