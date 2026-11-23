@@ -257,7 +257,10 @@
                 <div class="skills-grid">
                     <!-- Languages -->
                     <div class="skill-category-card">
-                        <h3 class="skill-category-title">Languages</h3>
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Languages</h3>
+                            <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+                        </div>
                         <div class="skills-container">
                             <div class="skill-chip">Python</div>
                             <div class="skill-chip">C++</div>
@@ -270,7 +273,10 @@
 
                     <!-- AI/ML Tools -->
                     <div class="skill-category-card span-2">
-                        <h3 class="skill-category-title">AI/ML Tools</h3>
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">AI/ML Tools</h3>
+                            <div class="skill-category-icon"><i class="fas fa-brain"></i></div>
+                        </div>
                         <div class="skills-container">
                             <div class="skill-chip">LangChain</div>
                             <div class="skill-chip">Agentic AI</div>
@@ -302,7 +308,10 @@
 
                     <!-- Frameworks -->
                     <div class="skill-category-card">
-                        <h3 class="skill-category-title">Frameworks</h3>
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Frameworks</h3>
+                            <div class="skill-category-icon"><i class="fas fa-cubes"></i></div>
+                        </div>
                         <div class="skills-container">
                             <div class="skill-chip">Flask</div>
                             <div class="skill-chip">FastAPI</div>
@@ -314,7 +323,10 @@
 
                     <!-- Cloud & Infra -->
                     <div class="skill-category-card">
-                        <h3 class="skill-category-title">Cloud & Infra</h3>
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Cloud & Infra</h3>
+                            <div class="skill-category-icon"><i class="fas fa-cloud"></i></div>
+                        </div>
                         <div class="skills-container">
                             <div class="skill-chip">AWS (S3, EKS)</div>
                             <div class="skill-chip">Kubernetes</div>
@@ -329,7 +341,10 @@
 
                     <!-- Other Tools -->
                     <div class="skill-category-card">
-                        <h3 class="skill-category-title">Other Tools</h3>
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Other Tools</h3>
+                            <div class="skill-category-icon"><i class="fas fa-tools"></i></div>
+                        </div>
                         <div class="skills-container">
                             <div class="skill-chip">Git / GitHub</div>
                             <div class="skill-chip">Linux</div>
@@ -1223,6 +1238,23 @@
                     });
                 });
             }
+
+            // Smooth scrolling for internal anchor links within #main
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1 && !href.startsWith('#/')) {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            if (history.pushState) {
+                                history.pushState(null, null, href);
+                            }
+                        }
+                    }
+                });
+            });
 
             // Lock scroll during boot sequence
             document.body.style.overflow = "hidden";
