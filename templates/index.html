@@ -11,613 +11,1356 @@
 </head>
 
 <body>
-    <canvas id="matrix-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
-    <nav>
-        <div class="container">
-            <div class="logo">ayushmaan<span>.is-a.dev</span></div>
-            <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; font-size: 1.5rem; color: var(--accent); z-index: 200;">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#highlights">Highlights</a>
-                <a href="#contact">Contact</a>
-                <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" class="nav-resume-btn">Resume</a>
-            </div>
-        </div>
-        <div class="scroll-progress-container">
-            <div class="scroll-progress-bar" id="scroll-progress"></div>
-        </div>
-    </nav>
+    <div class="cursor" id="custom-cursor"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div id="cursor-trail"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-subtitle">Hi, my name is</div>
-                    <h1 class="hero-title reveal-on-type">Ayushmaan Das.</h1>
-                    <h1 class="hero-title reveal-on-type" style="color: var(--text-muted); animation-delay: 0.1s;">I build AI systems that ship.</h1>
-                    <p class="hero-desc reveal-on-type" style="animation-delay: 0.2s;">
-                        AI/ML & Software Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps. Currently
-                        building production AI systems from inference to deployment at MulticoreWare.
-                    </p>
-                    <div class="reveal-on-type hero-buttons" style="animation-delay: 0.3s;">
-                        <a href="#contact" class="btn">Get In Touch</a>
-                        <a href="https://github.com/ayushmaanFCB" target="_blank" class="btn"><i
-                                class="fab fa-github"></i> GitHub</a>
-                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" class="btn"><i
-                                class="fab fa-linkedin"></i> LinkedIn</a>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <main id="main">
+        <canvas id="matrix-canvas"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; opacity: 0.15; pointer-events: none;"></canvas>
+        <nav>
+            <div class="container">
+                <a href="#hero" class="logo">
+                    <span class="logo-status-dot"></span>
+                    <span class="logo-text">ayushmaan<span class="logo-domain">.is-a.dev</span></span>
+                </a>
+                <div class="nav-links" id="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#highlights">Highlights</a>
+                    <a href="#contact">Contact</a>
+                    <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                        class="nav-resume-btn open-resume-modal" title="View Resume">Resume</a>
+                    <button class="nav-sound-btn" id="sound-toggle" title="Sound Effects: ON (Click to mute)" aria-label="Toggle Sound Effects">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; z-index: 200;">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div class="scroll-progress-container">
+                <div class="scroll-progress-bar" id="scroll-progress"></div>
+            </div>
+        </nav>
+
+        <!-- Section Dot Navigator -->
+        <div id="section-dots" aria-label="Section navigation">
+            <a href="#hero" class="section-dot active" data-tooltip="Home" aria-label="Home"></a>
+            <a href="#about" class="section-dot" data-tooltip="About" aria-label="About"></a>
+            <a href="#skills" class="section-dot" data-tooltip="Skills" aria-label="Skills"></a>
+            <a href="#experience" class="section-dot" data-tooltip="Experience" aria-label="Experience"></a>
+            <a href="#projects" class="section-dot" data-tooltip="Projects" aria-label="Projects"></a>
+            <a href="#highlights" class="section-dot" data-tooltip="Highlights" aria-label="Highlights"></a>
+            <a href="#contact" class="section-dot" data-tooltip="Contact" aria-label="Contact"></a>
+        </div>
+
+        <div class="container">
+            <!-- Hero Section -->
+            <section id="hero" class="hero">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-subtitle">Hi, my name is</div>
+                        <h1 class="hero-title reveal-on-type">Ayushmaan Das.</h1>
+                        <h1 class="hero-title reveal-on-type" style="color: var(--text-muted); animation-delay: 0.1s;">I
+                            build AI systems that ship.</h1>
+                        <p class="hero-desc reveal-on-type" style="animation-delay: 0.2s;">
+                            AI/ML & Automation Engineer specializing in LLMs, RAG, Agentic AI, Edge AI, and MLOps.
+                            Currently
+                            building production AI systems from inference to deployment at MulticoreWare.
+                        </p>
+                        <div class="reveal-on-type hero-buttons" style="animation-delay: 0.3s;">
+                            <a href="#contact" class="btn">Get In Touch</a>
+                            <a href="https://github.com/ayushmaanFCB" target="_blank" class="btn"><i
+                                    class="fab fa-github"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" class="btn"><i
+                                    class="fab fa-linkedin"></i> LinkedIn</a>
+                        </div>
+                        <div class="reveal-on-type" style="animation-delay: 0.4s; margin-top: 20px;">
+                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                                class="hero-resume-link open-resume-modal"
+                                style="color: var(--text-muted); font-family: var(--font-mono); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;"
+                                onmouseover="this.style.color='var(--accent)'"
+                                onmouseout="this.style.color='var(--text-muted)'" title="View Resume">
+                                <i class="fas fa-file-pdf"></i> [ Extract Resume.pdf ]
+                            </a>
+                        </div>
                     </div>
-                    <div class="reveal-on-type" style="animation-delay: 0.4s; margin-top: 20px;">
-                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" style="color: var(--text-muted); font-family: var(--font-mono); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
-                            <i class="fas fa-file-pdf"></i> [ Extract Resume.pdf ]
+                    <div class="reveal-on-type" style="animation-delay: 0.4s;">
+                        <div class="hero-image" data-speed="0.2">
+                            <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+                <a href="#about" class="scroll-indicator reveal-on-type" style="animation-delay: 0.5s;">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </section>
+
+
+            <!-- About Section -->
+            <section id="about" class="scroll-reveal">
+                <h2 class="section-title">01. About Me</h2>
+                <div class="about-grid">
+                    <!-- Left Column: Comprehensive Bio Narrative -->
+                    <div class="about-left">
+                        <div class="about-card about-bio-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-terminal"></i> BIOGRAPHY // OVERVIEW</span>
+                            </div>
+                            <div class="about-text">
+                                <p>I build AI systems that ship - from low-level model optimization on edge hardware to
+                                    full-stack AI platforms serving real customers in production. My engineering focus
+                                    spans building end-to-end MLOps pipelines, designing robust RAG architectures
+                                    (embedding, re-ranking, retrieval), executing fine-tuning orchestration, and
+                                    deploying multi-tenant adapter inference engines. I care just as much about the
+                                    infrastructure layer as the models themselves. Using tools like AWS, Kubernetes, and
+                                    Docker, I architect scalable backends featuring Stripe-based billing,
+                                    LLM-token-based autoscaling, secure RBAC authentication, and comprehensive
+                                    Prometheus observability to ensure production-grade reliability.</p>
+
+                                <p>On the systems programming side, I write high-performance C++ for custom inference
+                                    servers, leveraging asynchronous multi-threading and optimized KV Caching (achieving
+                                    up to 33.71 tok/s). My expertise in Edge AI allows me to push hardware boundaries
+                                    using state-of-the-art quantization and calibration techniques like LiteRT and
+                                    AIMET. I recently applied these principles to architect an end-to-end AI-enabled IDE
+                                    for embedded systems - featuring comprehensive model-optimization pipelines that
+                                    take neural networks from raw import to hardware-ready deployment, alongside custom
+                                    tooling like model visualizers, latency estimators, and debug dashboards.</p>
+
+                                <p>Outside of my core engineering roles, I actively research and implement Agentic AI
+                                    workflows, focusing on frameworks like LangChain, ReAct Agents, and the Model
+                                    Context Protocol (MCP). My recent personal projects include a dual-pipeline medical
+                                    diagnostic assistant combining fixed RAG with dynamic reasoning agents, and an
+                                    emotion-aware Spotify recommendation engine driven by custom neural networks and
+                                    LSTM-based generation. I graduated as the Founder Chancellor's Gold Medalist for my
+                                    B.Tech in AI &amp; ML, and I am always excited to tackle complex engineering
+                                    challenges or talk shop on modern AI architecture.</p>
+
+                                <p class="about-highlight-note">Additionally, I am a <a href="#publications"
+                                        class="about-link">3x published book chapter author</a>, with peer-reviewed
+                                    contributions in the fields of Artificial Intelligence and Machine Learning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Key Domains & Location -->
+                    <div class="about-right">
+                        <!-- Top Box: Key Domains from LinkedIn Bio -->
+                        <div class="about-card domains-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-brain"></i> CORE FOCUS</span>
+                            </div>
+                            <div class="domains-headline">
+                                <span class="domains-quote">Building production AI systems from inference to
+                                    deployment</span>
+                            </div>
+                            <div class="domains-list">
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-robot"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Agentic AI &amp; LLMs</span>
+                                        <span class="domain-subtitle">Dynamic reasoning, ReAct, LangChain &amp;
+                                            MCP</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-microchip"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Edge AI &amp; Embedded Systems</span>
+                                        <span class="domain-subtitle">C++ inference, LiteRT &amp; AIMET
+                                            quantization</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-layer-group"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">RAG &amp; Vector Retrieval</span>
+                                        <span class="domain-subtitle">Embeddings, re-ranking &amp; adapter
+                                            inference</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-server"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">MLOps &amp; Cloud Systems</span>
+                                        <span class="domain-subtitle">K8s, Docker, Token-autoscaling &amp;
+                                            Prometheus</span>
+                                    </div>
+                                </div>
+                                <div class="domain-item">
+                                    <div class="domain-icon"><i class="fas fa-network-wired"></i></div>
+                                    <div class="domain-content">
+                                        <span class="domain-title">Automation Workflows</span>
+                                        <span class="domain-subtitle">End-to-end pipelines &amp; systems
+                                            integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Box: Location & Availability with Chennai Map -->
+                        <div class="about-card location-card">
+                            <div class="about-card-header">
+                                <span class="about-badge"><i class="fas fa-satellite-dish"></i> LOCATION &amp;
+                                    STATUS</span>
+                                <span class="location-pulse-indicator" title="Active Status">
+                                    <span class="pulse-ring"></span>
+                                    <span class="pulse-core"></span>
+                                </span>
+                            </div>
+
+                            <!-- Styled Cyber Map Preview of Chennai -->
+                            <div class="location-map-container">
+                                <img src="{{ url_for('static', filename='images/chennai_map.png') }}"
+                                    alt="Chennai, India Map" class="location-map-img" loading="lazy">
+                                <div class="location-map-overlay"></div>
+                                <div class="map-beacon" style="left: 47.6%; top: 50.1%;">
+                                    <div class="beacon-pulse"></div>
+                                    <div class="beacon-dot">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </div>
+                                    <div class="beacon-tooltip">
+                                        <span class="beacon-city">Chennai</span>
+                                        <span class="beacon-coords">13.08&deg;N, 80.27&deg;E</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="location-body">
+                                <div class="location-main">
+                                    <div class="location-pin-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div class="location-text-group">
+                                        <h4 class="location-title">Chennai, India</h4>
+                                        <span class="location-tz"><i class="far fa-clock"></i> GMT +5:30 &bull;
+                                            IST</span>
+                                    </div>
+                                </div>
+                                <div class="location-status-badge">
+                                    <i class="fas fa-globe"></i> Available for Global &amp; Remote Roles
+                                </div>
+                                <p class="location-desc">Open to production AI engineering, Edge AI optimization, and
+                                    high-impact distributed teams worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Skills Section -->
+            <section id="skills" class="scroll-reveal">
+                <h2 class="section-title">02. Technical Arsenal</h2>
+
+                <div class="skills-grid">
+                    <!-- Languages -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Languages</h3>
+                            <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-chip">Python</div>
+                            <div class="skill-chip">C++</div>
+                            <div class="skill-chip">C</div>
+                            <div class="skill-chip">Java</div>
+                            <div class="skill-chip">SQL</div>
+                            <div class="skill-chip">NoSQL</div>
+                        </div>
+                    </div>
+
+                    <!-- AI/ML Tools -->
+                    <div class="skill-category-card span-2">
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">AI/ML Tools</h3>
+                            <div class="skill-category-icon"><i class="fas fa-brain"></i></div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-chip">LangChain</div>
+                            <div class="skill-chip">Agentic AI</div>
+                            <div class="skill-chip">ReAct Agents</div>
+                            <div class="skill-chip">MCP</div>
+                            <div class="skill-chip">KV Caching</div>
+                            <div class="skill-chip">RAG</div>
+                            <div class="skill-chip">Fine-Tuning</div>
+                            <div class="skill-chip">TensorFlow</div>
+                            <div class="skill-chip">PyTorch</div>
+                            <div class="skill-chip">Keras</div>
+                            <div class="skill-chip">LiteRT</div>
+                            <div class="skill-chip">AIMET</div>
+                            <div class="skill-chip">MLFlow</div>
+                            <div class="skill-chip">Hugging Face</div>
+                            <div class="skill-chip">FAISS</div>
+                            <div class="skill-chip">SpaCy</div>
+                            <div class="skill-chip">Scikit-Learn</div>
+                            <div class="skill-chip">OpenCV</div>
+                            <div class="skill-chip">Sentence-Transformers</div>
+                            <div class="skill-chip">Quantization</div>
+                            <div class="skill-chip">Neural Networks</div>
+                            <div class="skill-chip">Deep Learning</div>
+                            <div class="skill-chip">Reinforcement Learning</div>
+                            <div class="skill-chip">MLOps</div>
+                            <div class="skill-chip">Prompt Engineering</div>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Frameworks</h3>
+                            <div class="skill-category-icon"><i class="fas fa-cubes"></i></div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-chip">Flask</div>
+                            <div class="skill-chip">FastAPI</div>
+                            <div class="skill-chip">Streamlit</div>
+                            <div class="skill-chip">Gradio</div>
+                            <div class="skill-chip">Node.js</div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & Infra -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Cloud & Infra</h3>
+                            <div class="skill-category-icon"><i class="fas fa-cloud"></i></div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-chip">AWS (S3, EKS)</div>
+                            <div class="skill-chip">Kubernetes</div>
+                            <div class="skill-chip">Docker</div>
+                            <div class="skill-chip">Azure DevOps</div>
+                            <div class="skill-chip">Prometheus</div>
+                            <div class="skill-chip">CI/CD</div>
+                            <div class="skill-chip">Koyeb</div>
+                            <div class="skill-chip">OCI</div>
+                        </div>
+                    </div>
+
+                    <!-- Other Tools -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <h3 class="skill-category-title">Other Tools</h3>
+                            <div class="skill-category-icon"><i class="fas fa-tools"></i></div>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skill-chip">Git / GitHub</div>
+                            <div class="skill-chip">Linux</div>
+                            <div class="skill-chip">MongoDB</div>
+                            <div class="skill-chip">Power BI</div>
+                            <div class="skill-chip">PlatformIO</div>
+                            <div class="skill-chip">APIs</div>
+                            <div class="skill-chip">IDE Development</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Experience Section -->
+            <section id="experience" class="scroll-reveal">
+                <h2 class="section-title">03. Where I've Worked</h2>
+
+                <div class="timeline">
+                    <div class="data-pulse"></div>
+                    <!-- Role 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">
+                            Jul 2025 - Present <span class="status-badge"><span class="pulse-dot"></span> Active</span>
+                        </div>
+                        <details class="experience-accordion">
+                            <summary class="experience-header">
+                                <div class="experience-header-left">
+                                    <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
+                                        class="company-logo">
+                                    <div>
+                                        <h3 class="timeline-title">AI/ML Engineer</h3>
+                                        <div class="timeline-company">MulticoreWare Inc.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                            </summary>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Built an AI IDE for embedded/edge hardware, integrating a quantization and
+                                        optimizer
+                                        pipeline with model graph visualization, memory layout visualization, plotting
+                                        tools, and layer-wise optimization.</li>
+                                    <li>Bridged the gap between IDE and hardware SDKs/toolchains, owning the effort
+                                        end-to-end - architecting, proposing new technologies, and implementing at the
+                                        hardware level.</li>
+                                    <li>Completely owned the development of the production-grade product, extending
+                                        multi-OS
+                                        support, testing, and monitoring releases to end-users.</li>
+                                    <li>Engineered on-device model optimization with LiteRT and AIMET quantization,
+                                        shrinking model footprint and boosting inference throughput on edge hardware.
+                                    </li>
+                                    <li>Built the MVP of an AI Playground platform end-to-end - RAG infrastructure
+                                        (embedding + re-ranking), fine-tuning job orchestration, and adapter-based
+                                        inference
+                                        modules serving multiple tenants.</li>
+                                    <li>Architected core backend systems - RBAC, JWT-based auth, and file management -
+                                        with
+                                        security and input-validation layers hardened across every service endpoint.
+                                        Handled
+                                        monetization using Stripe.</li>
+                                    <li>Deployed and scaled the platform on AWS (S3 + EKS) with Kubernetes, setting up
+                                        Prometheus monitoring and observability across microservices.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 2025 - Jun 2025</div>
+                        <details class="experience-accordion">
+                            <summary class="experience-header">
+                                <div class="experience-header-left">
+                                    <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
+                                        class="company-logo">
+                                    <div>
+                                        <h3 class="timeline-title">Junior Engineer</h3>
+                                        <div class="timeline-company">MulticoreWare Inc.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                            </summary>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Onboarded and optimized LLMs (CodeLlama-7B/13B, Codestral-22B,
+                                        Qwen2.5-Coder-32B)
+                                        for Qualcomm edge hardware in C++, enabling hardware-accelerated,
+                                        Mxfp6-quantized
+                                        inference with KV caching and layer-wise operator compatibility fixes, boosting
+                                        throughput up to 33.71 tok/s.</li>
+                                    <li>Built a high-performance C++ web server exposing LLM inference endpoints - async
+                                        processing, multi-threaded architecture, and implicit load balancing -
+                                        supporting
+                                        concurrent inference requests across multiple models.</li>
+                                    <li>Extended deployment coverage across heterogeneous environments, contributing to
+                                        OCI
+                                        cloud and edge-device-specific framework integrations spanning cloud and
+                                        on-device
+                                        targets. Worked with MLflow for tracking experiments.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Role 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jun 2024 - Dec 2024</div>
+                        <details class="experience-accordion">
+                            <summary class="experience-header">
+                                <div class="experience-header-left">
+                                    <img src="{{ url_for('static', filename='images/upraised.png') }}" alt="Upraised"
+                                        class="company-logo">
+                                    <div>
+                                        <h3 class="timeline-title">Software Development Intern (ML Team)</h3>
+                                        <div class="timeline-company">Upraised®</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                            </summary>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Designed an intelligent proctoring system using pyannote speaker diarization to
+                                        detect and flag anomalous audio patterns during assessments.</li>
+                                    <li>Built a RAG-powered backend for automated assignment generation - recruiters
+                                        could
+                                        generate role-specific tech/non-tech assignments from natural language prompts.
+                                    </li>
+                                    <li>Developed and maintained core AI platform features, integrating AI-driven
+                                        automation
+                                        to reduce manual recruiter workflows.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Role 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Feb 2023 - Oct 2023</div>
+                        <details class="experience-accordion">
+                            <summary class="experience-header">
+                                <div class="experience-header-left">
+                                    <img src="{{ url_for('static', filename='images/recruitnxt.png') }}"
+                                        alt="RecruitNXT" class="company-logo">
+                                    <div>
+                                        <h3 class="timeline-title">ML and Python Developer Intern</h3>
+                                        <div class="timeline-company">RecruitNXT</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
+                            </summary>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Designed and implemented a complete resume parsing solution from scratch,
+                                        enabling
+                                        automated extraction of key candidate information.</li>
+                                    <li>Created and annotated custom datasets, built and fine-tuned Named Entity
+                                        Recognition
+                                        (NER) models using SpaCy for precise data extraction, deploying them using
+                                        Docker.
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Projects Section -->
+            <section id="projects" class="scroll-reveal">
+                <h2 class="section-title">04. Some Things I've Built</h2>
+
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/MedicalRAGBot---RAG-based-Medical-Assistance-Chatbot"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Medical Agentic RAG</h3>
+                        <p class="project-desc">Dual-pipeline diagnostic assistant for medical-field Q/A, utilizing
+                            LangChain ReAct orchestration with Llama 3.3 70B and FAISS-based RAG with a fine-tuned
+                            FLAN-T5
+                            model.</p>
+                        <div class="project-tech">
+                            <span>RAG</span>
+                            <span>LLaMA</span>
+                            <span>FLAN-T5</span>
+                            <span>LangChain</span>
+                            <span>ReAct</span>
+                            <span>FAISS</span>
+                            <span>TF Serving</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/Spotify-Music-Recommendation-Engine"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Spotify Music Recommendation Engine</h3>
+                        <p class="project-desc">Emotion-based and custom ML algorithm-based song recommendation web
+                            application integrated with Spotify API. Built custom CNN model from scratch using
+                            TensorFlow
+                            and Keras.</p>
+                        <div class="project-tech">
+                            <span>TensorFlow</span>
+                            <span>Keras</span>
+                            <span>Cosine Similarity</span>
+                            <span>CNN</span>
+                            <span>LSTM</span>
+                            <span>Streamlit</span>
+                            <span>Spotify API</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/GlossaCompiler---Text-to-Code-for-Young-Learners"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">GlossaCompiler</h3>
+                        <p class="project-desc">Conversational AI for code assistance integrating a custom Transformer
+                            model
+                            in PyTorch. Generates executable Python code from plain English prompts via a Discord
+                            chatbot
+                            and React/Flask web app, with live compilation via Judge0.</p>
+                        <div class="project-tech">
+                            <span>PyTorch</span>
+                            <span>Transformers</span>
+                            <span>React</span>
+                            <span>Flask</span>
+                            <span>Discord API</span>
+                            <span>Judge0</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/ANPR-Application-with-PowerBI-Dashboard-and-Chatbot"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">ANPR Dashboard & Chatbot</h3>
+                        <p class="project-desc">Flask application utilizing TensorFlow Object Detection and EasyOCR to
+                            extract vehicular number plates. Stores live data in Google Sheets, visualized via a PowerBI
+                            dashboard, and features an OpenAI-powered chatbot.</p>
+                        <div class="project-tech">
+                            <span>OpenCV</span>
+                            <span>OCR</span>
+                            <span>TensorFlow</span>
+                            <span>PowerBI</span>
+                            <span>OpenAI API</span>
+                            <span>Flask</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/Streamlit-App-for-Highway-Traffic-Analysis-from-Twitter-API"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Highway Traffic Analysis</h3>
+                        <p class="project-desc">Machine Learning web app utilizing the Twitter API to fetch and analyze
+                            real-time highway traffic data. Features predictive modeling using Random Forest, Logistic
+                            Regression, and Naive Bayes Classifiers.</p>
+                        <div class="project-tech">
+                            <span>Random Forest</span>
+                            <span>Naive Bayes</span>
+                            <span>Logistic Regression</span>
+                            <span>scikit-learn</span>
+                            <span>Twitter API</span>
+                            <span>Streamlit</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon"><i class="far fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/ayushmaanFCB/Resume-and-Name-Card-Entity-Detection"
+                                    target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Resume & Namecard NER</h3>
+                        <p class="project-desc">FastAPI-Gradio application automating the hiring process by extracting
+                            entities from resumes. Features a custom NER model built with SpaCy and Doccano, data stored
+                            in
+                            MongoDB Atlas, and a querying chatbot.</p>
+                        <div class="project-tech">
+                            <span>NLP</span>
+                            <span>SpaCy</span>
+                            <span>OpenCV</span>
+                            <span>Doccano</span>
+                            <span>FastAPI</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Highlights Section -->
+            <section id="highlights" class="scroll-reveal">
+                <h2 class="section-title">05. Recognitions &amp; Certifications</h2>
+
+                <!-- Certifications Row (Bento) -->
+                <div class="certifications-container" id="certifications">
+                    <div class="certifications-header">
+                        <div class="certifications-title-group">
+                            <i class="fas fa-certificate certifications-title-icon"></i>
+                            <h3 class="certifications-title-text">Verified Certifications &amp; Credentials</h3>
+                        </div>
+                        <span class="cert-count-badge"><i class="fas fa-shield-alt"></i> 4 Verified</span>
+                    </div>
+
+                    <div class="certifications-grid">
+                        <!-- Cert 1: Oracle Agentic AI -->
+                        <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=F27361AA9DDFE8499E471C887EAEEEC847D9552E2AFA06BD1DD32C0FF46E7A45"
+                            target="_blank" rel="noopener noreferrer" class="cert-card"
+                            title="Verify Agentic AI Certified Foundations Associate on Oracle">
+                            <div class="cert-card-top">
+                                <div class="cert-icon-wrapper" title="Oracle">
+                                    <svg viewBox="0 0 32 32" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                        <path d="M21.272 22.141h-10.538c-3.338-0.07-6.017-2.793-6.017-6.141s2.679-6.071 6.011-6.141l0.007-0h10.538c0.003 0 0.007 0 0.011 0 3.391 0 6.141 2.749 6.141 6.141s-2.749 6.141-6.141 6.141c-0.004 0-0.008 0-0.012 0h0.001zM21.513 6.518h-11.022c-5.234 0.004-9.474 4.248-9.474 9.482 0 5.231 4.235 9.472 9.463 9.482h11.033c5.231-0.008 9.469-4.25 9.469-9.482s-4.238-9.474-9.468-9.482h-0.001z"/>
+                                    </svg>
+                                </div>
+                                <div class="cert-verify-badge">
+                                    <span>Verify</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="cert-card-content">
+                                <h4 class="cert-name">Agentic AI Certified Foundations Associate</h4>
+                                <div class="cert-issuer-row">
+                                    <span class="cert-issuer-name">Oracle</span>
+                                    <span class="cert-dot">&bull;</span>
+                                    <span class="cert-date">Sep 2026</span>
+                                </div>
+                                <div class="cert-id-tag">
+                                    <span class="cert-id-label">ID:</span>
+                                    <code class="cert-id-code" title="103546647AA260FA">103546647AA260FA</code>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Cert 2: Anthropic MCP -->
+                        <a href="https://verify.skilljar.com/c/bzxbzic27rug"
+                            target="_blank" rel="noopener noreferrer" class="cert-card"
+                            title="Verify Introduction to Model Context Protocol on Anthropic">
+                            <div class="cert-card-top">
+                                <div class="cert-icon-wrapper" title="Anthropic">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                        <path d="M17.304 3.541h-3.672l6.696 16.918H24Zm-10.608 0L0 20.459h3.744l1.37-3.553h7.005l1.369 3.553h3.744L10.536 3.541Zm-.371 10.223L8.616 7.82l2.291 5.945Z"/>
+                                    </svg>
+                                </div>
+                                <div class="cert-verify-badge">
+                                    <span>Verify</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="cert-card-content">
+                                <h4 class="cert-name">Introduction to Model Context Protocol</h4>
+                                <div class="cert-issuer-row">
+                                    <span class="cert-issuer-name">Anthropic</span>
+                                    <span class="cert-dot">&bull;</span>
+                                    <span class="cert-date">Jul 2026</span>
+                                </div>
+                                <div class="cert-id-tag">
+                                    <span class="cert-id-label">ID:</span>
+                                    <code class="cert-id-code" title="bzxbzic27rug">bzxbzic27rug</code>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Cert 3: Anthropic Claude Code 101 -->
+                        <a href="https://verify.skilljar.com/c/6jsbrm83wwue"
+                            target="_blank" rel="noopener noreferrer" class="cert-card"
+                            title="Verify Claude Code 101 on Anthropic">
+                            <div class="cert-card-top">
+                                <div class="cert-icon-wrapper" title="Anthropic">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                        <path d="M17.304 3.541h-3.672l6.696 16.918H24Zm-10.608 0L0 20.459h3.744l1.37-3.553h7.005l1.369 3.553h3.744L10.536 3.541Zm-.371 10.223L8.616 7.82l2.291 5.945Z"/>
+                                    </svg>
+                                </div>
+                                <div class="cert-verify-badge">
+                                    <span>Verify</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="cert-card-content">
+                                <h4 class="cert-name">Claude Code 101</h4>
+                                <div class="cert-issuer-row">
+                                    <span class="cert-issuer-name">Anthropic</span>
+                                    <span class="cert-dot">&bull;</span>
+                                    <span class="cert-date">Jul 2026</span>
+                                </div>
+                                <div class="cert-id-tag">
+                                    <span class="cert-id-label">ID:</span>
+                                    <code class="cert-id-code" title="6jsbrm83wwue">6jsbrm83wwue</code>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Cert 4: Great Learning Docker -->
+                        <a href="https://www.mygreatlearning.com/certificate/FFJQPNYN"
+                            target="_blank" rel="noopener noreferrer" class="cert-card"
+                            title="Verify Docker for Intermediate Level on Great Learning">
+                            <div class="cert-card-top">
+                                <div class="cert-icon-wrapper" title="Great Learning">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                        <path d="M14.373 0c-6.617 0-12 5.383-12 12s5.383 12 12 12h.856c.958-1.175 1.911-2.354 2.867-3.531h-3.723c-4.669 0-8.469-3.8-8.469-8.469 0-4.67 3.8-8.469 8.469-8.469h4.375L21.615 0Zm3.723 20.469 3.531-4.354v-6.013h-7.502l-2.861 3.533h6.832z"/>
+                                    </svg>
+                                </div>
+                                <div class="cert-verify-badge">
+                                    <span>Verify</span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="cert-card-content">
+                                <h4 class="cert-name">Docker for Intermediate Level</h4>
+                                <div class="cert-issuer-row">
+                                    <span class="cert-issuer-name">Great Learning</span>
+                                    <span class="cert-dot">&bull;</span>
+                                    <span class="cert-date">Sep 2023</span>
+                                </div>
+                                <div class="cert-id-tag">
+                                    <span class="cert-id-label">ID:</span>
+                                    <code class="cert-id-code" title="FFJQPNYN">FFJQPNYN</code>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
-                <div class="reveal-on-type" style="animation-delay: 0.4s;">
-                    <div class="hero-image">
-                        <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Hero Image">
-                    </div>
-                </div>
-            </div>
-            <a href="#about" class="scroll-indicator reveal-on-type" style="animation-delay: 0.5s;">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </section>
 
-        <!-- About Section -->
-        <section id="about" class="scroll-reveal">
-            <h2 class="section-title">01. About Me</h2>
-            <div class="about-content">
-                <div class="about-text" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8;">
-                    <p>I build AI systems that ship - from low-level model optimization on edge hardware to full-stack
-                        AI
-                        platforms serving real customers in production. My engineering focus spans building end-to-end
-                        MLOps pipelines, designing robust RAG architectures (embedding, re-ranking, retrieval),
-                        executing fine-tuning orchestration, and deploying multi-tenant adapter inference engines. I
-                        care just as much about the infrastructure layer as the models themselves. Using tools like AWS,
-                        Kubernetes, and Docker, I architect scalable backends featuring Stripe-based billing,
-                        LLM-token-based autoscaling, secure RBAC authentication, and comprehensive Prometheus
-                        observability to ensure production-grade reliability.</p>
-                    <br>
-                    <p>On the systems programming side, I write high-performance C++ for custom inference servers,
-                        leveraging asynchronous multi-threading and optimized KV Caching (achieving up to 33.71 tok/s).
-                        My expertise in Edge AI allows me to push hardware boundaries using state-of-the-art
-                        quantization and calibration techniques like LiteRT and AIMET. I recently applied these
-                        principles to architect an end-to-end AI-enabled IDE for embedded systems - featuring
-                        comprehensive model-optimization pipelines that take neural networks from raw import to
-                        hardware-ready deployment, alongside custom tooling like model visualizers, latency estimators,
-                        and debug dashboards.</p>
-                    <br>
-                    <p>Outside of my core engineering roles, I actively research and implement Agentic AI workflows,
-                        focusing on frameworks like LangChain, ReAct Agents, and the Model Context Protocol (MCP). My
-                        recent personal projects include a dual-pipeline medical diagnostic assistant combining fixed
-                        RAG with dynamic reasoning agents, and an emotion-aware Spotify recommendation engine driven by
-                        custom neural networks and LSTM-based generation. I graduated as the Founder Chancellor's Gold
-                        Medalist for my
-                        B.Tech in AI & ML, and I am always excited to tackle complex engineering challenges or talk shop
-                        on modern AI architecture.</p>
-                    <br>
-                    <p>Additionally, I am a <a href="#publications"
-                            style="color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent);">3x
-                            published book chapter author</a>, with peer-reviewed contributions in the fields of Artificial Intelligence and Machine Learning.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="scroll-reveal">
-            <h2 class="section-title">02. Technical Arsenal</h2>
-
-            <div class="skills-grid">
-                <!-- Languages -->
-                <div class="skill-category-card">
-                    <h3 class="skill-category-title">Languages</h3>
-                    <div class="skills-container">
-                        <div class="skill-chip">Python</div>
-                        <div class="skill-chip">C++</div>
-                        <div class="skill-chip">C</div>
-                        <div class="skill-chip">Java</div>
-                        <div class="skill-chip">SQL</div>
-                        <div class="skill-chip">NoSQL</div>
-                    </div>
-                </div>
-
-                <!-- AI/ML Tools -->
-                <div class="skill-category-card span-2">
-                    <h3 class="skill-category-title">AI/ML Tools</h3>
-                    <div class="skills-container">
-                        <div class="skill-chip">LangChain</div>
-                        <div class="skill-chip">Agentic AI</div>
-                        <div class="skill-chip">ReAct Agents</div>
-                        <div class="skill-chip">MCP</div>
-                        <div class="skill-chip">KV Caching</div>
-                        <div class="skill-chip">RAG</div>
-                        <div class="skill-chip">Fine-Tuning</div>
-                        <div class="skill-chip">TensorFlow</div>
-                        <div class="skill-chip">PyTorch</div>
-                        <div class="skill-chip">Keras</div>
-                        <div class="skill-chip">LiteRT</div>
-                        <div class="skill-chip">AIMET</div>
-                        <div class="skill-chip">MLFlow</div>
-                        <div class="skill-chip">Hugging Face</div>
-                        <div class="skill-chip">FAISS</div>
-                        <div class="skill-chip">SpaCy</div>
-                        <div class="skill-chip">Scikit-Learn</div>
-                        <div class="skill-chip">OpenCV</div>
-                        <div class="skill-chip">Sentence-Transformers</div>
-                        <div class="skill-chip">Quantization</div>
-                        <div class="skill-chip">Neural Networks</div>
-                        <div class="skill-chip">Deep Learning</div>
-                        <div class="skill-chip">Reinforcement Learning</div>
-                        <div class="skill-chip">MLOps</div>
-                        <div class="skill-chip">Prompt Engineering</div>
-                    </div>
-                </div>
-
-                <!-- Frameworks -->
-                <div class="skill-category-card">
-                    <h3 class="skill-category-title">Frameworks</h3>
-                    <div class="skills-container">
-                        <div class="skill-chip">Flask</div>
-                        <div class="skill-chip">FastAPI</div>
-                        <div class="skill-chip">Streamlit</div>
-                        <div class="skill-chip">Gradio</div>
-                        <div class="skill-chip">Node.js</div>
-                    </div>
-                </div>
-
-                <!-- Cloud & Infra -->
-                <div class="skill-category-card">
-                    <h3 class="skill-category-title">Cloud & Infra</h3>
-                    <div class="skills-container">
-                        <div class="skill-chip">AWS (S3, EKS)</div>
-                        <div class="skill-chip">Kubernetes</div>
-                        <div class="skill-chip">Docker</div>
-                        <div class="skill-chip">Azure DevOps</div>
-                        <div class="skill-chip">Prometheus</div>
-                        <div class="skill-chip">CI/CD</div>
-                        <div class="skill-chip">Koyeb</div>
-                        <div class="skill-chip">OCI</div>
-                    </div>
-                </div>
-
-                <!-- Other Tools -->
-                <div class="skill-category-card">
-                    <h3 class="skill-category-title">Other Tools</h3>
-                    <div class="skills-container">
-                        <div class="skill-chip">Git / GitHub</div>
-                        <div class="skill-chip">Linux</div>
-                        <div class="skill-chip">MongoDB</div>
-                        <div class="skill-chip">Power BI</div>
-                        <div class="skill-chip">PlatformIO</div>
-                        <div class="skill-chip">APIs</div>
-                        <div class="skill-chip">IDE Development</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="scroll-reveal">
-            <h2 class="section-title">03. Where I've Worked</h2>
-
-            <div class="timeline">
-                <div class="data-pulse"></div>
-                <!-- Role 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-date">Jul 2025 - Present</div>
-                    <details class="experience-accordion">
-                        <summary class="experience-header">
-                            <div class="experience-header-left">
-                                <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
-                                    class="company-logo">
+                <div class="highlights-grid">
+                    <!-- Achievements Column -->
+                    <div class="highlights-column">
+                        <h3 class="highlight-title">Achievements</h3>
+                        <ul class="highlight-list">
+                            <li>
+                                <i class="fas fa-trophy"></i>
                                 <div>
-                                    <h3 class="timeline-title">Software Engineer</h3>
-                                    <div class="timeline-company">MulticoreWare Inc.</div>
+                                    <h4>Spot Award</h4>
+                                    <p>MulticoreWare · 2026<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Recognized for
+                                            exceptional
+                                            ownership, technical proficiency, and a proactive problem-solving approach
+                                            leading to smooth, timely feature deliveries.</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-medal"></i>
+                                <div>
+                                    <h4>Gold Medal for Best Outgoing Student</h4>
+                                    <p>SRIHER, Chennai · 2025<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Awarded for
+                                            outstanding
+                                            academic performance and achieving the highest CGPA in the graduating
+                                            cohort.</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-award"></i>
+                                <div>
+                                    <h4>Research Day Winner (Best Paper Presentation)</h4>
+                                    <p>SRIHER, Chennai · 2024<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Won top honors for
+                                            presenting an emotion-based music recommendation engine integrated with the
+                                            Spotify API.</span></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Publications Column -->
+                    <div class="highlights-column" id="publications">
+                        <h3 class="highlight-title">Publications</h3>
+                        <ul class="highlight-list">
+                            <li>
+                                <i class="fas fa-book-open"></i>
+                                <div>
+                                    <h4>Composite AI-Driven Music Recommendation <a
+                                            href="https://onlinelibrary.wiley.com/doi/abs/10.1002/9781394393060.ch10"
+                                            target="_blank"
+                                            style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                                class="fas fa-external-link-alt"></i></a></h4>
+                                    <p>Wiley · May 2026<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Composite Artificial
+                                            Intelligence: Fundamentals, Challenges, and Applications</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-book-open"></i>
+                                <div>
+                                    <h4>Streaming Highway Traffic Alerts using Twitter API <a
+                                            href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781032630212-14/streaming-highway-traffic-alerts-using-twitter-api-jayanthi-ganapathy-ramya-mohanakrishnan-ayushmaan-das-fausto-pedro-garcia-marque"
+                                            target="_blank"
+                                            style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                                class="fas fa-external-link-alt"></i></a></h4>
+                                    <p>Taylor & Francis Group · 2024<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Advancement of Data
+                                            Processing Methods for Artificial and Computing Intelligence</span></p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-book-open"></i>
+                                <div>
+                                    <h4>Disseminating Dynamic Traffic Information for Sustainable Mobility <a
+                                            href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003409502-8/disseminating-dynamic-traffic-information-sustainable-mobility-transport-jayanthi-ganapathy-thanushram-sureshkumar-ambati-renuka-vamsi-krishna-ayushmaan-das"
+                                            target="_blank"
+                                            style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
+                                                class="fas fa-external-link-alt"></i></a></h4>
+                                    <p>Taylor & Francis Group · 2024<br><span
+                                            style="font-size: 0.85rem; color: var(--text-muted);">Artificial
+                                            Intelligence
+                                            and Machine Learning for Smart Community</span></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section scroll-reveal">
+                <h2 class="section-title">06. What's Next?</h2>
+
+                <div class="contact-card">
+                    <!-- Ambient Cyber Glow Backdrop -->
+                    <div class="contact-ambient-glow"></div>
+
+                    <div class="contact-grid">
+                        <!-- Left Column: Narrative & Interactive Quick Connect Chips -->
+                        <div class="contact-info-col">
+                            <h3 class="contact-title">Let's build something impactful together</h3>
+
+                            <p class="contact-desc">
+                                I am actively open to production AI/ML engineering roles, Edge AI inference
+                                optimization, and scalable backend infrastructure projects. Whether you have a
+                                challenging engineering problem or want to talk shop on modern AI systems, feel free to
+                                reach out.
+                            </p>
+
+                            <!-- 1-Click Interactive Copy / Connect Chips -->
+                            <div class="contact-chips-wrap">
+                                <button type="button" class="contact-chip copy-chip" data-copy="dasayush5maan@gmail.com"
+                                    title="Click to copy email">
+                                    <i class="fas fa-envelope chip-icon"></i>
+                                    <span class="chip-label">dasayush5maan@gmail.com</span>
+                                    <i class="far fa-copy copy-icon"></i>
+                                    <span class="copied-feedback">Copied!</span>
+                                </button>
+
+                                <button type="button" class="contact-chip copy-chip" data-copy="+918145328571"
+                                    title="Click to copy phone number">
+                                    <i class="fas fa-phone-alt chip-icon"></i>
+                                    <span class="chip-label">+91 81453 28571</span>
+                                    <i class="far fa-copy copy-icon"></i>
+                                    <span class="copied-feedback">Copied!</span>
+                                </button>
+
+                                <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                                    class="contact-chip" title="Visit GitHub Profile">
+                                    <i class="fab fa-github chip-icon"></i>
+                                    <span class="chip-label">github.com/ayushmaanFCB</span>
+                                    <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"
+                                    rel="noopener noreferrer" class="contact-chip" title="Connect on LinkedIn">
+                                    <i class="fab fa-linkedin-in chip-icon"></i>
+                                    <span class="chip-label">linkedin.com/in/ayushmaan-das</span>
+                                    <i class="fas fa-arrow-up-right-from-square ext-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Primary High-Energy Action Buttons -->
+                        <div class="contact-actions-col">
+                            <a href="https://wa.me/918145328571" target="_blank" rel="noopener noreferrer"
+                                class="contact-action-btn action-whatsapp">
+                                <div class="action-icon-wrap"><i class="fab fa-whatsapp"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Chat on WhatsApp</span>
+                                    <span class="action-sub">+91 81453 28571 &bull; Online</span>
+                                </div>
+                                <i class="fas fa-arrow-right action-arrow"></i>
+                            </a>
+
+                            <a href="mailto:dasayush5maan@gmail.com" class="contact-action-btn action-email">
+                                <div class="action-icon-wrap"><i class="fas fa-paper-plane"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Send Direct Email</span>
+                                    <span class="action-sub">dasayush5maan@gmail.com</span>
+                                </div>
+                                <i class="fas fa-arrow-right action-arrow"></i>
+                            </a>
+
+                            <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                                class="contact-action-btn action-resume open-resume-modal" title="View Resume">
+                                <div class="action-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">View / Download Resume</span>
+                                    <span class="action-sub">Updated &bull; PDF Format</span>
+                                </div>
+                                <i class="fas fa-arrow-up-right-from-square action-arrow"></i>
+                            </a>
+
+                            <a href="https://discordapp.com/users/755447086476165172" target="_blank"
+                                rel="noopener noreferrer" class="contact-action-btn action-discord"
+                                title="Connect on Discord">
+                                <div class="action-icon-wrap"><i class="fab fa-discord"></i></div>
+                                <div class="action-text">
+                                    <span class="action-label">Connect on Discord</span>
+                                    <span class="action-sub">Direct Message &bull; Online</span>
+                                </div>
+                                <i class="fas fa-arrow-up-right-from-square action-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-meta">
+                    <p class="footer-author">Designed &amp; Engineered by <span class="footer-name">Ayushmaan Das</span>
+                    </p>
+                    <p class="footer-copy">&copy; 2026 Ayushmaan Das. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-social-links">
+                        <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://discordapp.com/users/755447086476165172" target="_blank"
+                            rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:dasayush5maan@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
+                    </div>
+                    <button type="button" id="scroll-to-top" class="scroll-top-btn" title="Back to top"
+                        aria-label="Back to top">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>TOP</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Interactive Resume Modal -->
+        <div id="resume-modal" class="resume-modal-overlay" aria-hidden="true" role="dialog"
+            aria-labelledby="resume-modal-title">
+            <div class="resume-modal-backdrop"></div>
+            <div class="resume-modal-dialog">
+                <!-- Sticky Header -->
+                <div class="resume-modal-header">
+                    <div class="resume-modal-header-left">
+                        <div class="resume-badge">
+                            <span class="resume-badge-dot"></span>
+                            <i class="fas fa-file-pdf"></i>
+                            <span>OFFICIAL RESUME</span>
+                        </div>
+                    </div>
+
+                    <!-- Modal Actions (Download, Open PDF to Print/View, Close) placed directly on the right -->
+                    <div class="resume-modal-actions">
+                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
+                            download="Ayushmaan_Das_Resume.pdf" class="resume-action-btn resume-btn-primary"
+                            title="Download PDF to device">
+                            <i class="fas fa-download"></i>
+                            <span>Download PDF</span>
+                        </a>
+                        <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank"
+                            rel="noopener noreferrer" class="resume-action-btn resume-btn-icon"
+                            title="Open actual PDF (Print / View in new tab)"
+                            aria-label="Open actual PDF to print or view">
+                            <i class="fas fa-print"></i>
+                        </a>
+                        <button type="button" class="resume-modal-close" aria-label="Close resume modal"
+                            title="Close (Esc)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body with Scroll -->
+                <div class="resume-modal-body">
+                    <div class="resume-bento-container">
+                        <!-- Hero Header Card -->
+                        <div class="resume-bento-card resume-hero-card">
+                            <div class="resume-hero-main">
+                                <div class="resume-hero-text">
+                                    <h1 class="r-hero-name">Ayushmaan Das</h1>
+                                    <p class="r-hero-title">AI/ML Engineer &amp; Software Developer</p>
+                                    <div class="r-hero-pills">
+                                        <span class="r-hero-pill">LLMs</span>
+                                        <span class="r-hero-pill">RAG</span>
+                                        <span class="r-hero-pill">Agentic AI</span>
+                                        <span class="r-hero-pill">Edge AI</span>
+                                        <span class="r-hero-pill">MLOps</span>
+                                    </div>
+                                </div>
+                                <div class="r-hero-contacts">
+                                    <a href="tel:+918145328571" class="r-contact-chip">
+                                        <i class="fas fa-phone-alt"></i> <span>+91-8145328571</span>
+                                    </a>
+                                    <a href="mailto:dasayush5maan@gmail.com" class="r-contact-chip">
+                                        <i class="fas fa-envelope"></i> <span>dasayush5maan@gmail.com</span>
+                                    </a>
+                                    <a href="https://github.com/ayushmaanFCB" target="_blank" rel="noopener noreferrer"
+                                        class="r-contact-chip">
+                                        <i class="fab fa-github"></i> <span>ayushmaanFCB</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"
+                                        rel="noopener noreferrer" class="r-contact-chip">
+                                        <i class="fab fa-linkedin-in"></i> <span>ayushmaan-das</span>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
-                        </summary>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Built an AI IDE for embedded/edge hardware, integrating a quantization and optimizer
-                                    pipeline with model graph visualization, memory layout visualization, plotting
-                                    tools, and layer-wise optimization.</li>
-                                <li>Bridged the gap between IDE and hardware SDKs/toolchains, owning the effort
-                                    end-to-end - architecting, proposing new technologies, and implementing at the
-                                    hardware level.</li>
-                                <li>Completely owned the development of the production-grade product, extending multi-OS
-                                    support, testing, and monitoring releases to end-users.</li>
-                                <li>Engineered on-device model optimization with LiteRT and AIMET quantization,
-                                    shrinking model footprint and boosting inference throughput on edge hardware.</li>
-                                <li>Built the MVP of an AI Playground platform end-to-end - RAG infrastructure
-                                    (embedding + re-ranking), fine-tuning job orchestration, and adapter-based inference
-                                    modules serving multiple tenants.</li>
-                                <li>Architected core backend systems - RBAC, JWT-based auth, and file management - with
-                                    security and input-validation layers hardened across every service endpoint. Handled
-                                    monetization using Stripe.</li>
-                                <li>Deployed and scaled the platform on AWS (S3 + EKS) with Kubernetes, setting up
-                                    Prometheus monitoring and observability across microservices.</li>
-                            </ul>
                         </div>
-                    </details>
-                </div>
 
-                <!-- Role 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-date">Jan 2025 - Jun 2025</div>
-                    <details class="experience-accordion">
-                        <summary class="experience-header">
-                            <div class="experience-header-left">
-                                <img src="{{ url_for('static', filename='images/mcw.png') }}" alt="MulticoreWare"
-                                    class="company-logo">
-                                <div>
-                                    <h3 class="timeline-title">Junior Engineer</h3>
-                                    <div class="timeline-company">MulticoreWare Inc.</div>
+                        <!-- Education Bento Card -->
+                        <div class="resume-bento-card resume-edu-card">
+                            <div class="r-card-header">
+                                <span class="r-badge-pill"><i class="fas fa-graduation-cap"></i> EDUCATION</span>
+                                <span class="r-time-pill">2021 - 2025</span>
+                            </div>
+                            <div class="r-edu-content">
+                                <h3 class="r-inst-title">Sri Ramachandra Faculty of Engineering and Technology, SRIHER
+                                </h3>
+                                <div class="r-edu-meta">
+                                    <span class="r-degree-text">B.Tech Computer Science and Engineering (Artificial
+                                        Intelligence and Machine Learning)</span>
+                                    <span class="r-cgpa-badge"><i class="fas fa-star"></i> CGPA: 9.91</span>
                                 </div>
                             </div>
-                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
-                        </summary>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Onboarded and optimized LLMs (CodeLlama-7B/13B, Codestral-22B, Qwen2.5-Coder-32B)
-                                    for Qualcomm edge hardware in C++, enabling hardware-accelerated, Mxfp6-quantized
-                                    inference with KV caching and layer-wise operator compatibility fixes, boosting
-                                    throughput up to 33.71 tok/s.</li>
-                                <li>Built a high-performance C++ web server exposing LLM inference endpoints - async
-                                    processing, multi-threaded architecture, and implicit load balancing - supporting
-                                    concurrent inference requests across multiple models.</li>
-                                <li>Extended deployment coverage across heterogeneous environments, contributing to OCI
-                                    cloud and edge-device-specific framework integrations spanning cloud and on-device
-                                    targets. Worked with MLflow for tracking experiments.</li>
-                            </ul>
                         </div>
-                    </details>
-                </div>
 
-                <!-- Role 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-date">Jun 2024 - Dec 2024</div>
-                    <details class="experience-accordion">
-                        <summary class="experience-header">
-                            <div class="experience-header-left">
-                                <img src="{{ url_for('static', filename='images/upraised.png') }}" alt="Upraised"
-                                    class="company-logo">
-                                <div>
-                                    <h3 class="timeline-title">Software Development Intern (ML Team)</h3>
-                                    <div class="timeline-company">Upraised®</div>
+                        <!-- Experience Bento Group -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-briefcase"></i> EXPERIENCE</div>
+
+                            <!-- MulticoreWare Inc. -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">MulticoreWare Inc.</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-map-marker-alt"></i> Chennai
+                                            (On-site)</span>
+                                    </div>
+                                </div>
+
+                                <!-- AI/ML Engineer -->
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">AI/ML Engineer</span>
+                                        <span class="r-time-pill">July 2025 - Present</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Developed an embedded-systems IDE to build, run, and flash firmware on
+                                            customer-specific boards, with an AI Pipeline for import, pre-check,
+                                            calibration, and quantization; Model Visualizer, Graphs, Memory Estimator,
+                                            Model Zoo, Latency Estimator, Debug Dashboards, Power Consumption, AI
+                                            Embedding, and SDK code generation tools</li>
+                                        <li>Built AI Playground (RAG: embedding + re-ranking, Fine-tuning, multi-tenant
+                                            Adapter Inference); live in production on AWS (S3, EKS)/Kubernetes with
+                                            Prometheus, LLM-token pod autoscaling, Stripe billing</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Junior Engineer -->
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Junior Engineer</span>
+                                        <span class="r-time-pill">January 2025 - June 2025</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Enabled coding-assistant LLMs (CodeLlama-7B/13B, Codestral-22B,
+                                            Qwen2.5-Coder-32B, Mxfp6-quantized) to run on Edge AI based Qualcomm
+                                            hardware (C++); built async Inference Server with Load Balancing, improved
+                                            performance by supporting KV Caching (results up to 33.71 tok/s), LiteRT,
+                                            AIMET quantization, MLFlow experiments</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
-                        </summary>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Designed an intelligent proctoring system using pyannote speaker diarization to
-                                    detect and flag anomalous audio patterns during assessments.</li>
-                                <li>Built a RAG-powered backend for automated assignment generation - recruiters could
-                                    generate role-specific tech/non-tech assignments from natural language prompts.</li>
-                                <li>Developed and maintained core AI platform features, integrating AI-driven automation
-                                    to reduce manual recruiter workflows.</li>
-                            </ul>
-                        </div>
-                    </details>
-                </div>
 
-                <!-- Role 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-date">Feb 2023 - Oct 2023</div>
-                    <details class="experience-accordion">
-                        <summary class="experience-header">
-                            <div class="experience-header-left">
-                                <img src="{{ url_for('static', filename='images/recruitnxt.png') }}" alt="RecruitNXT"
-                                    class="company-logo">
-                                <div>
-                                    <h3 class="timeline-title">ML and Python Developer Intern</h3>
-                                    <div class="timeline-company">RecruitNXT</div>
+                            <!-- Upraised (JobStop Inc.) -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">Upraised (JobStop Inc.)</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-globe"></i> Remote</span>
+                                    </div>
+                                    <span class="r-time-pill">June 2024 - December 2024</span>
+                                </div>
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Software Development Intern (ML Team)</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Built a RAG-powered backend to auto-generate assessments from prompts, and
+                                            an AI proctoring system with Pyannote speaker diarization flagging anomalous
+                                            audio; used Transformers, Hugging Face, Azure DevOps</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="accordion-icon"><i class="fas fa-chevron-down"></i></div>
-                        </summary>
-                        <div class="timeline-content">
-                            <ul>
-                                <li>Designed and implemented a complete resume parsing solution from scratch, enabling
-                                    automated extraction of key candidate information.</li>
-                                <li>Created and annotated custom datasets, built and fine-tuned Named Entity Recognition
-                                    (NER) models using SpaCy for precise data extraction, deploying them using Docker.
-                                </li>
-                            </ul>
+
+                            <!-- RecruitNXT -->
+                            <div class="resume-bento-card resume-exp-card">
+                                <div class="r-card-header">
+                                    <div class="r-comp-title-group">
+                                        <h3 class="r-comp-name">RecruitNXT</h3>
+                                        <span class="r-loc-tag"><i class="fas fa-globe"></i> Remote</span>
+                                    </div>
+                                    <span class="r-time-pill">February 2023 - November 2023</span>
+                                </div>
+                                <div class="r-role-subbox">
+                                    <div class="r-role-header">
+                                        <span class="r-role-badge">Python Developer and ML Intern</span>
+                                    </div>
+                                    <ul class="r-bullet-list">
+                                        <li>Designed a resume-parsing pipeline from scratch, building and annotating
+                                            datasets to train SpaCy-based NER models for candidate data extraction, and
+                                            containerized it with Docker for production deployment</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </details>
+
+                        <!-- Personal Projects (2-Column Bento Grid) -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-layer-group"></i> PERSONAL PROJECTS</div>
+                            <div class="r-projects-bento-grid">
+                                <!-- Project 1 -->
+                                <div class="resume-bento-card r-project-card">
+                                    <div class="r-card-header">
+                                        <h3 class="r-proj-title"><i class="far fa-folder-open"></i> Medical Agentic RAG
+                                        </h3>
+                                        <span class="r-time-pill">2026</span>
+                                    </div>
+                                    <p class="r-proj-desc">Dual-pipeline diagnostic assistant for Medical-field related
+                                        Q/A: fixed RAG vs. LangChain ReAct agentic orchestration</p>
+                                    <ul class="r-bullet-list">
+                                        <li>LangChain ReAct agent (Llama 3.3 70B), FAISS-based RAG with fine-tuned
+                                            FLAN-T5, Dockerized BERT classifier</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Project 2 -->
+                                <div class="resume-bento-card r-project-card">
+                                    <div class="r-card-header">
+                                        <h3 class="r-proj-title"><i class="far fa-folder-open"></i> Spotify Music
+                                            Recommendation Engine</h3>
+                                        <span class="r-time-pill">2025</span>
+                                    </div>
+                                    <p class="r-proj-desc">Emotion-based (using CNN) and custom ML algorithm-based song
+                                        recommendation web application integrated with Spotify</p>
+                                    <ul class="r-bullet-list">
+                                        <li>Custom CNN model from scratch using TensorFlow and Keras; Cosine Similarity,
+                                            Streamlit, Spotify API (playlists)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills and Interests Bento Card -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-code"></i> SKILLS AND INTERESTS</div>
+                            <div class="resume-bento-card r-skills-box">
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Languages:</span>
+                                    <span class="r-skill-val">Python, C++, C, Java, SQL, NoSQL</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">AI/ML Tools:</span>
+                                    <span class="r-skill-val">LangChain, Agentic AI, ReAct Agents, MCP (Model Context
+                                        Protocol), KV Caching, RAG, Fine-Tuning, TensorFlow, Keras, PyTorch,
+                                        Scikit-Learn, OpenCV, Hugging Face, SpaCy, FAISS, Sentence-Transformers, LiteRT,
+                                        Quantization, AIMET, MLFlow, Neural Networks, Deep Learning, Reinforcement
+                                        Learning, MLOps, Prompt Engineering</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Frameworks:</span>
+                                    <span class="r-skill-val">Flask, FastAPI, Streamlit, Gradio</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Cloud &amp; Infra:</span>
+                                    <span class="r-skill-val">AWS (S3, EKS), Azure DevOps, OCI, Kubernetes, Docker,
+                                        Prometheus, Koyeb, CI/CD</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Other Tools:</span>
+                                    <span class="r-skill-val">Power BI, Git, GitHub, Linux, MongoDB, APIs, PlatformIO,
+                                        IDE Development</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Certifications:</span>
+                                    <span class="r-skill-val">Agentic AI Foundations Associate (Oracle), Claude Code
+                                        &amp; MCPs (Anthropic), Docker (Great Learning)</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Soft Skills:</span>
+                                    <span class="r-skill-val">Communication, Problem Solving, Critical Thinking, Time
+                                        Management, Leadership, Creativity</span>
+                                </div>
+                                <div class="r-skill-row">
+                                    <span class="r-skill-cat">Linguistics:</span>
+                                    <span class="r-skill-val">English (Conversational, Read &amp; Write), Hindi &amp;
+                                        Bengali (Native, Bilingual)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements Bento Card -->
+                        <div class="resume-bento-group">
+                            <div class="r-group-title"><i class="fas fa-trophy"></i> ACHIEVEMENTS</div>
+                            <div class="resume-bento-card r-achievements-box">
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Composite AI: Fundamentals, Challenges, and Applications
+                                            (Chapter 10)</span>
+                                    </div>
+                                    <span class="r-time-pill">2026</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-award r-achieve-icon"></i>
+                                        <span>Spot Award (MulticoreWare Inc.) for outstanding delivery, ownership and
+                                            reliability</span>
+                                    </div>
+                                    <span class="r-time-pill">2026</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-medal r-achieve-icon medal-gold"></i>
+                                        <span>Founder Chancellor Gold Medal (SRIHER) for Best Outgoing Student</span>
+                                    </div>
+                                    <span class="r-time-pill">2025</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Artificial Intelligence and Machine Learning for Smart
+                                            Community</span>
+                                    </div>
+                                    <span class="r-time-pill">2024</span>
+                                </div>
+                                <div class="r-achieve-item">
+                                    <div class="r-achieve-left">
+                                        <i class="fas fa-book-open r-achieve-icon"></i>
+                                        <span>Book Chapter in Advancement of Data Processing Methods for Artificial
+                                            &amp; Computing Intelligence</span>
+                                    </div>
+                                    <span class="r-time-pill">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="resume-modal-footer">
+                    <span class="resume-modal-footer-tip"><i class="fas fa-history"></i> Last updated on November
+                        2026</span>
+                    <div class="resume-modal-footer-btns">
+                        <button type="button" class="resume-action-btn resume-btn-secondary resume-close-btn-bottom">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="scroll-reveal">
-            <h2 class="section-title">04. Some Things I've Built</h2>
-
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/MedicalRAGBot---RAG-based-Medical-Assistance-Chatbot"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Medical Agentic RAG</h3>
-                    <p class="project-desc">Dual-pipeline diagnostic assistant for medical-field Q/A, utilizing
-                        LangChain ReAct orchestration with Llama 3.3 70B and FAISS-based RAG with a fine-tuned FLAN-T5
-                        model.</p>
-                    <div class="project-tech">
-                        <span>RAG</span>
-                        <span>LLaMA</span>
-                        <span>FLAN-T5</span>
-                        <span>LangChain</span>
-                        <span>ReAct</span>
-                        <span>FAISS</span>
-                        <span>TF Serving</span>
-                        <span>Docker</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/Spotify-Music-Recommendation-Engine"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Spotify Music Recommendation Engine</h3>
-                    <p class="project-desc">Emotion-based and custom ML algorithm-based song recommendation web
-                        application integrated with Spotify API. Built custom CNN model from scratch using TensorFlow
-                        and Keras.</p>
-                    <div class="project-tech">
-                        <span>TensorFlow</span>
-                        <span>Keras</span>
-                        <span>Cosine Similarity</span>
-                        <span>CNN</span>
-                        <span>LSTM</span>
-                        <span>Streamlit</span>
-                        <span>Spotify API</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/GlossaCompiler---Text-to-Code-for-Young-Learners"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">GlossaCompiler</h3>
-                    <p class="project-desc">Conversational AI for code assistance integrating a custom Transformer model
-                        in PyTorch. Generates executable Python code from plain English prompts via a Discord chatbot
-                        and React/Flask web app, with live compilation via Judge0.</p>
-                    <div class="project-tech">
-                        <span>PyTorch</span>
-                        <span>Transformers</span>
-                        <span>React</span>
-                        <span>Flask</span>
-                        <span>Discord API</span>
-                        <span>Judge0</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/ANPR-Application-with-PowerBI-Dashboard-and-Chatbot"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">ANPR Dashboard & Chatbot</h3>
-                    <p class="project-desc">Flask application utilizing TensorFlow Object Detection and EasyOCR to
-                        extract vehicular number plates. Stores live data in Google Sheets, visualized via a PowerBI
-                        dashboard, and features an OpenAI-powered chatbot.</p>
-                    <div class="project-tech">
-                        <span>OpenCV</span>
-                        <span>OCR</span>
-                        <span>TensorFlow</span>
-                        <span>PowerBI</span>
-                        <span>OpenAI API</span>
-                        <span>Flask</span>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/Streamlit-App-for-Highway-Traffic-Analysis-from-Twitter-API"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Highway Traffic Analysis</h3>
-                    <p class="project-desc">Machine Learning web app utilizing the Twitter API to fetch and analyze
-                        real-time highway traffic data. Features predictive modeling using Random Forest, Logistic
-                        Regression, and Naive Bayes Classifiers.</p>
-                    <div class="project-tech">
-                        <span>Random Forest</span>
-                        <span>Naive Bayes</span>
-                        <span>Logistic Regression</span>
-                        <span>scikit-learn</span>
-                        <span>Twitter API</span>
-                        <span>Streamlit</span>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon"><i class="far fa-folder-open"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushmaanFCB/Resume-and-Name-Card-Entity-Detection"
-                                target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Resume & Namecard NER</h3>
-                    <p class="project-desc">FastAPI-Gradio application automating the hiring process by extracting
-                        entities from resumes. Features a custom NER model built with SpaCy and Doccano, data stored in
-                        MongoDB Atlas, and a querying chatbot.</p>
-                    <div class="project-tech">
-                        <span>NLP</span>
-                        <span>SpaCy</span>
-                        <span>OpenCV</span>
-                        <span>Doccano</span>
-                        <span>FastAPI</span>
-                        <span>MongoDB</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Highlights Section -->
-        <section id="highlights" class="scroll-reveal">
-            <h2 class="section-title">05. Recognitions & Research</h2>
-            <div class="highlights-grid">
-                <!-- Achievements Column -->
-                <div class="highlights-column">
-                    <h3 class="highlight-title">Achievements</h3>
-                    <ul class="highlight-list">
-                        <li>
-                            <i class="fas fa-trophy"></i>
-                            <div>
-                                <h4>Spot Award</h4>
-                                <p>MulticoreWare · 2026<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Recognized for exceptional
-                                        ownership, technical proficiency, and a proactive problem-solving approach
-                                        leading to smooth, timely feature deliveries.</span></p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-medal"></i>
-                            <div>
-                                <h4>Gold Medal for Best Outgoing Student</h4>
-                                <p>SRIHER, Chennai · 2025<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Awarded for outstanding
-                                        academic performance and achieving the highest CGPA in the graduating
-                                        cohort.</span></p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-award"></i>
-                            <div>
-                                <h4>Research Day Winner (Best Paper Presentation)</h4>
-                                <p>SRIHER, Chennai · 2024<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Won top honors for
-                                        presenting an emotion-based music recommendation engine integrated with the
-                                        Spotify API.</span></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Publications Column -->
-                <div class="highlights-column" id="publications">
-                    <h3 class="highlight-title">Publications</h3>
-                    <ul class="highlight-list">
-                        <li>
-                            <i class="fas fa-book-open"></i>
-                            <div>
-                                <h4>Composite AI-Driven Music Recommendation <a
-                                        href="https://onlinelibrary.wiley.com/doi/abs/10.1002/9781394393060.ch10"
-                                        target="_blank"
-                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
-                                            class="fas fa-external-link-alt"></i></a></h4>
-                                <p>Wiley · May 2026<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Composite Artificial
-                                        Intelligence: Fundamentals, Challenges, and Applications</span></p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-book-open"></i>
-                            <div>
-                                <h4>Streaming Highway Traffic Alerts using Twitter API <a
-                                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781032630212-14/streaming-highway-traffic-alerts-using-twitter-api-jayanthi-ganapathy-ramya-mohanakrishnan-ayushmaan-das-fausto-pedro-garcia-marque"
-                                        target="_blank"
-                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
-                                            class="fas fa-external-link-alt"></i></a></h4>
-                                <p>Taylor & Francis Group · 2024<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Advancement of Data
-                                        Processing Methods for Artificial and Computing Intelligence</span></p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-book-open"></i>
-                            <div>
-                                <h4>Disseminating Dynamic Traffic Information for Sustainable Mobility <a
-                                        href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003409502-8/disseminating-dynamic-traffic-information-sustainable-mobility-transport-jayanthi-ganapathy-thanushram-sureshkumar-ambati-renuka-vamsi-krishna-ayushmaan-das"
-                                        target="_blank"
-                                        style="font-size: 0.75rem; color: var(--text-muted); margin-left: 8px;"><i
-                                            class="fas fa-external-link-alt"></i></a></h4>
-                                <p>Taylor & Francis Group · 2024<br><span
-                                        style="font-size: 0.85rem; color: var(--text-muted);">Artificial Intelligence
-                                        and Machine Learning for Smart Community</span></p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section scroll-reveal">
-            <h2 class="section-title">06. What's Next?</h2>
-            <h1 class="hero-title" style="font-size: 3rem;">Get In Touch</h1>
-            <p>I'm always open to discussing modern AI systems, model optimization, or production AI infrastructure.
-                Whether you have a question or just want to say hi, my inbox is always open!</p>
-            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="{{ url_for('static', filename='docs/resume.pdf') }}" target="_blank" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px; border-color: var(--accent);"><i class="fas fa-file-pdf"></i> Download Resume</a>
-                <a href="mailto:dasayush5maan@gmail.com" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-envelope"></i> Email</a>
-                <a href="tel:+918145328571" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fas fa-phone-alt"></i> Phone</a>
-                <a href="https://wa.me/918145328571" target="_blank" class="btn"
-                    style="padding: 15px 30px; font-size: 1.1rem; min-width: 140px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-
-            <div class="social-links">
-                <a href="https://github.com/ayushmaanFCB" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/ayushmaan-das/" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="https://discordapp.com/users/755447086476165172" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-                <a href="mailto:dasayush5maan@gmail.com"><i class="far fa-envelope"></i></a>
-            </div>
-        </section>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Ayushmaan Das. All rights reserved.</p>
-    </footer>
+        </div>
+    </main>
 
     <script>
         // Terminal Typing Effect and Mobile Menu
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Mobile Menu Logic
             const menuToggle = document.getElementById("mobile-menu");
             const navLinks = document.getElementById("nav-links");
-            
+
             if (menuToggle) {
                 menuToggle.addEventListener("click", () => {
                     navLinks.classList.toggle("active");
-                    menuToggle.innerHTML = navLinks.classList.contains("active") 
-                        ? '<i class="fas fa-times"></i>' 
+                    menuToggle.innerHTML = navLinks.classList.contains("active")
+                        ? '<i class="fas fa-times"></i>'
                         : '<i class="fas fa-bars"></i>';
                 });
 
@@ -629,41 +1372,59 @@
                 });
             }
 
+            // Smooth scrolling for internal anchor links within #main
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1 && !href.startsWith('#/')) {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            if (history.pushState) {
+                                history.pushState(null, null, href);
+                            }
+                        }
+                    }
+                });
+            });
+
             // Lock scroll during boot sequence
             document.body.style.overflow = "hidden";
-            
+
             // Logo Boot Sequence
-            const logoEl = document.querySelector(".logo");
-            if (logoEl) {
+            const logoTextEl = document.querySelector(".logo-text");
+            if (logoTextEl) {
                 const logoText1 = "ayushmaan";
                 const logoText2 = ".is-a.dev";
-                logoEl.innerHTML = "";
+                logoTextEl.innerHTML = "";
                 let l1 = 0;
                 let l2 = 0;
                 let logoSpan = null;
-                
+
                 function typeLogo() {
                     if (l1 < logoText1.length) {
-                        logoEl.innerHTML += logoText1.charAt(l1);
+                        logoTextEl.innerHTML += logoText1.charAt(l1);
                         l1++;
-                        setTimeout(typeLogo, 80);
+                        setTimeout(typeLogo, 70);
                     } else if (l2 === 0) {
                         logoSpan = document.createElement("span");
-                        logoEl.appendChild(logoSpan);
+                        logoSpan.className = "logo-domain";
+                        logoTextEl.appendChild(logoSpan);
                         typeLogo2();
                     }
                 }
-                
+
                 function typeLogo2() {
                     if (l2 < logoText2.length) {
                         logoSpan.innerHTML += logoText2.charAt(l2);
                         l2++;
-                        setTimeout(typeLogo2, 80);
+                        setTimeout(typeLogo2, 70);
                     }
                 }
-                setTimeout(typeLogo, 100);
+                setTimeout(typeLogo, 90);
             }
-            
+
             const subtitleEl = document.querySelector(".hero-subtitle");
             if (subtitleEl) {
                 const text = subtitleEl.innerText;
@@ -673,7 +1434,7 @@
                 subtitleEl.style.whiteSpace = "nowrap";
                 subtitleEl.style.overflow = "hidden";
                 subtitleEl.style.paddingRight = "5px";
-                
+
                 // Blinking cursor effect
                 setInterval(() => {
                     subtitleEl.style.borderColor = subtitleEl.style.borderColor === "transparent" ? "var(--accent)" : "transparent";
@@ -688,7 +1449,7 @@
                     } else {
                         const reveals = document.querySelectorAll('.reveal-on-type');
                         reveals.forEach(el => el.classList.add('visible'));
-                        
+
                         // Unlock scroll after animation starts
                         setTimeout(() => {
                             document.body.style.overflow = "";
@@ -697,7 +1458,7 @@
                 }
                 setTimeout(typeWriter, 500);
             }
-            
+
             // Intersection Observer for Scroll Reveals
             const observerOptions = {
                 root: null,
@@ -717,15 +1478,59 @@
             document.querySelectorAll('.scroll-reveal').forEach((section) => {
                 observer.observe(section);
             });
-            
-            // Scroll Progress Bar
-            window.addEventListener('scroll', () => {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            // Scroll Progress Bar & Section Dot Tracking
+            const mainEl = document.getElementById('main');
+            const navEl = document.querySelector('nav');
+            const sections = document.querySelectorAll('section[id]');
+            const headerNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            const dots = document.querySelectorAll('.section-dot');
+            let lastScrollTop = 0;
+            const scrollDelta = 10;
+
+            mainEl.addEventListener('scroll', () => {
+                const scrolled = (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100;
+                const progressBar = document.getElementById('scroll-progress');
+                if (progressBar) progressBar.style.width = scrolled + '%';
+
+                const currentScroll = mainEl.scrollTop;
+
+                // Dynamic Island Navbar: Contract to logo capsule on scroll down, expand on scroll up / top
+                if (navEl) {
+                    const isMobileMenuOpen = navLinks && navLinks.classList.contains('active');
+                    if (currentScroll < 100) {
+                        navEl.classList.remove('collapsed');
+                    } else if (!isMobileMenuOpen) {
+                        if (currentScroll > lastScrollTop + scrollDelta) {
+                            navEl.classList.add('collapsed');
+                        } else if (currentScroll < lastScrollTop - scrollDelta) {
+                            navEl.classList.remove('collapsed');
+                        }
+                    }
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+                // Track active section on scroll
+                let currentSectionId = '';
+                const scrollPos = mainEl.scrollTop + (window.innerHeight / 3);
+                sections.forEach(sec => {
+                    const top = sec.offsetTop;
+                    const height = sec.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentSectionId = sec.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    dots.forEach(dot => {
+                        dot.classList.toggle('active', dot.getAttribute('href') === `#${currentSectionId}`);
+                    });
+                    headerNavLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+                    });
+                }
             });
-            
+
             // Matrix Digital Rain
             const canvas = document.getElementById('matrix-canvas');
             const ctx = canvas.getContext('2d');
@@ -735,16 +1540,16 @@
             const fontSize = 14;
             const columns = canvas.width / fontSize;
             const drops = [];
-            for(let x = 0; x < columns; x++) drops[x] = 1;
+            for (let x = 0; x < columns; x++) drops[x] = 1;
             function drawMatrix() {
                 ctx.fillStyle = 'rgba(8, 11, 18, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4d7cff';
                 ctx.font = fontSize + 'px var(--font-mono)';
-                for(let i = 0; i < drops.length; i++) {
+                for (let i = 0; i < drops.length; i++) {
                     const text = letters[Math.floor(Math.random() * letters.length)];
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                     drops[i]++;
                 }
             }
@@ -767,23 +1572,361 @@
                 });
             });
 
-            // Holographic 3D Card Tilt
-            document.querySelectorAll('.project-card, .highlight-card, .award-card').forEach(card => {
+            // Bento Mouse-Torch Spotlight & Holographic 3D Tilt
+            document.querySelectorAll('.project-card, .highlight-card, .award-card, .skill-category-card, .stat-card, .cert-card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -10;
-                    const rotateY = ((x - centerX) / centerX) * 10;
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+
+                    // 3D tilt for cards that support it
+                    if (!card.classList.contains('stat-card')) {
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -8;
+                        const rotateY = ((x - centerX) / centerX) * 8;
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    }
                 });
                 card.addEventListener('mouseleave', () => {
-                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    card.style.setProperty('--mouse-x', '-500px');
+                    card.style.setProperty('--mouse-y', '-500px');
+                    if (!card.classList.contains('stat-card')) {
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    }
                 });
             });
-            
+
+        });
+        // Hide loader after full page load
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.transition = 'opacity 0.5s ease';
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.remove();
+                    document.body.style.overflow = '';
+                }, 500);
+            }
+        });
+
+        // Interactive 1-Click Copy on Contact Chips
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.copy-chip').forEach(chip => {
+                chip.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const text = this.getAttribute('data-copy');
+                    if (!text) return;
+                    navigator.clipboard.writeText(text).then(() => {
+                        chip.classList.add('copied');
+                        const icon = chip.querySelector('.copy-icon');
+                        if (icon) {
+                            icon.classList.remove('fa-copy', 'far');
+                            icon.classList.add('fa-check', 'fas');
+                        }
+                        setTimeout(() => {
+                            chip.classList.remove('copied');
+                            if (icon) {
+                                icon.classList.remove('fa-check', 'fas');
+                                icon.classList.add('fa-copy', 'far');
+                            }
+                        }, 2000);
+                    }).catch(err => console.error('Copy failed:', err));
+                });
+            });
+        });
+
+        // Scroll to top button handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+            if (scrollTopBtn) {
+                scrollTopBtn.addEventListener('click', function () {
+                    const mainEl = document.getElementById('main');
+                    if (mainEl) {
+                        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+
+        // Custom cyberpunk cursor
+        const cursor = document.getElementById('custom-cursor');
+        // Start off-screen so it doesn't show at top-left before mouse enters
+        cursor.style.left = '-100px';
+        cursor.style.top = '-100px';
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        // Hover effect – enlarge cursor on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, .btn, .skill-chip, .project-card, .highlight-card, .award-card, .about-card, .domain-item, .contact-card, .contact-chip, .contact-action-btn, .section-dot, .scroll-top-btn, .open-resume-modal, .resume-action-btn, .resume-modal-close, .resume-close-btn-bottom');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Cyber Web Audio Sound FX Engine
+        const SoundFX = (function () {
+            let ctx = null;
+            let muted = localStorage.getItem('sound_fx_muted') === 'true';
+
+            function getContext() {
+                if (!ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) {
+                        ctx = new AudioCtx();
+                    }
+                }
+                if (ctx && ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+                return ctx;
+            }
+
+            // Unlock audio context on first user interaction (browser autoplay policy)
+            function initUserGesture() {
+                const unlock = () => {
+                    getContext();
+                    window.removeEventListener('click', unlock);
+                    window.removeEventListener('keydown', unlock);
+                    window.removeEventListener('touchstart', unlock);
+                };
+                window.addEventListener('click', unlock, { once: true });
+                window.addEventListener('keydown', unlock, { once: true });
+                window.addEventListener('touchstart', unlock, { once: true });
+            }
+
+            // Subtle tactile cyber blip
+            function playClick() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1100, now);
+                osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+
+                gain.gain.setValueAtTime(0.05, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.032);
+
+                osc.connect(gain);
+                gain.connect(c.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.035);
+            }
+
+            // Ascending harmonic cyber warp on modal open
+            function playModalOpen() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+
+                const osc1 = c.createOscillator();
+                const gain1 = c.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(360, now);
+                osc1.frequency.exponentialRampToValueAtTime(780, now + 0.12);
+
+                gain1.gain.setValueAtTime(0.01, now);
+                gain1.gain.linearRampToValueAtTime(0.065, now + 0.03);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+                osc1.connect(gain1);
+                gain1.connect(c.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.13);
+
+                const osc2 = c.createOscillator();
+                const gain2 = c.createGain();
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(720, now);
+                osc2.frequency.exponentialRampToValueAtTime(1440, now + 0.12);
+
+                gain2.gain.setValueAtTime(0.005, now);
+                gain2.gain.linearRampToValueAtTime(0.03, now + 0.04);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+                osc2.connect(gain2);
+                gain2.connect(c.destination);
+                osc2.start(now);
+                osc2.stop(now + 0.13);
+            }
+
+            // Soft descending dismiss on modal close
+            function playModalClose() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(720, now);
+                osc.frequency.exponentialRampToValueAtTime(260, now + 0.08);
+
+                gain.gain.setValueAtTime(0.045, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+                osc.connect(gain);
+                gain.connect(c.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.09);
+            }
+
+            function toggleMute() {
+                muted = !muted;
+                localStorage.setItem('sound_fx_muted', muted);
+                if (!muted) {
+                    playClick();
+                }
+                return muted;
+            }
+
+            function isMuted() {
+                return muted;
+            }
+
+            return {
+                initUserGesture,
+                playClick,
+                playModalOpen,
+                playModalClose,
+                toggleMute,
+                isMuted
+            };
+        })();
+
+        SoundFX.initUserGesture();
+
+        // Resume Modal Interactions & Sound FX Integration
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sound FX Toggle UI Setup
+            const soundToggleBtn = document.getElementById('sound-toggle');
+            if (soundToggleBtn) {
+                const updateSoundToggleUI = (isMuted) => {
+                    const icon = soundToggleBtn.querySelector('i');
+                    if (isMuted) {
+                        soundToggleBtn.classList.add('muted');
+                        soundToggleBtn.setAttribute('title', 'Sound Effects: MUTED (Click to unmute)');
+                        if (icon) icon.className = 'fas fa-volume-mute';
+                    } else {
+                        soundToggleBtn.classList.remove('muted');
+                        soundToggleBtn.setAttribute('title', 'Sound Effects: ON (Click to mute)');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                    }
+                };
+
+                updateSoundToggleUI(SoundFX.isMuted());
+
+                soundToggleBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const newMuted = SoundFX.toggleMute();
+                    updateSoundToggleUI(newMuted);
+                });
+            }
+
+            // Universal Tactile Cyber Click Sound on Interactive Elements
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('#sound-toggle, .open-resume-modal, .resume-modal-close, .resume-close-btn-bottom, .resume-modal-backdrop')) {
+                    return;
+                }
+                const interactive = e.target.closest('a, button, .btn, .skill-chip, .cert-card, .section-dot, .contact-chip, .contact-action-btn, .experience-header, .domain-item');
+                if (interactive) {
+                    SoundFX.playClick();
+                }
+            });
+
+            const resumeModal = document.getElementById('resume-modal');
+            if (!resumeModal) return;
+
+            const openResumeModal = function (e) {
+                if (e) e.preventDefault();
+                resumeModal.classList.add('active');
+                resumeModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                SoundFX.playModalOpen();
+            };
+
+            const closeResumeModal = function () {
+                resumeModal.classList.remove('active');
+                resumeModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                SoundFX.playModalClose();
+            };
+
+            // Open modal on all resume triggers
+            document.querySelectorAll('.open-resume-modal').forEach(btn => {
+                btn.addEventListener('click', openResumeModal);
+            });
+
+            // Close modal on close buttons or backdrop click
+            resumeModal.querySelectorAll('.resume-modal-close, .resume-close-btn-bottom, .resume-modal-backdrop').forEach(el => {
+                el.addEventListener('click', closeResumeModal);
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+                    closeResumeModal();
+                }
+            });
+        });
+        // Particle field
+        const particleCanvas = document.getElementById('particle-canvas');
+        const pCtx = particleCanvas.getContext('2d');
+        function resizeParticleCanvas() { particleCanvas.width = window.innerWidth; particleCanvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeParticleCanvas);
+        resizeParticleCanvas();
+        const particles = [];
+        const particleCount = 80;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * particleCanvas.width,
+                y: Math.random() * particleCanvas.height,
+                r: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                alpha: Math.random() * 0.5 + 0.3
+            });
+        }
+        function drawParticles() {
+            pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            pCtx.fillStyle = `rgba(var(--accent-rgb),0.2)`;
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > particleCanvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > particleCanvas.height) p.vy *= -1;
+                pCtx.beginPath();
+                pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                pCtx.fill();
+            });
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        // Cursor trail
+        const trailContainer = document.getElementById('cursor-trail');
+        document.addEventListener('mousemove', e => {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail-item';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trailContainer.appendChild(trail);
+            setTimeout(() => trail.remove(), 600);
         });
     </script>
 </body>
