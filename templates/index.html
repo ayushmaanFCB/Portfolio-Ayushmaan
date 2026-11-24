@@ -36,6 +36,9 @@
                     <a href="#contact">Contact</a>
                     <a href="{{ url_for('static', filename='docs/resume.pdf') }}"
                         class="nav-resume-btn open-resume-modal" title="View Resume">Resume</a>
+                    <button class="nav-sound-btn" id="sound-toggle" title="Sound Effects: ON (Click to mute)" aria-label="Toggle Sound Effects">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
                 </div>
                 <div class="menu-toggle" id="mobile-menu" style="display: none; cursor: pointer; z-index: 200;">
                     <i class="fas fa-bars"></i>
@@ -1666,8 +1669,187 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // Resume Modal Interactions
+        // Cyber Web Audio Sound FX Engine
+        const SoundFX = (function () {
+            let ctx = null;
+            let muted = localStorage.getItem('sound_fx_muted') === 'true';
+
+            function getContext() {
+                if (!ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) {
+                        ctx = new AudioCtx();
+                    }
+                }
+                if (ctx && ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+                return ctx;
+            }
+
+            // Unlock audio context on first user interaction (browser autoplay policy)
+            function initUserGesture() {
+                const unlock = () => {
+                    getContext();
+                    window.removeEventListener('click', unlock);
+                    window.removeEventListener('keydown', unlock);
+                    window.removeEventListener('touchstart', unlock);
+                };
+                window.addEventListener('click', unlock, { once: true });
+                window.addEventListener('keydown', unlock, { once: true });
+                window.addEventListener('touchstart', unlock, { once: true });
+            }
+
+            // Subtle tactile cyber blip
+            function playClick() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1100, now);
+                osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+
+                gain.gain.setValueAtTime(0.05, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.032);
+
+                osc.connect(gain);
+                gain.connect(c.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.035);
+            }
+
+            // Ascending harmonic cyber warp on modal open
+            function playModalOpen() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+
+                const osc1 = c.createOscillator();
+                const gain1 = c.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(360, now);
+                osc1.frequency.exponentialRampToValueAtTime(780, now + 0.12);
+
+                gain1.gain.setValueAtTime(0.01, now);
+                gain1.gain.linearRampToValueAtTime(0.065, now + 0.03);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+                osc1.connect(gain1);
+                gain1.connect(c.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.13);
+
+                const osc2 = c.createOscillator();
+                const gain2 = c.createGain();
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(720, now);
+                osc2.frequency.exponentialRampToValueAtTime(1440, now + 0.12);
+
+                gain2.gain.setValueAtTime(0.005, now);
+                gain2.gain.linearRampToValueAtTime(0.03, now + 0.04);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+                osc2.connect(gain2);
+                gain2.connect(c.destination);
+                osc2.start(now);
+                osc2.stop(now + 0.13);
+            }
+
+            // Soft descending dismiss on modal close
+            function playModalClose() {
+                if (muted) return;
+                const c = getContext();
+                if (!c) return;
+
+                const now = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(720, now);
+                osc.frequency.exponentialRampToValueAtTime(260, now + 0.08);
+
+                gain.gain.setValueAtTime(0.045, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+                osc.connect(gain);
+                gain.connect(c.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.09);
+            }
+
+            function toggleMute() {
+                muted = !muted;
+                localStorage.setItem('sound_fx_muted', muted);
+                if (!muted) {
+                    playClick();
+                }
+                return muted;
+            }
+
+            function isMuted() {
+                return muted;
+            }
+
+            return {
+                initUserGesture,
+                playClick,
+                playModalOpen,
+                playModalClose,
+                toggleMute,
+                isMuted
+            };
+        })();
+
+        SoundFX.initUserGesture();
+
+        // Resume Modal Interactions & Sound FX Integration
         document.addEventListener('DOMContentLoaded', function () {
+            // Sound FX Toggle UI Setup
+            const soundToggleBtn = document.getElementById('sound-toggle');
+            if (soundToggleBtn) {
+                const updateSoundToggleUI = (isMuted) => {
+                    const icon = soundToggleBtn.querySelector('i');
+                    if (isMuted) {
+                        soundToggleBtn.classList.add('muted');
+                        soundToggleBtn.setAttribute('title', 'Sound Effects: MUTED (Click to unmute)');
+                        if (icon) icon.className = 'fas fa-volume-mute';
+                    } else {
+                        soundToggleBtn.classList.remove('muted');
+                        soundToggleBtn.setAttribute('title', 'Sound Effects: ON (Click to mute)');
+                        if (icon) icon.className = 'fas fa-volume-up';
+                    }
+                };
+
+                updateSoundToggleUI(SoundFX.isMuted());
+
+                soundToggleBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const newMuted = SoundFX.toggleMute();
+                    updateSoundToggleUI(newMuted);
+                });
+            }
+
+            // Universal Tactile Cyber Click Sound on Interactive Elements
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('#sound-toggle, .open-resume-modal, .resume-modal-close, .resume-close-btn-bottom, .resume-modal-backdrop')) {
+                    return;
+                }
+                const interactive = e.target.closest('a, button, .btn, .skill-chip, .cert-card, .section-dot, .contact-chip, .contact-action-btn, .experience-header, .domain-item');
+                if (interactive) {
+                    SoundFX.playClick();
+                }
+            });
+
             const resumeModal = document.getElementById('resume-modal');
             if (!resumeModal) return;
 
@@ -1676,12 +1858,14 @@
                 resumeModal.classList.add('active');
                 resumeModal.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
+                SoundFX.playModalOpen();
             };
 
             const closeResumeModal = function () {
                 resumeModal.classList.remove('active');
                 resumeModal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
+                SoundFX.playModalClose();
             };
 
             // Open modal on all resume triggers
